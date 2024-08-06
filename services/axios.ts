@@ -2,7 +2,7 @@ import { getToken } from "@/lib/getToken";
 import axios, { InternalAxiosRequestConfig } from "axios";
 
 const baseURL = process.env.NEXT_PUBLIC_SERVER_ENDPOINT;
-
+//edit
 export const hestyAPI = axios.create({
   baseURL: baseURL,
 });
