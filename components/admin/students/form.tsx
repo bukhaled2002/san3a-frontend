@@ -287,7 +287,7 @@ function AdminStudentsForm({ intialValues }: Props) {
                 >
                   <FormControl>
                     <SelectTrigger className="focus-visible:ring-secondary">
-                      <SelectValue placeholder="المادة" />
+                      <SelectValue placeholder="الصف الدراسي" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
