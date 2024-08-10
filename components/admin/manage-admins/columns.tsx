@@ -9,7 +9,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { isAxiosError } from "axios";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
-
+import{extractDriveFileId} from "@/lib/helper/driveImage";
 export const columns: ColumnDef<GetAdmin>[] = [
   {
     accessorKey: "id",

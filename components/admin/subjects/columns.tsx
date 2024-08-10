@@ -12,7 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import AdminSubjectForm from "./form";
-
+import { extractDriveFileId } from "@/lib/helper/driveImage";
 export const columns: ColumnDef<GetSubject>[] = [
   {
     accessorKey: "img_url",
@@ -20,7 +20,13 @@ export const columns: ColumnDef<GetSubject>[] = [
     cell: ({ row }) => (
       <div>
         <Image
-          src={row.original.img_url?.trim() || "/images/no-image.png"}
+          src={
+            row.original.img_url
+              ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(
+                  row.original.img_url
+                )}`
+              : "/images/defaultAvatar.webp"
+          }
           alt={row.original.name}
           width={200}
           height={200}

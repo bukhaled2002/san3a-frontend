@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Eye } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import{extractDriveFileId} from "@/lib/helper/driveImage";
 export const columns: ColumnDef<GetSon>[] = [
   {
     accessorKey: "img_url",
@@ -12,8 +12,16 @@ export const columns: ColumnDef<GetSon>[] = [
     cell: ({ row }) => (
       <div>
         <Image
-          src={row.original.img_url?.trim() || "/images/defaultAvatar.webp"}
-          alt={row.original.firstName + "Image"}
+ 
+          src={
+            row.original.img_url
+              ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(
+                  row.original.img_url
+                )}`
+              : "/images/defaultAvatar.webp"
+          }
+
+          alt={row.original.firstName + " " + row.original.lastName}
           width={200}
           height={200}
           className="w-16 h-16 rounded-full m-auto object-cover"

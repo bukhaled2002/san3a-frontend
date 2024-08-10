@@ -12,7 +12,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { isAxiosError } from "axios";
 import Image from "next/image";
 import { useState } from "react";
-
+import{extractDriveFileId} from "@/lib/helper/driveImage";
 export const columns: ColumnDef<GetCharageRequest>[] = [
   {
     accessorKey: "img_url",
@@ -21,9 +21,17 @@ export const columns: ColumnDef<GetCharageRequest>[] = [
       <div>
         <Image
           src={
-            row.original.student.img_url?.trim() || "/images/defaultAvatar.webp"
+            row.original.student.img_url
+              ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(
+                  row.original.student.img_url
+                )}`
+              : "/images/defaultAvatar.webp"
           }
-          alt={row.original.student.firstName + "Image"}
+          alt={
+            row.original.student.firstName +
+            " " +
+            row.original.student.lastName
+          }
           width={200}
           height={200}
           className="w-16 h-16 rounded-full m-auto object-cover   "

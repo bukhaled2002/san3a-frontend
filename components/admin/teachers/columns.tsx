@@ -17,6 +17,7 @@ import { Edit, Eye, Pin, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { extractDriveFileId } from "@/lib/helper/driveImage";
 
 export const columns: ColumnDef<GetTeacher>[] = [
   {
@@ -25,7 +26,13 @@ export const columns: ColumnDef<GetTeacher>[] = [
     cell: ({ row }) => (
       <div>
         <Image
-          src={row.original.img_url?.trim() || "/images/defaultAvatar.webp"}
+          src={
+            row.original.img_url
+              ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(
+                  row.original.img_url
+                )}`
+              : "/images/defaultAvatar.webp"
+          }
           alt={row.original.fullName}
           width={200}
           height={200}

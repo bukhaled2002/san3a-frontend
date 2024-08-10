@@ -11,16 +11,33 @@ import { Edit, Eye, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { extractDriveFileId } from "@/lib/helper/driveImage";
+
+// function extractDriveFileId(url) {
+//   const regex = /\/d\/([^\/]+)\//;
+//   const match = url.match(regex);
+//   if (match && match[1]) {
+//       return match[1];
+//   } else {
+//       return null;
+//   }
+// }
+
+// const url = "https://drive.google.com/file/d/1jFvvu3-E1Ah6GvgcIx5MOgZGdyTKe5p6/view";
+// const fileId = extractDriveFileId(url);
+// console.log(fileId); // Output: 1jFvvu3-E1Ah6GvgcIx5MOgZGdyTKe5p6
+
 
 export const columns: ColumnDef<GetStudent>[] = [
   {
+    
     accessorKey: "img_url",
     header: "الصورة الشخصية",
     cell: ({ row }) => (
       <div>
         <Image
-          src={row.original.img_url?.trim() || "/images/defaultAvatar.webp"}
-          alt={row.original.firstName + "Image"}
+          src={row.original.img_url ? `https://drive.google.com/uc?export=view&id=${extractDriveFileId(row.original.img_url)}` : "/images/defaultAvatar.webp"}
+          alt={row.original.firstName + " " + row.original.lastName}
           width={200}
           height={200}
           className="w-16 h-16 rounded-full m-auto object-cover"
