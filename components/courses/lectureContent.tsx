@@ -101,7 +101,7 @@ function LectureContent({ courseId, lectureId,watched,total }: Props) {
   return (
     <>
       <div className="header flex items-center justify-between text-lg font-bold">
-        {lecture?.lecture?.title} MANGOOOOOOOOOOOO
+        {lecture?.lecture?.title}
       </div>
       <div
         className={cn(
