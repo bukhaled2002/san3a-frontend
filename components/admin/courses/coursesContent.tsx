@@ -158,6 +158,14 @@ function AdminCoursesContent({}: Props) {
                             الامتحانات
                           </Link>
                         </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link
+                            href={`/admin/courses/${course.id}/qr-codes`}
+                            className="cursor-pointer"
+                          >
+                          رموز الكيو أر
+                          </Link>
+                        </DropdownMenuItem>
 
                         <DropdownMenuItem
                           className="text-red-500 hover:text-red-600 cursor-pointer"
