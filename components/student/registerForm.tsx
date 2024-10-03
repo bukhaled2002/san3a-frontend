@@ -27,7 +27,7 @@ import { registerStudent } from "@/services/student/auth";
 import { isAxiosError } from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-
+import { governorates } from "@/lib/helper/egypt-governorates-and-cities";
 type Props = {};
 
 const FormSchema = z.object({
@@ -36,12 +36,19 @@ const FormSchema = z.object({
     .min(3, { message: "الاسم الاول يجب ان يكون اكثر من 3 احرف" }),
   lastName: z
     .string()
-    .min(3, { message: "الاسم الاخير يجب ان يكون اكثر من 3 احرف" }),
+    .min(3, { message: "الاسم الثاني يجب ان يكون اكثر من 3 احرف" }),
+  school: z
+    .string()
+    .min(3, { message: "الرجاء ادخال اسم المدرسة" }),
+  city: z
+    .string()
+    .min(3, { message: "الرجاء ادخال اسم المدينة" }),
   classId: z.string().min(1, {
     message: "الرجاء ادخال الصف الدراسي",
   }),
   email: z.string().email({ message: "الرجاء ادخال ايميل صحيح" }),
   phone: z.string().min(1, { message: "الرجاء ادخال رقم الهاتف" }),
+  phone2: z.string().min(1, { message: "الرجاء ادخال رقم هاتف ولي الامر" }),
   password: z.string().min(6, { message: "كلمة السر يجب ان تكون 6 احرف" }),
   password_confirmation: z
     .string()
@@ -51,7 +58,7 @@ const FormSchema = z.object({
 
 type FormValues = z.infer<typeof FormSchema>;
 
-function StudentRegisterForm({}: Props) {
+function StudentRegisterForm({ }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
   const { data: classes } = useQuery({
@@ -63,8 +70,11 @@ function StudentRegisterForm({}: Props) {
     defaultValues: {
       firstName: "",
       lastName: "",
+      city: "",
+      school: "",
       email: "",
       phone: "",
+      phone2: "",
       classId: "",
       password: "",
       password_confirmation: "",
@@ -114,41 +124,44 @@ function StudentRegisterForm({}: Props) {
         </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-2 gap-5">
-              <FormField
-                control={form.control}
-                name="firstName"
-                render={({ field }) => (
-                  <FormItem className="row-span-2">
-                    <FormControl>
-                      <Input
-                        className="py-4"
-                        type="text"
-                        placeholder="الاسم الاول"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="lastName"
-                render={({ field }) => (
-                  <FormItem className="row-span-2">
-                    <FormControl>
-                      <Input
-                        type="text"
-                        placeholder="الاسم الاخير"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className="grid grid-cols-2 md:gap-5 gap-3">
+
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem className="row-span-2">
+                  <FormControl>
+                    <Input
+                      className="py-4"
+                      type="text"
+                      placeholder="الاسم الأول"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+                        <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem className="row-span-2">
+                  <FormControl>
+                    <Input
+                      className="py-4"
+                      type="text"
+                      placeholder="الاسم الأخير"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             </div>
+
             <FormField
               control={form.control}
               name="email"
@@ -171,12 +184,25 @@ function StudentRegisterForm({}: Props) {
               render={({ field }) => (
                 <FormItem className="row-span-2">
                   <FormControl>
-                    <Input type="text" placeholder="رقم الهاتف" {...field} />
+                    <Input type="text" placeholder="رقم هاتف ولي الأمر" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="phone2"
+              render={({ field }) => (
+                <FormItem className="row-span-2">
+                  <FormControl>
+                    <Input type="text" placeholder="رقم هاتف الطالب" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="gender"
@@ -226,6 +252,51 @@ function StudentRegisterForm({}: Props) {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="city"
+              render={({ field }) => (
+                <FormItem>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="المحافظة" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {governorates.map((gov) => (
+                        <SelectItem key={gov.id} value={gov.governorate_name_ar}>
+                          {gov.governorate_name_ar}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="school"
+              render={({ field }) => (
+                <FormItem className="row-span-2">
+                  <FormControl>
+                    <Input
+                      className="py-4"
+                      type="text"
+                      placeholder="اسم المدرسة"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="password"
