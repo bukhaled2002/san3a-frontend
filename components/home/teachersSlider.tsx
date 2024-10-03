@@ -48,7 +48,7 @@ function TeachersSlider({ teachers }: Props) {
             <SwiperSlide className="space-y-1.5" key={index}>
               <Link href={`/teachers/${teacher.id}`}>
                 <Image
-                  src={transformGoogleDriveUrl(teacher.img_url?.trim())}
+                  src={transformGoogleDriveUrl(teacher?.img_url?.trim())}
                   alt={teacher.fullName}
                   width={200}
                   height={200}
@@ -56,10 +56,10 @@ function TeachersSlider({ teachers }: Props) {
                 />
               </Link>
               <h1 className="text-xl font-bold text-[#121212] text-center">
-                {teacher.fullName}
+                {teacher?.fullName}
               </h1>
               <p className="text-black/70 font-semibold text-lg text-center">
-                معلم {teacher.subject.name}
+                معلم {teacher?.subject?.name}
               </p>
             </SwiperSlide>
           );
