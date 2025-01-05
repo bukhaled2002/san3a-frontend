@@ -20,9 +20,13 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { AllEssay, getEssay } from "@/services/admin/essay";
+import {
+  AllEssay,
+  getEssay,
+  SingleEssayQuestion,
+} from "@/services/admin/essay";
 import { SingleMCQQuestion } from "@/services/admin/mcq";
-import { createQuizEssay } from "@/services/quizEssay";
+import { createQuizEssay, getAllEssays } from "@/services/quizEssay";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
@@ -248,7 +252,7 @@ function AdminCreateEssayForm({ courseId, lectureId }: Props) {
                                 </SelectTrigger>
                                 <SelectContent>
                                   {allEssays?.questions?.map(
-                                    (item: SingleMCQQuestion) => (
+                                    (item: SingleEssayQuestion) => (
                                       <SelectItem
                                         value={item?.id}
                                         key={item?.id}

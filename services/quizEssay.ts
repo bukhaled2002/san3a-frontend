@@ -4,7 +4,7 @@ export type PostQuizEssay = {
   title: string;
   duration: string;
   lectureId: string;
-  questions: {
+  QuestionEssay: {
     id?: string;
     question?: string;
     figure?: string[];
