@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,7 +32,7 @@ import { cn } from "@/lib/utils";
 import AdminNestedQuizQuestions from "./quiz-questions";
 import { AllMCQ, getMCQ } from "@/services/admin/mcq";
 import { AllEssay, getEssay } from "@/services/admin/essay";
-import { createExam } from '@/services/exam';
+import { createExam } from "@/services/exam";
 
 const FormSchema = z.object({
   title: z.string().nonempty("اسم الامتحان مطلوب"),
@@ -43,12 +43,14 @@ const FormSchema = z.object({
       question: z.string(),
       type: z.enum(["mcq", "essay"]),
       figure: z.array(z.string()),
-      choices: z.array(
-        z.object({
-          answer: z.string(),
-          isCorrect: z.boolean(),
-        })
-      ).optional(),
+      choices: z
+        .array(
+          z.object({
+            answer: z.string(),
+            isCorrect: z.boolean(),
+          })
+        )
+        .optional(),
     })
   ),
 });
@@ -157,38 +159,56 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
     }
   }, [courseId, lectureId]);
 
+  useEffect(() => {
+    setToggleStates(form.getValues("questions").map(() => false));
+    setQuestionTypes(form.getValues("questions").map((q) => q.type));
+  }, [form]);
+
   async function onSubmit(data: FormValues) {
     try {
-      const mcqQuestions = data.questions.filter(q => q.type === "mcq").map((question) => ({
-        question: question.question,
-        explanation: "explanation",
-        attachment: "attachment_Url",
-        figure: question.figure,
-        choices: question.choices?.map(choice => ({
-          answer: choice.answer,
-          isCorrect: choice.isCorrect,
-        })),
-      }));
-      const essayQuestions = data.questions.filter(q => q.type === "essay").map((question) => ({
-        question: question.question,
-        explanation: "explanation",
-        attachment: "attachment_Url",
-        figure: question.figure,
-      }));
+      const mcqQuestions = data.questions
+        .filter((q) => q.type === "mcq")
+        .map((question) => ({
+          question: question.question,
+          explanation: "explanation",
+          attachment: "attachment_Url",
+          figure: question.figure,
+          choices: question.choices?.map((choice) => ({
+            answer: choice.answer,
+            isCorrect: choice.isCorrect,
+          })),
+        }));
+      const essayQuestions = data.questions
+        .filter((q) => q.type === "essay")
+        .map((question) => ({
+          question: question.question,
+          explanation: "explanation",
+          attachment: "attachment_Url",
+          figure: question.figure,
+        }));
 
       const payload = {
         title: data.title,
         duration: data.duration,
         lectureId: lectureId as string,
-        Quiz: mcqQuestions.length > 0 ? {
-          title: `${data.title} - MCQ Section`,
-          questions: mcqQuestions,
-        } : undefined,
-        QuizEssay: essayQuestions.length > 0 ? {
-          title: `${data.title} - Essay Section`,
-          QuestionEssay: essayQuestions,
-        } : undefined,
+        // chapterId: "e7ae75f1-8a8b-4e4d-97c3-5fc996772bf7",
+        Quiz:
+          mcqQuestions.length > 0
+            ? {
+                title: `${data.title} - MCQ Section`,
+                questions: mcqQuestions,
+              }
+            : undefined,
+        QuizEssay:
+          essayQuestions.length > 0
+            ? {
+                title: `${data.title} - Essay Section`,
+                QuestionEssay: essayQuestions,
+              }
+            : undefined,
       };
+
+      console.log(payload);
 
       await createExam(payload);
 
@@ -216,7 +236,8 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
       <div className="mb-7">
         <h1 className="text-2xl font-bold">برجاء اضافة الاسئلة</h1>
         <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-[28.5px]">
-          برجاء تحديد الدورة التعليمية والفصل والدرس الذي سيتم اجراء امتحان خاص بهم
+          برجاء تحديد الدورة التعليمية والفصل والدرس الذي سيتم اجراء امتحان خاص
+          بهم
         </h2>
       </div>
       <Form {...form}>
@@ -228,10 +249,12 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="mb-4">
-                  <FormLabel className={cn(
-                    "text-[#202224] text-lg font-semibold",
-                    form.formState.errors?.title && "text-red-500"
-                  )}>
+                  <FormLabel
+                    className={cn(
+                      "text-[#202224] text-lg font-semibold",
+                      form.formState.errors?.title && "text-red-500"
+                    )}
+                  >
                     اسم الامتحان
                   </FormLabel>
                   <FormControl>
@@ -249,10 +272,12 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className={cn(
-                    "text-[#202224] text-lg font-semibold",
-                    form.formState.errors?.duration && "text-red-500"
-                  )}>
+                  <FormLabel
+                    className={cn(
+                      "text-[#202224] text-lg font-semibold",
+                      form.formState.errors?.duration && "text-red-500"
+                    )}
+                  >
                     وقت الامتحان
                   </FormLabel>
                   <FormControl>
@@ -285,7 +310,8 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
 
                 <div className="flex items-center gap-[24px]">
                   <Label htmlFor="question-type" className="text-[16px]">
-                    نوع السؤال: {questionTypes[index] === "mcq" ? "اختيار متعدد" : "مقالي"}
+                    نوع السؤال:{" "}
+                    {questionTypes[index] === "mcq" ? "اختيار متعدد" : "مقالي"}
                   </Label>
                   <Switch
                     id={`question-type-${index}`}
@@ -302,26 +328,52 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
                     control={form.control}
                     render={({ field }) => (
                       <FormItem className="flex-1">
-                        <FormLabel className={cn(
-                          "text-[#202224] text-lg font-semibold mb-5",
-                          form.formState.errors?.questions?.[index]?.question && "text-red-500"
-                        )}>
+                        <FormLabel
+                          className={cn(
+                            "text-[#202224] text-lg font-semibold mb-5",
+                            form.formState.errors?.questions?.[index]
+                              ?.question && "text-red-500"
+                          )}
+                        >
                           اختر السؤال
                         </FormLabel>
                         <FormControl>
                           <Select
-                            onValueChange={field.onChange}
+                            onValueChange={(selectedId) => {
+                              const selectedQuestion = (
+                                questionTypes[index] === "mcq"
+                                  ? allmcq?.questions
+                                  : allessays?.questions
+                              )?.find((q) => q.id === selectedId);
+
+                              field.onChange(selectedId);
+                              form.setValue(
+                                `questions.${index}.question`,
+                                selectedQuestion?.question || ""
+                              );
+                              if (
+                                questionTypes[index] === "mcq" &&
+                                selectedQuestion?.choices
+                              ) {
+                                form.setValue(
+                                  `questions.${index}.choices`,
+                                  selectedQuestion.choices
+                                );
+                              } else {
+                                form.setValue(`questions.${index}.choices`, []);
+                              }
+                            }}
                             value={field.value}
                           >
                             <SelectTrigger className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]">
                               <SelectValue placeholder="اختر السؤال" />
                             </SelectTrigger>
                             <SelectContent>
-                              {(questionTypes[index] === "mcq" ? allmcq?.questions : allessays?.questions)?.map((item) => (
-                                <SelectItem
-                                  value={item?.id}
-                                  key={item?.id}
-                                >
+                              {(questionTypes[index] === "mcq"
+                                ? allmcq?.questions
+                                : allessays?.questions
+                              )?.map((item) => (
+                                <SelectItem value={item?.id} key={item?.id}>
                                   {item?.question}
                                 </SelectItem>
                               ))}
@@ -340,10 +392,13 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem className="flex-1">
-                          <FormLabel className={cn(
-                            "text-[#202224] text-lg font-semibold mb-5",
-                            form.formState.errors?.questions?.[index]?.question && "text-red-500"
-                          )}>
+                          <FormLabel
+                            className={cn(
+                              "text-[#202224] text-lg font-semibold mb-5",
+                              form.formState.errors?.questions?.[index]
+                                ?.question && "text-red-500"
+                            )}
+                          >
                             عنوان السؤال
                           </FormLabel>
                           <FormControl>
@@ -374,40 +429,60 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
                     control={form.control}
                     render={({ field }) => (
                       <FormItem className="flex-1">
-                        <FormLabel className={cn(
-                          "text-[#202224] text-lg font-semibold mb-5",
-                          form.formState.errors?.questions?.[index]?.figure && "text-red-500"
-                        )}>
+                        <FormLabel
+                          className={cn(
+                            "text-[#202224] text-lg font-semibold mb-5",
+                            form.formState.errors?.questions?.[index]?.figure &&
+                              "text-red-500"
+                          )}
+                        >
                           Figure
                         </FormLabel>
                         <div className="space-y-4">
-                          {form.getValues(`questions.${index}.figure`).map((figure, figIndex) => (
-                            <div key={figIndex} className="flex items-center gap-4">
-                              <Input
-                                className="flex-1 focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
-                                {...form.register(`questions.${index}.figure.${figIndex}`)}
-                                defaultValue={figure}
-                              />
-                              <Button
-                                type="button"
-                                onClick={() => {
-                                  const currentFigures = form.getValues(`questions.${index}.figure`);
-                                  form.setValue(
-                                    `questions.${index}.figure`,
-                                    currentFigures.filter((_, removeIndex) => removeIndex !== figIndex)
-                                  );
-                                }}
-                                className="bg-red-500 hover:bg-red-700 text-white"
+                          {form
+                            .getValues(`questions.${index}.figure`)
+                            .map((figure, figIndex) => (
+                              <div
+                                key={figIndex}
+                                className="flex items-center gap-4"
                               >
-                                <Trash2 className="w-5 h-5" />
-                              </Button>
-                            </div>
-                          ))}
+                                <Input
+                                  className="flex-1 focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                                  {...form.register(
+                                    `questions.${index}.figure.${figIndex}`
+                                  )}
+                                  defaultValue={figure}
+                                />
+                                <Button
+                                  type="button"
+                                  onClick={() => {
+                                    const currentFigures = form.getValues(
+                                      `questions.${index}.figure`
+                                    );
+                                    form.setValue(
+                                      `questions.${index}.figure`,
+                                      currentFigures.filter(
+                                        (_, removeIndex) =>
+                                          removeIndex !== figIndex
+                                      )
+                                    );
+                                  }}
+                                  className="bg-red-500 hover:bg-red-700 text-white"
+                                >
+                                  <Trash2 className="w-5 h-5" />
+                                </Button>
+                              </div>
+                            ))}
                           <Button
                             type="button"
                             onClick={() => {
-                              const currentFigures = form.getValues(`questions.${index}.figure`);
-                              form.setValue(`questions.${index}.figure`, [...currentFigures, ""]);
+                              const currentFigures = form.getValues(
+                                `questions.${index}.figure`
+                              );
+                              form.setValue(`questions.${index}.figure`, [
+                                ...currentFigures,
+                                "",
+                              ]);
                             }}
                             className="bg-[#E4E0FF] hover:bg-[#4635B7] text-[#4635B7] hover:text-[#E4E0FF]"
                           >
@@ -420,10 +495,7 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
                   />
 
                   {questionTypes[index] === "mcq" && (
-                    <AdminNestedQuizQuestions
-                      choiceIndex={index}
-                      form={form}
-                    />
+                    <AdminNestedQuizQuestions choiceIndex={index} form={form} />
                   )}
                 </>
               )}
