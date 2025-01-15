@@ -1,32 +1,32 @@
 import { hestyAPI } from "./axios";
 
-// type Quiz = {
-//   title: string;
-//   questions: {
-//     question: string;
-//     figure: string[];
-//     choices?: {
-//       answer: string;
-//       isCorrect: boolean;
-//     }[] | undefined;
-//   }[];
-// };
-// type QuizEssay = {
-//   title: string;
-//   QuestionEssay: {
-//     question: string;
-//     explanation: string;
-//     attachment: string;
-//     figure: string[];
-//   }[];
-// };
+type PostQuiz = {
+  title: string;
+  questions: {
+    question: string;
+    figure: string[];
+    choices?: {
+      answer: string;
+      isCorrect: boolean;
+    }[] | undefined;
+  }[];
+};
+type PostQuizEssay = {
+  title: string;
+  QuestionEssay: {
+    question: string;
+    explanation: string;
+    attachment: string;
+    figure: string[];
+  }[];
+};
 export type PostExam = {
   title: string;
   duration: string;
   lectureId?: string | string[];
   chapterId?: string;
-  Quiz?: Quiz | undefined;
-  QuizEssay?: QuizEssay | undefined;
+  Quiz?: PostQuiz | undefined;
+  QuizEssay?: PostQuizEssay | undefined;
 };
 
 

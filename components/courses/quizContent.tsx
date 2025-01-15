@@ -102,7 +102,7 @@ function QuizContent({ courseId, lectureId, quizId }: Props) {
     enabled: !!mcqData && !essayData && !mcqError && !essayError,
   });
 
-  let quizData;
+  let quizData: any;
   if (mcqData?.message) {
     quizData = examData || essayData;
   } else {

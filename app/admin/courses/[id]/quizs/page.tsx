@@ -59,10 +59,12 @@ function AdminExamDeletion({ params }: Props) {
         من فضلك قم بمليء جميع تفاصيل المادة
       </h2>
 
-      {/* @ts-ignore */}
       <AllQuizs
+        //  @ts-ignore
         quizzes={quizzes}
+        //  @ts-ignore
         essays={essays}
+        //  @ts-ignore
         exams={exams}
         courseId={params.id}
       />

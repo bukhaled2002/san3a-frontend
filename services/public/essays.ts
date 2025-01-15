@@ -14,6 +14,7 @@ export type GetEssayByIdResponse = {
     figure: [];
     explanation: string;
   }[];
+  message?: string;
 };
 
 // export type GetQuizResultsResponse = {

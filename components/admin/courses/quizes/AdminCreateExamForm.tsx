@@ -208,7 +208,6 @@ function AdminCreateExamForm({ courseId, lectureId }: Props) {
             : undefined,
       };
 
-      console.log(payload);
 
       await createExam(payload);
 

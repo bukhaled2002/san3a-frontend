@@ -62,7 +62,7 @@ const StudentAnswers = ({ examId }: { examId: string }) => {
     retry: 1,
   });
 
-  let quizData;
+  let quizData: any;
   if (mcqData?.message) {
     quizData = examData || essayData;
   } else {
