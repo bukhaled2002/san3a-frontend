@@ -31,6 +31,7 @@ async function SingleLecture({ params }: Props) {
   const course = await getCourse(courseId);
   const courseProgress = await getCourseProgress(courseId);
 
+
   return (
     <div className="container py-10 relative">
       <div className="teacher flex items-center gap-x-2 text-secondary font-bold text-xs mb-1">
@@ -89,7 +90,9 @@ async function SingleLecture({ params }: Props) {
                               )}
                             >
                               <VideoIcon size={22} />{" "}
-                              <div className="title sm:text-base text-sm">{lecture.title}</div>
+                              <div className="title sm:text-base text-sm">
+                                {lecture.title}
+                              </div>
                             </Link>
                             {lecture.quizizz.map((quiz) => {
                               return (
@@ -101,7 +104,41 @@ async function SingleLecture({ params }: Props) {
                                   )}
                                 >
                                   <HelpCircle size={22} />{" "}
-                                  <div className="title sm:text-base text-sm">{quiz.title}</div>
+                                  <div className="title sm:text-base text-sm">
+                                    {quiz.title}
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                            {lecture.QuizEssay.map((essay) => {
+                              return (
+                                <Link
+                                  href={`/courses/${courseId}/lecture/${lecture.id}/quiz/${essay.id}`}
+                                  key={essay.id}
+                                  className={cn(
+                                    "flex items-center gap-x-1.5 py-3 px-4 text-base font-semibold transition-colors duration-200 hover:text-secondary/90"
+                                  )}
+                                >
+                                  <HelpCircle size={22} />{" "}
+                                  <div className="title sm:text-base text-sm">
+                                    {essay.title}
+                                  </div>
+                                </Link>
+                              );
+                            })}
+                            {lecture.Exam.map((exam) => {
+                              return (
+                                <Link
+                                  href={`/courses/${courseId}/lecture/${lecture.id}/quiz/${exam.id}`}
+                                  key={exam.id}
+                                  className={cn(
+                                    "flex items-center gap-x-1.5 py-3 px-4 text-base font-semibold transition-colors duration-200 hover:text-secondary/90"
+                                  )}
+                                >
+                                  <HelpCircle size={22} />{" "}
+                                  <div className="title sm:text-base text-sm">
+                                    {exam.title}
+                                  </div>
                                 </Link>
                               );
                             })}

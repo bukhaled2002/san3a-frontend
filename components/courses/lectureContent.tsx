@@ -78,9 +78,7 @@ function LectureContent({ courseId, lectureId, watched, total }: Props) {
   useEffect(() => {
     if (!lecture?.lecture?.video?.url) return;
 
-    const videoId = getYouTubeEmbedUrl(
-      "https://www.youtube.com/watch?v=wSSRJ8pwDq8"
-    );
+    const videoId = getYouTubeEmbedUrl(lecture?.lecture?.video?.url);
     if (!videoId) return;
 
     const tag = document.createElement("script");

@@ -24,7 +24,9 @@ export type GetQuizByIdResponse = {
     }[];
     correctAnswerId: string;
   }[];
+  message: string;
 };
+    
 
 export type GetQuizResultsResponse = {
   quizTitle: string;
@@ -57,6 +59,11 @@ export type PostQuiz = {
 
 export async function getQuizById(quizId: string) {
   const res = await hestyAPI.get<GetQuizByIdResponse>(`/quiz/${quizId}`);
+  return res.data;
+}
+
+export async function getAllQuizzes() {
+  const res = await hestyAPI.get("/student-submit/all");
   return res.data;
 }
 

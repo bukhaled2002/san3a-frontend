@@ -40,6 +40,16 @@ export async function GetQuizs(courseId: string): Promise<Quiz[]> {
   }
 }
 
+export async function GetQuizStudents(quizId: string) {
+  try {
+    const res = await hestyAPI.get(`/quiz/${quizId}/students`);
+    return res.data;
+  } catch (error) {
+    console.error("Error fetching quizzes:", error);
+    throw error;
+  }
+}
+
 export async function deleteQuiz(quizId: string) {
   try {
     const res = await hestyAPI.delete(`/quiz/${quizId}`);

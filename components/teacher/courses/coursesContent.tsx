@@ -144,6 +144,14 @@ function TeacherCoursesContent({}: Props) {
                         </DropdownMenuItem>
                         <DropdownMenuItem asChild>
                           <Link
+                            href={`/teacher/courses/${course.id}/quizzes`}
+                            className="cursor-pointer"
+                          >
+                            الامتحانات
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuItem asChild>
+                          <Link
                             href={`/teacher/courses/${course.id}/choose-lecture`}
                             className="cursor-pointer"
                           >

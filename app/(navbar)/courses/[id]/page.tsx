@@ -27,15 +27,15 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 async function Course({ params }: Props) {
   const { id } = params;
   const course = await getCourse(id);
-  const lecturesLength = course.chapters.reduce(
+  const lecturesLength = course.chapters?.reduce(
     (acc, chapter) => acc + chapter.lectures.length,
     0
   );
 
-  const isChaptersEmpty = course.chapters.every(
+  const isChaptersEmpty = course.chapters?.every(
     (chapter) => chapter.lectures.length === 0
   );
-  const firstChapterWithLectures = course.chapters.find(
+  const firstChapterWithLectures = course.chapters?.find(
     (chapter) => chapter.lectures.length > 0
   );
   
@@ -56,7 +56,7 @@ async function Course({ params }: Props) {
             <div className="flex items-center md:gap-x-20 gap-x-10 mb-11">
               <div className="text-base font-normal">
                 <UsersIcon size={20} className="inline-block me-1" />{" "}
-                {course._count.students} طالب
+                {course._count?.students} طالب
               </div>
               <div className="text-base font-normal">
                 <RefreshCcw size={20} className="inline-block me-1" /> اخر تحديث
@@ -89,14 +89,14 @@ async function Course({ params }: Props) {
           </div>
           <div className="relative sm:min-w-[500px] lg:max-w-[500px] w-full lg:max-h-[300px] sm:max-h-[400px] max-h-[300px] h-full border rounded-lg overflow-hidden ">
             <Image
-              src={transformGoogleDriveUrl(course.img_url.trim())}
+              src={transformGoogleDriveUrl(course.img_url?.trim())}
               className="rounded-lg object-cover object-[75%_25%] w-full"
               alt="hero"
               width={500}
               height={300}
             />
             <div className="absolute bottom-0 flex border-b-[6px] border-primary items-center justify-between text-white bg-black bg-opacity-30 w-full px-4 py-2 text-sm">
-              استاذ / {course.teacher.fullName}
+              استاذ / {course.teacher?.fullName}
             </div>
           </div>
         </div>
@@ -106,7 +106,7 @@ async function Course({ params }: Props) {
           <h1 className="sm:text-3xl text-xl font-bold mb-2">محتوي المادة</h1>
           <h3 className="sm:text-xl text-black/40">{lecturesLength} حصص</h3>
         </div>
-        {course.chapters.length > 0 ? (
+        {course.chapters?.length > 0 ? (
           <Accordion type="multiple" className="border border-black/10">
             {course.chapters.map((chapter, index) => {
               return (

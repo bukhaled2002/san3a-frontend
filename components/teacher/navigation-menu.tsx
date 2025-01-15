@@ -1,6 +1,6 @@
 "use client";
 import { logoutAction } from "@/lib/actions/logoutAction";
-import { Loader2, Power, Settings } from "lucide-react";
+import { BookOpenCheck, Loader2, Power, Settings } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTransition } from "react";

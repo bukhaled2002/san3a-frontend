@@ -18,7 +18,7 @@ function QuizResultsContent({ quizId, studentId }: Props) {
   });
 
   const allQuestions =
-    quizResults?.correctQuestions.concat(quizResults?.wrongQuestions) ?? [];
+    quizResults?.correctQuestions?.concat(quizResults?.wrongQuestions) ?? [];
 
   if (!quizResults)
     return (
@@ -66,13 +66,13 @@ function QuizResultsContent({ quizId, studentId }: Props) {
             value="correct"
             className="flex-1 h-14 sm:h-[70px] text-sm sm:text-lg data-[state=active]:text-[#F65428] border-0 ring-0"
           >
-            الاجابات الصحيحة ( {quizResults.correctQuestions.length} )
+            الاجابات الصحيحة ( {quizResults?.correctQuestions?.length} )
           </TabsTrigger>
           <TabsTrigger
             value="wrong"
             className="flex-1 h-14 sm:h-[70px] text-sm sm:text-lg data-[state=active]:text-[#F65428] border-0 ring-0"
           >
-            الاجابات الخاطئة ( {quizResults.wrongQuestions.length} )
+            الاجابات الخاطئة ( {quizResults.wrongQuestions?.length} )
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all" className="sm:pt-14 pt-8">
@@ -118,7 +118,7 @@ function QuizResultsContent({ quizId, studentId }: Props) {
           ))}
         </TabsContent>
         <TabsContent value="correct" className="sm:pt-14 pt-8 ">
-          {quizResults?.correctQuestions.map((correctQuestion, index) => (
+          {quizResults?.correctQuestions?.map((correctQuestion, index) => (
             <div key={correctQuestion.question}>
               <h1 className="sm:text-2xl text-xl text-[#000] font-bold mb-6 sm:mb-[42px]">
                 {index + 1}: {correctQuestion.question}
@@ -160,7 +160,7 @@ function QuizResultsContent({ quizId, studentId }: Props) {
           ))}
         </TabsContent>
         <TabsContent value="wrong" className="sm:pt-14 pt-8">
-          {quizResults?.wrongQuestions.map((wrongQuestion, index) => (
+          {quizResults?.wrongQuestions?.map((wrongQuestion, index) => (
             <div key={wrongQuestion.question}>
               <h1 className="sm:text-2xl text-xl text-[#000] font-bold mb-6 sm:mb-[42px]">
                 {index + 1}: {wrongQuestion.question}

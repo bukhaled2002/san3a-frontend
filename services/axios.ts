@@ -31,6 +31,10 @@ async function interceptor(config: InternalAxiosRequestConfig) {
   return config;
 }
 
+export const hestyAPIWithoutAuth = axios.create({
+  baseURL: baseURL,
+});
+
 hestyAPI.interceptors.request.use(interceptor);
 studentAPI.interceptors.request.use(interceptor);
 parentAPI.interceptors.request.use(interceptor);

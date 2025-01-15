@@ -1,4 +1,4 @@
-import { hestyAPI } from "../axios";
+import { hestyAPI, hestyAPIWithoutAuth } from "../axios";
 import { MetaData } from "../types";
 
 export type BaseCourse = {
@@ -42,6 +42,14 @@ export type Lecture = {
   title: string;
   is_locked: boolean;
   quizizz: {
+    id: string;
+    title: string;
+  }[];
+  QuizEssay: {
+    id: string;
+    title: string;
+  }[];
+  Exam: {
     id: string;
     title: string;
   }[];
@@ -91,5 +99,12 @@ export async function getCourses(
 
 export async function getCourse(id: string) {
   const res = await hestyAPI.get<GetCourseAdditional>(`/course/${id}`);
+  return res.data;
+}
+
+export async function getCourseById(id: string) {
+  const res = await hestyAPIWithoutAuth.get<GetCourseAdditional>(
+    `/course/${id}`
+  );
   return res.data;
 }
