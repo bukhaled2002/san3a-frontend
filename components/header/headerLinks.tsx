@@ -14,7 +14,7 @@ const links = [
     href: "/courses",
   },
   {
-    title: "الكتب الدراسية",
+    title: "اشتري كتابك دلوقتي",
     href: "/books",
   },
   {

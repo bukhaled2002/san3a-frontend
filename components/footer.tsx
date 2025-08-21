@@ -20,12 +20,11 @@ function Footer({}: Props) {
             </div>
 
             <p className="mt-4 sm:max-w-xs text-white/80 sm:text-start text-center">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
-              هذا
+              جاهز تكمل تفوقك و نجاحك مع أقوى هيئة تدريس في مصر
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-3  mt-10 gap-5">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-2  mt-10 gap-5">
+            {/* <div>
               <p className="text-white font-bold text-xl text-center">
                 مركز المساعدة
               </p>
@@ -55,19 +54,27 @@ function Footer({}: Props) {
                   </Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
             <div>
               <p className="text-white font-bold text-xl text-center">
-                مركز المساعدة
+                الصفحة الرئيسية
               </p>
               <ul className="mt-6 space-y-4 text-sm text-center">
                 <li>
                   <Link
-                    href="#"
+                    href="/auth/student/register"
                     className="text-white/80 transition hover:opacity-75"
                   >
-                    مركز المساعدة
+                    اعمل اكونت دلوقتي
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/auth/student/login"
+                    className="text-white/80 transition hover:opacity-75"
+                  >
+                    تسجيل الدخول
                   </Link>
                 </li>
                 <li>
@@ -75,15 +82,7 @@ function Footer({}: Props) {
                     href="#"
                     className="text-white/80 transition hover:opacity-75"
                   >
-                    مركز المساعدة
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="text-white/80 transition hover:opacity-75"
-                  >
-                    مركز المساعدة
+                    المساعدة
                   </Link>
                 </li>
               </ul>
@@ -91,7 +90,7 @@ function Footer({}: Props) {
 
             <div>
               <p className="text-white font-bold text-xl text-center">
-                اعثر علينا
+                تواصل معانا
               </p>
               <ul className="mt-6 space-y-4 text-sm text-center">
                 <li>

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 type Props = {};
 
-function Hero({ }: Props) {
+function Hero({}: Props) {
   const { data: session } = useSession();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -22,20 +22,20 @@ function Hero({ }: Props) {
     <section className="overflow-hidden bg-secondary relative z-10">
       <div className="container md:grid flex flex-col items-center justify-center lg:grid-cols-2 grid-cols-5 sm:min-h-[calc(100vh-73px)] min-h-[calc(100vh-54px)] md:min-h-[calc(100vh-85px)] md:pt-0 pt-10">
         <div className="flex flex-col justify-center lg:col-span-1 col-span-2">
-        <h2 className="text-2xl font-bold text-white md:text-[42px] leading-[54.6px]">
-            مستقبل افضل الان{" "}
+          <h2 className="text-2xl font-bold text-white md:text-[42px] leading-[54.6px]">
+            بيتك و مكانك{" "}
             <span className="sm:ms-5 ms-1 text-primary">مع حصتي</span>
           </h2>
 
           <p className="text-white/85 md:mt-4 lg:w-4/5 font-medium sm:leading-[30px] sm:text-sm">
-            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-            النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
-            من النصوص الأخرى
+            جاهز تكمل تفوقك و نجاحك مع أقوى هيئة تدريس في مصر
           </p>
 
           <div className="flex items-center sm:flex-row flex-col gap-4 mt-4 md:mt-[38px] ">
             <Link className="sm:w-auto w-full" href="/courses">
-              <Button className="text-base px-7 sm:w-auto w-full">شراء المحاضرات</Button>
+              <Button className="text-base px-7 sm:w-auto w-full">
+                شراء المحاضرات
+              </Button>
             </Link>
             {!isLoggedIn ? (
               <Link className="sm:w-auto w-full" href="/auth/student/login">
@@ -44,7 +44,7 @@ function Hero({ }: Props) {
                 </Button>
               </Link>
             ) : (
-              ''
+              ""
             )}
           </div>
         </div>
