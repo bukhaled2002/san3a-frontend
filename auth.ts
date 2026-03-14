@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { adminAPI, parentAPI, studentAPI, teacherAPI } from "./services/axios";
 import { protectedRoutes } from "./routes";
+
 
 const credentialsConfig = CredentialsProvider({
   credentials: {
@@ -11,28 +11,39 @@ const credentialsConfig = CredentialsProvider({
   },
   async authorize(credentials) {
     console.log(credentials);
-    const api =
+    const baseURL = process.env.NEXT_PUBLIC_SERVER_ENDPOINT;
+    const endpoint =
       credentials?.role === "student"
-        ? studentAPI
+        ? "/student/login"
         : credentials?.role === "parent"
-        ? parentAPI
+        ? "/parent/login"
         : credentials?.role === "teacher"
-        ? teacherAPI
-        : adminAPI;
+        ? "/teacher/login"
+        : "/admin/login";
+
     try {
-      const response = await api.post("/login", {
-        username: credentials?.username,
-        password: credentials?.password,
+      const response = await fetch(baseURL + endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: credentials?.username,
+          password: credentials?.password,
+        }),
       });
-      if (response.status === 200 || response.status === 201) {
-        return { ...response.data, role: credentials?.role };
-      } else {
+
+      if (!response.ok) {
         return null;
       }
+
+      const data = await response.json();
+      return { ...data, role: credentials?.role };
     } catch (error: any) {
-      console.log(error.response.data);
+      console.error("Auth error:", error);
       return null;
     }
+
   },
 });
 
