@@ -7,42 +7,25 @@ import { GetCourse } from "@/services/public/courses";
 const CoursesCarousel = ({ courses }: { courses: any }) => {
   return (
     <Swiper
-    // modules={[Scrollbar, Autoplay]}
-    spaceBetween={10}
-    slidesPerView={1.07}
-    breakpoints={{
-        500: {
-            slidesPerView: 1.2,
-        },
-        640: {
-            slidesPerView: 1.6,
-        },
-        850: {
-            slidesPerView: 2.4,
-        },
-        1080: {
-            slidesPerView: 3.5,
-        },
-        1280: {
-            slidesPerView: 4,
-        },
-    }}
-    autoplay={{
-        delay: 4000,
-        disableOnInteraction: false,
-    }}
->
-
-    {courses.data.map((course: GetCourse) => {
+      spaceBetween={24}
+      slidesPerView={1.2}
+      breakpoints={{
+        500: { slidesPerView: 1.5 },
+        768: { slidesPerView: 2.2 },
+        1024: { slidesPerView: 3.2 },
+        1280: { slidesPerView: 4 },
+      }}
+      className="pb-10"
+    >
+      {courses.data.map((course: GetCourse) => {
         return (
-            <>
-                <SwiperSlide className="space-y-1.5" key={course.id}>
-                    <CourseCardOne course={course} key={course.id} />
-                </SwiperSlide>
-            </>
+          <SwiperSlide className="!h-auto" key={course.id}>
+            <CourseCardOne course={course} />
+          </SwiperSlide>
         );
-    })}
-</Swiper>
+      })}
+    </Swiper>
+
 )
 }
 

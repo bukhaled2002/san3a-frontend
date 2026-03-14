@@ -13,12 +13,19 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <div className="laser-separator" />
       <Menu />
+      <div className="laser-separator opacity-20" />
       <Subjects />
+      <div className="laser-separator opacity-20" />
       <Courses />
+      <div className="laser-separator opacity-20" />
       <TeachersSlider teachers={teachers} />
+      <div className="laser-separator opacity-20" />
       <Books />
+      <div className="laser-separator opacity-20" />
       <Contact />
     </>
+
   );
 }

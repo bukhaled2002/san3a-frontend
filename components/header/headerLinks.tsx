@@ -10,11 +10,11 @@ const links = [
     href: "/",
   },
   {
-    title: "الدورات",
+    title: "أكاديمية صنعة",
     href: "/courses",
   },
   {
-    title: "اشتري كتابك دلوقتي",
+    title: "مكتبة صنعة",
     href: "/books",
   },
   {
@@ -29,26 +29,31 @@ function HeaderLinks({}: Props) {
   const pathname = usePathname();
 
   return (
-    <div className="lg:flex-1 flex items-center justify-center lg:flex-row flex-col text-base font-medium gap-6 lg:mt-0 mt-5">
+    <div className="lg:flex-1 flex items-center justify-center lg:flex-row flex-col text-sm xl:text-base font-bold gap-8 lg:mt-0 mt-8">
       {links.map((link) => {
+        const isActive = pathname === link.href;
         return (
           <Link
             key={link.title}
             href={link.href}
             className={cn(
-              "text-[#121212] hover:text-primary relative lg:w-auto w-full",
-              pathname === link.href && "text-primary"
+              "text-tech-grey hover:text-primary transition-colors duration-300 relative lg:w-auto w-full group tracking-wide",
+              isActive && "text-primary neon-glow"
             )}
           >
-            {pathname === link.href && (
-              <motion.span layoutId="underline" className="line mt-1" />
-            )}
             {link.title}
+            <span 
+              className={cn(
+                "absolute -bottom-1 right-0 h-[2px] bg-primary transition-all duration-300",
+                isActive ? "w-full shadow-neon-glow" : "w-0 group-hover:w-full"
+              )} 
+            />
           </Link>
         );
       })}
     </div>
   );
 }
+
 
 export default HeaderLinks;

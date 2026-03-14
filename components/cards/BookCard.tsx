@@ -15,37 +15,41 @@ function BookCard({ book }: Props) {
 )
   console.log('course',book)
   return (
-    <div className="rounded-lg border border-[#00000026] flex flex-col h-full">
-      <div className="h-48">
+    <div className="bg-card rounded-none border border-primary/10 hover:border-primary/40 transition-all duration-300 group hover:shadow-neon-glow flex flex-col h-full overflow-hidden">
+      <div className="h-48 overflow-hidden">
         <Link href={`/books/${book.id}`}>
           <Image
             src={bookImg}
             width={500}
             height={500}
-            className="size-full max-h-[201px] rounded-md object-cover"
-            alt="Course Image"
+            className="size-full max-h-[201px] rounded-none object-cover transition-transform duration-500 group-hover:scale-110"
+            alt="Book Image"
           />
         </Link>
       </div>
 
-
-      <div className="p-4 flex flex-col justify-between items-start h-full">
-      <div className="space-y-[8px]">
-          <h1 className="font-bold text-xl">{book.name}</h1>
-          <h3 className="text-base font-semibold text-primary">
+      <div className="p-5 flex flex-col justify-between items-start h-full">
+        <div className="space-y-3 w-full">
+          <h1 className="font-cairo font-black text-xl line-clamp-2 min-h-[3.5rem] text-white group-hover:text-primary transition-colors">{book.name}</h1>
+          <div className="bg-background/50 p-2 border-r-2 border-primary">
+            <h2 className="text-sm font-rajdhani font-bold text-tech-grey uppercase tracking-wider">
+              BY: <span className="text-white">{book.author}</span>
+            </h2>
+          </div>
+          <p className="text-sm text-tech-grey line-clamp-2">
             {book.description}
-          </h3>
-          <h2 className="text-base font-medium">من تأليف : {book.author}</h2>
+          </p>
         </div>
         <div className="mt-6 flex items-center justify-center w-full">
           <Link href={`/books/${book.id}`} className="w-full">
-            <Button className="text-lg font-semibold rounded-[10px] w-full">
+            <Button variant="outline" className="w-full border-primary/20 hover:bg-primary hover:text-background rounded-none">
               عرض الكتاب
             </Button>
           </Link>
         </div>
       </div>
     </div>
+
   );
 }
 

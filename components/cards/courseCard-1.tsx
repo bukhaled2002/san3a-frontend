@@ -16,45 +16,49 @@ function CourseCardOne({ course }: Props) {
   const teacherImg = transformGoogleDriveUrl(course.teacher.img_url?.trim())
   console.log('course',course)
   return (
-    <div className="block rounded-lg border border-[#00000026]">
-      <div className="h-48">
+    <div className="block bg-card rounded-none border border-primary/10 hover:border-primary/40 transition-all duration-300 group hover:shadow-neon-glow overflow-hidden">
+      <div className="h-48 overflow-hidden">
         <Link href={`/courses/${course.id}`}>
           <Image
             src={courseImg}
             width={500}
             height={500}
-            className="size-full max-h-[201px] rounded-md object-cover"
+            className="size-full max-h-[201px] rounded-none object-cover transition-transform duration-500 group-hover:scale-110"
             alt="Course Image"
           />
         </Link>
       </div>
       <Link
         href={`/teachers/${course.teacherId}`}
-        className="flex flex-col w-fit m-auto items-center -mt-10"
+        className="flex flex-col w-fit m-auto items-center -mt-10 relative z-10"
       >
-        <Image
-          src={teacherImg}
-          width={100}
-          height={100}
-          className="rounded-full w-[56px] h-[56px] size-full object-cover"
-          alt={course.teacher.fullName + "Image"}
-        />
-        <div className="text-xl font-semibold w-32 line-clamp-1 text-center">
+        <div className="p-1 bg-background rounded-none border border-primary/20">
+          <Image
+            src={teacherImg}
+            width={100}
+            height={100}
+            className="rounded-none w-[56px] h-[56px] object-cover"
+            alt={course.teacher.fullName + "Image"}
+          />
+        </div>
+        <div className="text-lg font-bold w-32 line-clamp-1 text-center mt-2 group-hover:text-primary transition-colors">
           {course.teacher.fullName}
         </div>
       </Link>
 
-      <div className="p-4 flex flex-col justify-between items-start">
-        <div className="space-y-[8px]">
-          <h1 className="font-bold text-xl">{course.name}</h1>
-          <h2 className="text-base font-medium">{course.class.name}</h2>
-          <h3 className="text-base font-semibold text-primary">
-            {course.price_after_discount} ج.م
-          </h3>
+      <div className="p-5 flex flex-col justify-between items-start">
+        <div className="space-y-2 w-full">
+          <h1 className="font-cairo font-black text-xl line-clamp-2 min-h-[3.5rem] group-hover:text-primary transition-colors">{course.name}</h1>
+          <div className="flex justify-between items-center bg-background/50 p-2 border-r-2 border-primary">
+            <h2 className="text-sm font-bold text-tech-grey">{course.class.name}</h2>
+            <h3 className="text-lg font-rajdhani font-black text-primary neon-glow">
+              {course.price_after_discount} <span className="text-xs">EGP</span>
+            </h3>
+          </div>
         </div>
         <div className="mt-6 flex items-center justify-center w-full">
           <Link href={`/courses/${course.id}`} className="w-full">
-            <Button className="text-lg font-semibold rounded-[10px] w-full">
+            <Button variant="neon" className="w-full">
               عرض الدورة
             </Button>
           </Link>
@@ -62,6 +66,7 @@ function CourseCardOne({ course }: Props) {
       </div>
     </div>
   );
+
 }
 
 export default CourseCardOne;

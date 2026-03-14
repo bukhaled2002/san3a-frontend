@@ -8,18 +8,19 @@ async function Courses({}: Props) {
   const courses = await getCourses();
   console.log('courses',courses)
   return (
-    <div className="container py-10 space-y-14">
+    <div className="container py-20 space-y-16">
       <div className="header flex items-center justify-between">
         <div className="title relative w-fit">
-          <h1 className="sm:text-[26px] text-[22px] font-bold">الدورات المتاحة</h1>
+          <h1 className="sm:text-4xl text-3xl font-cairo font-black text-white uppercase tracking-tight">أكاديمية صنعة</h1>
           <div className="title-underline" />
         </div>
-        <Link href="/courses" className="text-[#575757] sm:text-xl">
-          عرض المزيد
+        <Link href="/courses" className="text-tech-grey hover:text-primary transition-colors font-bold sm:text-lg">
+          عرض الكل
         </Link>
       </div>
       <CoursesCarousel courses={courses} />
     </div>
+
   );
 }
 

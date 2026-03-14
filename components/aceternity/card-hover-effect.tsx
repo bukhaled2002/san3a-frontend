@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
+const MotionSpan = motion("span");
+
 export const HoverEffect = ({
   items,
   className,
@@ -14,6 +16,7 @@ export const HoverEffect = ({
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   return (
     <div
       className={cn(
@@ -31,8 +34,8 @@ export const HoverEffect = ({
         >
           <AnimatePresence>
             {hoveredIndex === idx && (
-              <motion.span
-                className="absolute inset-0 h-full w-full bg-primary/20 dark:bg-slate-800/[0.8] block rounded-xl"
+              <MotionSpan
+                className="absolute inset-0 h-full w-full bg-primary/20 block rounded-none"
                 layoutId="hoverBackground"
                 initial={{ opacity: 0 }}
                 animate={{
@@ -44,25 +47,30 @@ export const HoverEffect = ({
                   transition: { duration: 0.15, delay: 0.2 },
                 }}
               />
+
             )}
           </AnimatePresence>
           <div
             className={cn(
-              "rounded-xl h-52 w-full p-4 overflow-hidden  bg-[#efeded99] border border-transparent dark:border-white/[0.2] relative z-20 flex flex-col gap-3 items-center justify-center ",
+              "rounded-none h-52 w-full p-6 overflow-hidden bg-card border border-primary/10 group-hover:border-primary/40 relative z-20 flex flex-col gap-4 items-center justify-center transition-all duration-300 group-hover:shadow-neon-glow",
               className
             )}
           >
-            <Image
-              src={transformGoogleDriveUrl(item.img_url?.trim() || "/images/no-image.png")}
-              className="max-w-[80px] max-h-[80px] size-full object-cover"
-              width={100}
-              height={100}
-              alt={item.name + " image"}
-            />
-            <div className="text-xl font-bold text-[#121212cc]">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Image
+                src={transformGoogleDriveUrl(item.img_url?.trim() || "/images/no-image.png")}
+                className="max-w-[80px] max-h-[80px] size-full object-contain relative z-10"
+                width={100}
+                height={100}
+                alt={item.name + " image"}
+              />
+            </div>
+            <div className="text-xl font-cairo font-black text-white group-hover:text-primary transition-colors text-center uppercase tracking-tight">
               {item.name}
             </div>
           </div>
+
         </Link>
       ))}
     </div>

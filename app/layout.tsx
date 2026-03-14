@@ -2,41 +2,52 @@ import { Toaster } from "@/components/ui/toaster";
 import { QueryProvider } from "@/providers/QueryClientProvider";
 import AuthSessionProvider from "@/providers/SessionProvider";
 import type { Metadata } from "next";
-import { Cairo } from "next/font/google";
+import { Cairo, Rajdhani, Readex_Pro } from "next/font/google";
 import { DirectionProvider } from "@/providers/DirectionProvider";
 import "./globals.css";
 
 const CairoFont = Cairo({
   subsets: ["arabic"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-cairo",
+});
+
+const RajdhaniFont = Rajdhani({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-rajdhani",
+});
+
+const ReadexProFont = Readex_Pro({
+  subsets: ["arabic"],
+  weight: ["200", "300", "400", "500", "600", "700"],
+  variable: "--font-readex",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Hesty",
-    template: "%s",
+    default: "صنعة - San3a",
+    template: "%s | صنعة",
   },
-  description: "Hesty is a learning platform for students.",
+  description: "صنعة هي منصة لتعلم المهارات الحديثة - التقدم أهم من الكمال.",
   keywords: [
-    "Hesty",
-    "Hesty Learning",
-    "Hesty Platform",
-    "Hesty Students",
-    "Hesty Teachers",
-    "Hesty Parents",
-    "حصتي",
-    "حصتي تعلم",
-    "حصتي منصة تعليم",
-    "حصتي طلاب",
-    "حصتي معلمين",
-    "حصتي أولياء أمور",
+    "صنعة",
+    "San3a",
+    "تعلم",
+    "برمجة",
+    "ذكاء اصطناعي",
+    "تصميم",
+    "فيديو",
+    "العمل الحر",
+    "Gen Z",
+    "Skill building",
   ],
   openGraph: {
     locale: "ar_AR",
     type: "website",
-    siteName: "Hesty",
-    title: "Hesty",
-    description: "Hesty is a learning platform for students.",
+    siteName: "San3a",
+    title: "San3a | صنعة",
+    description: "ابدأ صغير.. فكّر كبير. صنعة هي وجهتك لتعلم مهارات المستقبل.",
   },
 };
 
@@ -46,17 +57,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" className="dark" style={{ colorScheme: 'dark' }}>
       <DirectionProvider>
-        <body className={CairoFont.className}>
+        <body className={`${CairoFont.variable} ${RajdhaniFont.variable} ${ReadexProFont.variable} font-readex antialiased bg-[#020405] text-white min-h-screen`}>
           <AuthSessionProvider>
             <QueryProvider>
-              <main className="h-full">{children}</main>
+              <div className="flex flex-col min-h-screen bg-[#020405]">
+                {children}
+              </div>
               <Toaster />
             </QueryProvider>
           </AuthSessionProvider>
         </body>
       </DirectionProvider>
     </html>
+
   );
 }
+

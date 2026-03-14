@@ -10,6 +10,7 @@ const config = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./tech-ui/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -22,6 +23,11 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        cairo: ["var(--font-cairo)"],
+        rajdhani: ["var(--font-rajdhani)"],
+        readex: ["var(--font-readex)"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -56,11 +62,18 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "cyber-lime": "#CCFF00",
+        "deep-void": "#020405",
+        "tech-grey": "#8A8A8A",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        "neon-glow": "0 0 10px rgba(204, 255, 0, 0.5), 0 0 20px rgba(204, 255, 0, 0.3)",
+        "neon-glow-strong": "0 0 15px rgba(204, 255, 0, 0.7), 0 0 30px rgba(204, 255, 0, 0.5)",
       },
       keyframes: {
         "accordion-down": {
@@ -75,11 +88,16 @@ const config = {
           "0%,70%,100%": { opacity: "1" },
           "20%,50%": { opacity: "0" },
         },
+        "neon-pulse": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.02)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "caret-blink": "caret-blink 1.25s ease-out infinite",
+        "neon-pulse": "neon-pulse 2s ease-in-out infinite",
       },
     },
   },
@@ -98,3 +116,4 @@ function addVariablesForColors({ addBase, theme }: any) {
     ":root": newVars,
   });
 }
+
