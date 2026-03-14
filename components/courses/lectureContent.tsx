@@ -36,7 +36,7 @@ function LectureContent({ courseId, lectureId, watched, total }: Props) {
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const controlsTimeoutRef = useRef<NodeJS.Timeout>();
+  const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [showControls, setShowControls] = useState(true);
 
   const { data: lecture } = useQuery({
@@ -70,7 +70,7 @@ function LectureContent({ courseId, lectureId, watched, total }: Props) {
   // Function to extract YouTube video ID from the URL
   const getYouTubeEmbedUrl = (url: string) => {
     const videoIdMatch = url?.match(
-      /(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=|embed\/|v\/|.+\?v=)?([^&\n]+)/
+      /(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=|embed\/|v\/|.+\?v=)?([^&\n]+)/,
     );
     return videoIdMatch ? videoIdMatch[1] : null;
   };
@@ -182,7 +182,7 @@ function LectureContent({ courseId, lectureId, watched, total }: Props) {
       <div
         className={cn(
           "text-red-500 sm:absolute top-0 right-0 ",
-          lecture?.count_watched_left !== 0 && "text-green-500"
+          lecture?.count_watched_left !== 0 && "text-green-500",
         )}
       >
         {lecture?.count_watched_left === 0
@@ -205,7 +205,7 @@ function LectureContent({ courseId, lectureId, watched, total }: Props) {
         <div
           className={cn(
             "absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent transition-opacity duration-300",
-            showControls ? "opacity-100" : "opacity-0"
+            showControls ? "opacity-100" : "opacity-0",
           )}
         >
           <div className="flex items-center justify-center gap-6">
