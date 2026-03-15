@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 type Props = {
-  searchparams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export const metadata: Metadata = {
@@ -14,8 +14,9 @@ export const metadata: Metadata = {
 };
 
 async function Subjects({ searchParams }: Props) {
-  const currentPage = searchParams["page"];
-  const selectedClass = searchParams["class"];
+  const { page, class: classParam } = await searchParams;
+  const currentPage = page as string | undefined;
+  const selectedClass = classParam as string | undefined;
 
   return (
     <div>

@@ -12,15 +12,16 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchparams: Promise<{ [key: string]: string | string[] | undefined }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function ParentSons({ searchParams }: Props) {
+  const { page, class: classParam, subject } = await searchParams;
   const classes = await getClasses();
   //   const subjects = await getSubjects();
-  const currentPage = searchParams["page"];
-  const selectedClass = searchParams["class"];
-  const selectedSubject = searchParams["subject"];
+  const currentPage = page as string | undefined;
+  const selectedClass = classParam as string | undefined;
+  const selectedSubject = subject as string | undefined;
 
   return (
     <div>
@@ -46,4 +47,3 @@ async function ParentSons({ searchParams }: Props) {
 }
 
 export default ParentSons;
-
