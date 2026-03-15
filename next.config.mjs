@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  transpilePackages: ["next-auth", "xlsx"],
   images: {
     domains: [
       // https://th.bing.com/th/id/OIF.VhD1SDqyoCVi11LDULfwZA?rs=1&pid=ImgDetMain
