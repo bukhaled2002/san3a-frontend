@@ -1,41 +1,44 @@
 "use client";
+
+import { use } from "react";
 import AllQuizs from "@/components/admin/courses/quizes/all-quizs";
-import { getAllExams, getExamsByCourse } from "@/services/exam";
+import { getExamsByCourse } from "@/services/exam";
 import { GetQuizs } from "@/services/quiz";
 import { getEssaysByCourse } from "@/services/quizEssay";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string; // Course ID for the quiz
-  };
+  }>;
 };
 
 function AdminExamDeletion({ params }: Props) {
+  const { id } = use(params);
   const {
     data: quizzes,
     isLoading: isLoadingQuiz,
     error: errorQuiz,
   } = useQuery({
-    queryKey: ["admin-quizs", params.id],
-    queryFn: () => GetQuizs(params.id),
+    queryKey: ["admin-quizs", id],
+    queryFn: () => GetQuizs(id),
   });
   const {
     data: essays,
     isLoading: isLoadingEssay,
     error: errorEssay,
   } = useQuery({
-    queryKey: ["admin-essays", params.id],
-    queryFn: () => getEssaysByCourse(params.id),
+    queryKey: ["admin-essays", id],
+    queryFn: () => getEssaysByCourse(id),
   });
   const {
     data: exams,
     isLoading: isLoadingExam,
     error: errorExam,
   } = useQuery({
-    queryKey: ["admin-exams", params.id],
-    queryFn: () => getExamsByCourse(params.id),
+    queryKey: ["admin-exams", id],
+    queryFn: () => getExamsByCourse(id),
   });
 
   if (isLoadingQuiz || isLoadingEssay || isLoadingExam)
@@ -66,7 +69,7 @@ function AdminExamDeletion({ params }: Props) {
         essays={essays}
         //  @ts-ignore
         exams={exams}
-        courseId={params.id}
+        courseId={id}
       />
     </div>
   );

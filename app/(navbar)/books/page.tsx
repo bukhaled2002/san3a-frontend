@@ -14,20 +14,21 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function Books({ searchParams }: Props) {
+  const resolvedSearchParams = await searchParams;
   const classes = await getClasses();
   const subjects = await getSubjects();
   const teachers = await getTeachers();
-  const currentPage = searchParams["page"];
-  const name = searchParams["name"];
-  const author = searchParams["author"];
+  const currentPage = resolvedSearchParams["page"];
+  const name = resolvedSearchParams["name"];
+  const author = resolvedSearchParams["author"];
   const books = await getBooks(
     currentPage,
     name,
-    author,
+    author
   );
 
   return (
@@ -55,3 +56,4 @@ async function Books({ searchParams }: Props) {
 }
 
 export default Books;
+

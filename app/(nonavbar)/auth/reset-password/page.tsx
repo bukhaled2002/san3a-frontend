@@ -2,7 +2,7 @@ import ResetPasswordForm from "@/components/forgotPassword/restPasswordForm";
 import { Metadata } from "next";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
@@ -19,3 +19,4 @@ function ResetPassword({ searchParams }: Props) {
 }
 
 export default ResetPassword;
+

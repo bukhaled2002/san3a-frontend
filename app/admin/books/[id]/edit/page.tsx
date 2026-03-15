@@ -2,9 +2,9 @@ import { Metadata } from "next";
 import AdminInitialEditBookForm from "@/components/admin/books/EditBookForm";
 import { getbook } from "@/services/admin/books";
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export const metadata: Metadata = {
@@ -13,7 +13,8 @@ export const metadata: Metadata = {
 };
 
 async function AdminBookEdit({ params }: Props) {
-  const book = await getbook(params.id);
+  const { id } = await params;
+  const book = await getbook(id);
   console.log('book',book)
   return (
     <div>

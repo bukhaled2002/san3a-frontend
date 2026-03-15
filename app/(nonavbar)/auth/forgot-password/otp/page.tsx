@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
@@ -17,3 +17,4 @@ function Otp({ searchParams }: Props) {
 }
 
 export default Otp;
+

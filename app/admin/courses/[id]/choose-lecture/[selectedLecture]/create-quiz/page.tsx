@@ -8,15 +8,14 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
     selectedLecture: string;
-  };
+  }>;
 };
 
-function AdminCreateQuiz({ params }: Props) {
-  const courseId = params.id;
-  const lectureId = params.selectedLecture;
+async function AdminCreateQuiz({ params }: Props) {
+  const { id: courseId, selectedLecture: lectureId } = await params;
   return (
     <>
       {/* <AdminCreateQuizeForm courseId={courseId} lectureId={lectureId} /> */}

@@ -23,11 +23,11 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: { id: string; lectureId: string };
+  params: Promise<{ id: string; lectureId: string }>;
 };
 
 async function SingleLecture({ params }: Props) {
-  const { id: courseId, lectureId } = params;
+  const { id: courseId, lectureId } = await params;
   const course = await getCourse(courseId);
   const courseProgress = await getCourseProgress(courseId);
 

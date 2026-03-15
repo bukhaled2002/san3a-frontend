@@ -4,8 +4,8 @@ import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 import { getTeacher } from "@/services/teacher";
 import Image from "next/image";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const id = params.id;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const teacher = await getTeacher(id);
   return {
     title: `${teacher.fullName} | معلم ${teacher.subject.name}`,
@@ -14,13 +14,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function Teacher({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const teacher = await getTeacher(id);
   const currentPage = String(teacher.courses.meta_data.currentPage);
   const totalPages = teacher.courses.meta_data.totalPages;

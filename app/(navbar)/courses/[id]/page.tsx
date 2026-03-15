@@ -12,11 +12,11 @@ import Link from "next/link";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 import AddCode from "@/components/admin/courses/AddCode";
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const id = params.id;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const course = await getCourse(id);
   return {
     title: `${course.name}`,
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 async function Course({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const course = await getCourse(id);
   const lecturesLength = course.chapters?.reduce(
     (acc, chapter) => acc + chapter.lectures.length,

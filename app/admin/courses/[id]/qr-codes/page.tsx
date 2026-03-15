@@ -1,4 +1,6 @@
 "use client";
+
+import { use } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Download } from "lucide-react";
 import { GetQrCodes, DeleteQrCode } from "@/services/qrcodes";
@@ -9,20 +11,21 @@ import * as XLSX from "xlsx"; // Import xlsx
 import { Button } from "@/components/ui/button";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string; // Course ID for the quiz
-  };
+  }>;
 };
 
 function AdminQrCodes({ params }: Props) {
+  const { id } = use(params);
   const {
     data: qrCodes,
     isLoading,
     error,
     refetch,
   } = useQuery({
-    queryKey: ["admin-qr-codes", params.id],
-    queryFn: () => GetQrCodes(params.id),
+    queryKey: ["admin-qr-codes", id],
+    queryFn: () => GetQrCodes(id),
   });
   const queryClient = useQueryClient();
 
@@ -86,7 +89,7 @@ function AdminQrCodes({ params }: Props) {
       XLSX.utils.book_append_sheet(workbook, worksheet, "QR Codes");
 
       // Download the Excel file
-      XLSX.writeFile(workbook, `QR_Codes_${params.id}.xlsx`);
+      XLSX.writeFile(workbook, `QR_Codes_${id}.xlsx`);
     }
   };
   
@@ -118,7 +121,7 @@ function AdminQrCodes({ params }: Props) {
 
   return (
     <div>
-      <CreateQrCode courseId={params.id} />
+      <CreateQrCode courseId={id} />
       <div className="flex gap-4">
     <Button
         onClick={exportToExcel}
@@ -160,7 +163,7 @@ function AdminQrCodes({ params }: Props) {
               <QRCode
                 id={`qr-code-${mcq.code}`}
                 size={200}
-                value={`https://www.7sty.com/courses/${params.id}?code=${mcq.code}` || "00000"}
+                value={`https://www.7sty.com/courses/${id}?code=${mcq.code}` || "00000"}
                 level="H"
               />
 

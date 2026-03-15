@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchparams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export const metadata: Metadata = {
@@ -37,3 +37,4 @@ async function Subjects({ searchParams }: Props) {
 }
 
 export default Subjects;
+

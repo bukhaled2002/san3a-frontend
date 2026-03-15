@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchparams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function ParentSons({ searchParams }: Props) {
@@ -46,3 +46,4 @@ async function ParentSons({ searchParams }: Props) {
 }
 
 export default ParentSons;
+

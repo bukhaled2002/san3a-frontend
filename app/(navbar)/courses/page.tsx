@@ -12,18 +12,19 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function Courses({ searchParams }: Props) {
+  const resolvedSearchParams = await searchParams;
   const classes = await getClasses();
   const subjects = await getSubjects();
   const teachers = await getTeachers();
-  const currentPage = searchParams["page"];
-  const name = searchParams["name"];
-  const selectedClass = searchParams["class"];
-  const selectedSubject = searchParams["subject"];
-  const selectedTeacher = searchParams["teacher"];
+  const currentPage = resolvedSearchParams["page"];
+  const name = resolvedSearchParams["name"];
+  const selectedClass = resolvedSearchParams["class"];
+  const selectedSubject = resolvedSearchParams["subject"];
+  const selectedTeacher = resolvedSearchParams["teacher"];
   const courses = await getCourses(
     currentPage,
     name,
@@ -60,3 +61,4 @@ async function Courses({ searchParams }: Props) {
 }
 
 export default Courses;
+

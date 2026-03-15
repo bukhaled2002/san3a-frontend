@@ -3,9 +3,9 @@ import { getStudent } from "@/services/admin/students";
 import { Metadata } from "next";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export const metadata: Metadata = {
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 };
 
 async function AdminStudentEdit({ params }: Props) {
-  const student = await getStudent(params.id);
+  const { id } = await params;
+  const student = await getStudent(id);
 
   return (
     <>

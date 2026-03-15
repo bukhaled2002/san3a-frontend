@@ -16,11 +16,11 @@ import { getUserByToken } from "@/services/profile";
 
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const id = params.id;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const book = await getbook(id);
   return {
     title: `${book.name}`,
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 async function Course({ params }: Props) {
-  const { id } = params;
+  const { id } = await params;
   const book = await getbook(id);
   const prefilledFormUrl = `https://docs.google.com/forms/d/e/1FAIpQLSfYsa5jejp6y-QqBCs3SsTE-trwMTFvnRLDjM8zxdIbwyXQKQ/viewform?usp=pp_url&entry.1889932225=zeyad&entry.1964648609=${book.author}&entry.283677980=01027639003&entry.956443571=top+el+top`;
 

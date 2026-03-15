@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchparams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 async function AdminStudents({ searchParams }: Props) {
@@ -48,3 +48,4 @@ async function AdminStudents({ searchParams }: Props) {
 }
 
 export default AdminStudents;
+

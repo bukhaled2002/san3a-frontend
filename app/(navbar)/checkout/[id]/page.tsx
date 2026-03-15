@@ -5,8 +5,8 @@ import { checkOut } from "@/services/public/checkout";
 import Image from "next/image";
 import Link from "next/link";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const id = params.id;
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const checkOutDetails = await checkOut(id);
 
   return {
@@ -16,13 +16,13 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function CheckOut({ params }: Props) {
-  const id = params.id;
+  const { id } = await params;
   const checkOutDetails = await checkOut(id);
 
   return (
