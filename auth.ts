@@ -10,29 +10,30 @@ const credentialsConfig = CredentialsProvider({
     role: { label: "Role", type: "text" },
   },
   async authorize(credentials) {
-    console.log(credentials);
-    const api =
+    const baseURL =
       credentials?.role === "student"
-        ? studentAPI
+        ? process.env.STUDENT_API
         : credentials?.role === "parent"
-          ? parentAPI
+          ? process.env.PARENT_API
           : credentials?.role === "teacher"
-            ? teacherAPI
-            : adminAPI;
-    try {
-      const response = await api.post("/login", {
+            ? process.env.TEACHER_API
+            : process.env.ADMIN_API;
+
+    const res = await fetch(`${baseURL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         username: credentials?.username,
         password: credentials?.password,
-      });
-      if (response.status === 200 || response.status === 201) {
-        return { ...response.data, role: credentials?.role };
-      } else {
-        return null;
-      }
-    } catch (error: any) {
-      console.log(error.response.data);
-      return null;
-    }
+      }),
+    });
+
+    if (!res.ok) return null;
+
+    const data = await res.json();
+    return { ...data, role: credentials?.role };
   },
 });
 
