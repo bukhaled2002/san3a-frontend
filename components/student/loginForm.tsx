@@ -86,20 +86,11 @@ function StudentLoginForm({}: Props) {
 
   return (
     <div className="w-full">
-      <Link href="/">
-        <Image
-          src="/logo.svg"
-          alt="logo"
-          width={150}
-          height={150}
-          className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
-        />
-      </Link>
       <div className="w-full">
         <div className="my-4">
           <h2 className="text-2xl font-bold text-secondary dark:text-white md:text-[42px] leading-[54.6px]">
             بيتك و مكانك{" "}
-            <span className="sm:ms-5 ms-1 text-primary">مع حصتي</span>
+            <span className="sm:ms-5 ms-1 text-primary">صنعة</span>
           </h2>
 
           <p className="text-secondary dark:text-white/85 md:mt-4 lg:w-4/5 font-medium sm:leading-[30px] ">

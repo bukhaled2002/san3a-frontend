@@ -33,7 +33,7 @@ function ChargeRequestsTable({}: Props) {
     <div>
       <DataTable columns={columns} data={chargeRequests.data} />
       <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#121212]">عمليات الشحن</div>
+        <div className="text-[#d4d4d4]">عمليات الشحن</div>
         <div className="flex items-center gap-[10px]">
           <span className="text-primary">{chargeRequests.count} عمليه</span>
           <svg

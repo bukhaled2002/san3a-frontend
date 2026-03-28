@@ -7,7 +7,7 @@ import Barchart from "@/components/teacher/barchart";
 
 export const metadata: Metadata = {
   title: "الرئيسية - معلم",
-  description: "الرئيسية - معلم في موقع حصتي",
+  description: "الرئيسية - معلم في موقع صنعة",
 };
 
 type Props = {};

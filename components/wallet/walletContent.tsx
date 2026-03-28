@@ -78,7 +78,9 @@ function WalletContent({}: Props) {
       <div className="lg:grid grid-cols-9 gap-x-6 lg:space-y-0 space-y-6">
         <div className="xl:col-span-3 col-span-4">
           <div className="flex items-center gap-x-[14px] mb-[14px]">
-            <h1 className="sm:text-[22px] text-lg text-[#121212] font-bold">محفظتي</h1>
+            <h1 className="sm:text-[22px] text-lg text-[#d4d4d4] font-bold">
+              محفظتي
+            </h1>
             <Image
               src="/icons/wallet.webp"
               className="sm:size-[30px] h-6 w-7"
@@ -89,7 +91,7 @@ function WalletContent({}: Props) {
           </div>
           <div className="border-[1.04px] border-[#00000026] px-4 sm:px-[23px] py-5 sm:py-[25px] rounded-[10px] mb-4">
             <div className="flex items-center justify-between sm:flex-row flex-col gap-4 mb-7">
-              <div className="text-[#121212] font-bold text-xl sm:text-[26px]">
+              <div className="text-[#d4d4d4] font-bold text-xl sm:text-[26px]">
                 الرصيد المتاح
               </div>
               <div className="text-[#F65428] font-bold sm:text-3xl text-2xl">
@@ -179,7 +181,7 @@ function WalletContent({}: Props) {
           </p>
         </div>
         <div className="xl:col-span-6 col-span-5">
-          <h1 className="sm:text-[22px] text-lg text-[#121212] font-bold mb-[14px]">
+          <h1 className="sm:text-[22px] text-lg text-[#d4d4d4] font-bold mb-[14px]">
             العمليات الاخيرة
           </h1>
           {walletData && walletData?.transactions?.length > 0 ? (
@@ -195,7 +197,7 @@ function WalletContent({}: Props) {
                             day: "2-digit",
                             month: "2-digit",
                             year: "numeric",
-                          }
+                          },
                         )}
                       </div>
                       <div
@@ -206,22 +208,22 @@ function WalletContent({}: Props) {
                           payment.status === "pending" &&
                             "text-[#B54708] bg-[#FFFAEB]",
                           payment.status === "failed" &&
-                            "text-[#B42318] bg-[#FEF3F2]"
+                            "text-[#B42318] bg-[#FEF3F2]",
                         )}
                       >
                         <span>
                           {payment.status === "paid"
                             ? "تمت بنجاح"
                             : payment.status === "pending"
-                            ? "قيد المراجعة"
-                            : "العملية مرفوضة"}
+                              ? "قيد المراجعة"
+                              : "العملية مرفوضة"}
                         </span>
                         <div
                           className={cn(
                             "w-[8px] h-[8px] rounded-full inline-block ml-2",
                             payment.status === "paid" && "bg-[#12B76A]",
                             payment.status === "pending" && "bg-[#F79009]",
-                            payment.status === "failed" && "bg-[#F04438]"
+                            payment.status === "failed" && "bg-[#F04438]",
                           )}
                         />
                       </div>

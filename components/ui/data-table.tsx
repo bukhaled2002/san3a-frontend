@@ -50,13 +50,13 @@ export function DataTable<TData, TValue>({
                 return (
                   <TableHead
                     key={header.id}
-                    className="text-[#121212] font-bold capitalize text-center"
+                    className="text-[#d4d4d4] font-bold capitalize text-center"
                   >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 );

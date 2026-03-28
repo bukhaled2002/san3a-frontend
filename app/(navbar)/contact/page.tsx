@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "تواصل معنا",
-  description: "صفحه تواصل معنا لموقع حصتي",
+  description: "صفحه تواصل معنا لموقع صنعة",
 };
 
 type ContactMethod = {
@@ -47,7 +47,7 @@ function Contact() {
         <h1 className="sm:text-4xl text-2xl font-bold text-center">
           يسعدنا ان <span className="text-primary">نستمع اليك</span> بجميع الطرق
         </h1>
-        <h2 className="text-black/70 text-lg font-semibold">
+        <h2 className="text-foreground/70 text-lg font-semibold">
           فريقنا الودود موجود دائمًا للدردشة.
         </h2>
       </div>

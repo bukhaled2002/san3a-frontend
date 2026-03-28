@@ -22,14 +22,17 @@ async function AdminSingleTeacher({ params }: Props) {
       <div className="bg-white py-12 px-11 rounded-[12px] space-y-[61px]">
         <div className="flex items-center gap-x-5">
           <Image
-            src={transformGoogleDriveUrl(teacher.img_url) || "/images/defaultAvatar.webp"}
+            src={
+              transformGoogleDriveUrl(teacher.img_url) ||
+              "/images/defaultAvatar.webp"
+            }
             alt={teacher.fullName}
             width={100}
             height={100}
             className="rounded-full w-[100px] h-[100px] size-full object-cover"
           />
           <div>
-            <h1 className="text-2xl font-bold text-[#121212] mb-2">
+            <h1 className="text-2xl font-bold text-[#d4d4d4] mb-2">
               {teacher.fullName}
             </h1>
             <p className="text-lg text-[#121212B2]/70">
@@ -38,7 +41,7 @@ async function AdminSingleTeacher({ params }: Props) {
           </div>
         </div>
         <div>
-          <div className="text-[22px] font-bold text-[#121212] mb-[14px]">
+          <div className="text-[22px] font-bold text-[#d4d4d4] mb-[14px]">
             الدورات
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">

@@ -5,7 +5,11 @@ import { checkOut } from "@/services/public/checkout";
 import Image from "next/image";
 import Link from "next/link";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const checkOutDetails = await checkOut(id);
 
@@ -38,7 +42,7 @@ async function CheckOut({ params }: Props) {
               alt={checkOutDetails.name}
             />
             <div className="flex-1 flex flex-col justify-between h-[138px] max-h-full">
-              <h1 className="text-[#121212] text-lg font-bold">
+              <h1 className="text-[#d4d4d4] text-lg font-bold">
                 {checkOutDetails.name}
               </h1>
               <div className="text-[#121212B2] font-semibold text-lg">
@@ -46,7 +50,7 @@ async function CheckOut({ params }: Props) {
                 <div className="w-2 h-2 rounded-full bg-[#121212B2] inline-block mx-2" />
                 {checkOutDetails.num_hours} ساعة
               </div>
-              <div className="text-xl font-bold text-[#121212]">
+              <div className="text-xl font-bold text-[#d4d4d4]">
                 {checkOutDetails.price_after_discount} جنيه
               </div>
             </div>
@@ -54,7 +58,7 @@ async function CheckOut({ params }: Props) {
         </div>
         <div className="col-span-2 col-start-3 border-[1.042px] border-black/20 shadow-sm rounded-[10px] py-[26px] px-3 sm:px-[42px]">
           <div className="flex items-center justify-between gap-x-[19px] mb-6">
-            <h1 className="text-[#121212] sm:text-[26px] text-xl font-bold ">
+            <h1 className="text-[#d4d4d4] sm:text-[26px] text-xl font-bold ">
               الرصيد المتاح
             </h1>
             <div className="text-primary font-bold sm:text-3xl text-2xl">
@@ -62,7 +66,9 @@ async function CheckOut({ params }: Props) {
             </div>
           </div>
           <Link className=" sm:w-fit w-full" href="/wallet">
-            <Button className="px-6 text-lg rounded-lg sm:w-fit w-full">شحن الرصيد</Button>
+            <Button className="px-6 text-lg rounded-lg sm:w-fit w-full">
+              شحن الرصيد
+            </Button>
           </Link>
         </div>
         <div className="col-span-2 row-start-2 ">
@@ -71,7 +77,7 @@ async function CheckOut({ params }: Props) {
               <div className="sm:text-[22px] font-semibold text-[#121212B2]">
                 السعر
               </div>
-              <div className="sm:text-[22px] font-bold text-[#121212]">
+              <div className="sm:text-[22px] font-bold text-[#d4d4d4]">
                 {checkOutDetails.price} جنيه
               </div>
             </div>
@@ -79,7 +85,7 @@ async function CheckOut({ params }: Props) {
               <div className="sm:text-[22px] font-semibold text-[#121212B2]">
                 الخصم
               </div>
-              <div className="sm:text-[22px] font-bold text-[#121212]">
+              <div className="sm:text-[22px] font-bold text-[#d4d4d4]">
                 {Number(checkOutDetails.price) -
                   Number(checkOutDetails.price_after_discount)}{" "}
                 جنيه
@@ -87,10 +93,10 @@ async function CheckOut({ params }: Props) {
             </div>
             <Separator />
             <div className="flex items-center justify-between">
-              <div className="sm:text-[22px] font-bold text-[#121212]">
+              <div className="sm:text-[22px] font-bold text-[#d4d4d4]">
                 المجموع
               </div>
-              <div className="sm:text-[22px] font-bold text-[#121212]">
+              <div className="sm:text-[22px] font-bold text-[#d4d4d4]">
                 {checkOutDetails.price_after_discount} جنيه
               </div>
             </div>

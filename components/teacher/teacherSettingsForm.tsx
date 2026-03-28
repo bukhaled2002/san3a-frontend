@@ -101,10 +101,10 @@ function TeacherSettingsForm({}: Props) {
     mutationFn: (data: FormTypes) =>
       updateTeacher(String(myData?.id) ?? "1", data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["teacher"] }),
+      (queryClient.invalidateQueries({ queryKey: ["teacher"] }),
         toast({
           title: "تم تعديل الحساب بنجاح",
-        });
+        }));
     },
     onError: (error) => {
       if (isAxiosError(error)) {
@@ -175,7 +175,9 @@ function TeacherSettingsForm({}: Props) {
         >
           <div className="image w-fit m-auto mb-5 md:mb-10">
             <Image
-              src={transformGoogleDriveUrl(myData?.img_url) || "/images/camera.svg"}
+              src={
+                transformGoogleDriveUrl(myData?.img_url) || "/images/camera.svg"
+              }
               alt="Profile Picture"
               width={150}
               height={150}
@@ -304,7 +306,7 @@ function TeacherSettingsForm({}: Props) {
           })}
           className="mx-auto mb-0 mt-8 max-w-lg space-y-[18px] w-full bg-white"
         >
-          <h1 className="text-2xl font-bold text-[#121212]">تحديث كلمة السر</h1>
+          <h1 className="text-2xl font-bold text-[#d4d4d4]">تحديث كلمة السر</h1>
           <div className="space-y-6">
             <FormField
               name="currentPassword"

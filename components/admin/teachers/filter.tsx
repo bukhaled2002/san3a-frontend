@@ -81,12 +81,12 @@ function AdminFilter({ classes, subjects }: Props) {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit((data) =>
-              updateURL(data.classes, data.subjects)
+              updateURL(data.classes, data.subjects),
             )}
             className="space-y-8 w-full"
           >
             <div>
-              <h1 className="text-2xl font-bold text-[#121212] mb-4">
+              <h1 className="text-2xl font-bold text-[#d4d4d4] mb-4">
                 الصفوف الدراسية
               </h1>
               <FormField
@@ -113,13 +113,13 @@ function AdminFilter({ classes, subjects }: Props) {
                                       ? field.onChange([...field.value, c.name])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== c.name
-                                          )
+                                            (value) => value !== c.name,
+                                          ),
                                         );
                                   }}
                                 />
                               </FormControl>
-                              <FormLabel className="text-lg font-semibold text-[#121212] cursor-pointer">
+                              <FormLabel className="text-lg font-semibold text-[#d4d4d4] cursor-pointer">
                                 {c.name}
                               </FormLabel>
                             </FormItem>
@@ -134,7 +134,7 @@ function AdminFilter({ classes, subjects }: Props) {
             </div>
             <Separator className="w-[300px] m-auto" />
             <div>
-              <h1 className="text-2xl font-bold text-[#121212] mb-4">
+              <h1 className="text-2xl font-bold text-[#d4d4d4] mb-4">
                 المواد الدراسية
               </h1>
               <FormField
@@ -164,13 +164,13 @@ function AdminFilter({ classes, subjects }: Props) {
                                         ])
                                       : field.onChange(
                                           field.value?.filter(
-                                            (value) => value !== subject.name
-                                          )
+                                            (value) => value !== subject.name,
+                                          ),
                                         );
                                   }}
                                 />
                               </FormControl>
-                              <FormLabel className="text-lg font-semibold text-[#121212] cursor-pointer">
+                              <FormLabel className="text-lg font-semibold text-[#d4d4d4] cursor-pointer">
                                 {subject.name}
                               </FormLabel>
                             </FormItem>

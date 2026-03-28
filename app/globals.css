@@ -34,7 +34,7 @@
 
   --color-cyber-lime: #ccff00;
   --color-deep-void: #020405;
-  --color-tech-grey: #8a8a8a;
+  --color-tech-grey: #b3b3b3;
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);

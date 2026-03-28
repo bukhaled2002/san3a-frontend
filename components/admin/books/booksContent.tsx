@@ -30,7 +30,7 @@ import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { extractDriveFileId } from "@/lib/helper/driveImage";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
-import { getBooks , deleteBook } from "@/services/admin/books";
+import { getBooks, deleteBook } from "@/services/admin/books";
 type Props = {};
 
 function AdminBooksContent({}: Props) {
@@ -42,7 +42,7 @@ function AdminBooksContent({}: Props) {
     queryKey: ["books-admin", page],
     queryFn: () => getBooks(page || "1"),
   });
-  console.log('books',books)
+  console.log("books", books);
   const { mutate: DeleteBook, isPending: isDeleting } = useMutation({
     mutationFn: (id: string) => deleteBook(id),
     onSuccess: () => {
@@ -90,9 +90,12 @@ function AdminBooksContent({}: Props) {
               >
                 <div className="h-60 relative">
                   <Image
-                              alt={book.name}
-                              src={book.img_url ? transformGoogleDriveUrl(book.img_url) : "/images/card-bg-2.webp"}
-          
+                    alt={book.name}
+                    src={
+                      book.img_url
+                        ? transformGoogleDriveUrl(book.img_url)
+                        : "/images/card-bg-2.webp"
+                    }
                     width={500}
                     height={500}
                     className="h-full w-full rounded-md object-cover"
@@ -188,7 +191,7 @@ function AdminBooksContent({}: Props) {
         </div>
       )}
       {/* <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#121212]">اجمالي العدد</div>
+        <div className="text-[#d4d4d4]">اجمالي العدد</div>
         <div className="flex items-center gap-[10px]">
           <span className="text-primary">{books.count} دورات</span>
           <svg

@@ -83,10 +83,10 @@ async function Course({ params }: Props) {
       <section className="container py-10">
         <div className="title relative w-fit mb-8">
           <h1 className="sm:text-3xl text-xl font-bold mb-2">محتوي الكتاب</h1>
-          <h3 className="sm:text-xl text-black/40">{book.bookChapters.length} فصول</h3>
+          <h3 className="sm:text-xl text-foreground/40">{book.bookChapters.length} فصول</h3>
         </div>
         {book.bookChapters.length > 0 ? (
-          <Accordion type="multiple" className="border border-black/10">
+          <Accordion type="multiple" className="border border-border/20">
             {book.bookChapters.map((chapter, index) => {
               return (
                 <AccordionItem

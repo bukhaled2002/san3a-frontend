@@ -48,9 +48,9 @@ const schema = z.object({
             url: z.string().url({ message: "الرابط غير صحيح" }),
             count_watched: z.coerce.string(),
           }),
-        })
+        }),
       ),
-    })
+    }),
   ),
 });
 
@@ -81,7 +81,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
                   id: lecture.video ? lecture.video.id : "",
                   url: lecture.video ? lecture.video.url : "",
                   count_watched: String(
-                    lecture.video ? lecture.video.count_watched : "0"
+                    lecture.video ? lecture.video.count_watched : "0",
                   ),
                 },
               })),
@@ -131,10 +131,10 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
 
   const getDirtyFields = <
     TData extends Record<string, unknown>,
-    TDirtyItems extends Record<string, unknown>
+    TDirtyItems extends Record<string, unknown>,
   >(
     formValues: TData,
-    dirtyItems: TDirtyItems
+    dirtyItems: TDirtyItems,
   ): Partial<TData> => {
     const dirtyData = Object.entries(dirtyItems).reduce((acc, [key, value]) => {
       if (value === false) return acc;
@@ -149,7 +149,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
       if (key in formValues && key in dirtyItems) {
         const child = getDirtyFields(
           formValues[key] as TData,
-          dirtyItems[key] as TDirtyItems
+          dirtyItems[key] as TDirtyItems,
         );
 
         if (typeof child === "object" && Object.keys(child).length === 0) {
@@ -234,7 +234,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
       await Promise.all(
         chaptersToDelete.map(async (chapterId) => {
           await deleteChapter(chapterId);
-        })
+        }),
       );
     },
     onSuccess: () => {
@@ -260,7 +260,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
       await Promise.all(
         lecturesToDelete.map(async (lectureId) => {
           await deleteLecture(lectureId);
-        })
+        }),
       );
     },
     onSuccess: () => {
@@ -295,7 +295,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
               id: lecture.video ? lecture.video.id : "",
               url: lecture.video ? lecture.video.url : "",
               count_watched: String(
-                lecture.video ? lecture.video.count_watched : "0"
+                lecture.video ? lecture.video.count_watched : "0",
               ),
             },
           })),
@@ -329,7 +329,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
               if (chapters) {
                 const dirtyFields = getDirtyFields(
                   form.getValues(),
-                  form.formState.dirtyFields
+                  form.formState.dirtyFields,
                 ).chapters;
 
                 const dirtyFieldsArray = Object.values(dirtyFields || {});
@@ -342,7 +342,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
                           lectures: Object.values(field.lectures),
                         }
                       : { ...field };
-                  }
+                  },
                 );
                 UpdateCourseContent(dirtyFieldsUpdated);
               } else {
@@ -359,7 +359,7 @@ function AdminCourseContentForm({ courseIdSlug }: Props) {
           className="mb-0 w-full bg-white sm:px-5 md:px-16 pt-14 pb-5"
         >
           <div>
-            <h1 className="text-2xl text-[#121212] font-bold mb-1">
+            <h1 className="text-2xl text-[#d4d4d4] font-bold mb-1">
               محتوي الدورة التعليمية
             </h1>
             <p className="text-[#121212B2]/70 text-lg">

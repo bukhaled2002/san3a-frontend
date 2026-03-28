@@ -88,18 +88,9 @@ function TeacherLoginForm({}: Props) {
 
   return (
     <div className="w-full">
-      <Link href="/">
-        <Image
-          src="/logo.svg"
-          alt="logo"
-          width={150}
-          height={150}
-          className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
-        />
-      </Link>
       <div className="w-full">
         <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
-          مرحبا بكم في منصة حصتي التعليمية
+          مرحبا بكم في منصة صنعة التعليمية
         </h1>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">

@@ -41,14 +41,14 @@ function CourseCardOne({ course }: Props) {
             alt={course.teacher.fullName + "Image"}
           />
         </div>
-        <div className="text-lg font-bold w-32 line-clamp-1 text-center mt-2 group-hover:text-primary transition-colors">
+        <div className="text-lg font-bold w-32 line-clamp-1 text-center mt-2 text-foreground group-hover:text-primary transition-colors">
           {course.teacher.fullName}
         </div>
       </Link>
 
       <div className="p-5 flex flex-col justify-between items-start">
         <div className="space-y-2 w-full">
-          <h1 className="font-cairo font-black text-xl line-clamp-2 min-h-[3.5rem] group-hover:text-primary transition-colors">{course.name}</h1>
+          <h1 className="font-cairo font-black text-xl line-clamp-2 min-h-[3.5rem] text-foreground group-hover:text-primary transition-colors">{course.name}</h1>
           <div className="flex justify-between items-center bg-background/50 p-2 border-r-2 border-primary">
             <h2 className="text-sm font-bold text-tech-grey">{course.class.name}</h2>
             <h3 className="text-lg font-rajdhani font-black text-primary neon-glow">

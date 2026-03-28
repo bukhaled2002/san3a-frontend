@@ -91,8 +91,11 @@ function AdminCoursesContent({}: Props) {
                 <div className="h-60 relative">
                   <Image
                     alt={course.name}
-                    src={course.img_url ? transformGoogleDriveUrl(course.img_url) : "/images/defaultAvatar.webp"}
-
+                    src={
+                      course.img_url
+                        ? transformGoogleDriveUrl(course.img_url)
+                        : "/images/defaultAvatar.webp"
+                    }
                     width={500}
                     height={500}
                     className="h-full w-full rounded-md object-cover"
@@ -163,7 +166,7 @@ function AdminCoursesContent({}: Props) {
                             href={`/admin/courses/${course.id}/qr-codes`}
                             className="cursor-pointer"
                           >
-                          رموز الكيو أر
+                            رموز الكيو أر
                           </Link>
                         </DropdownMenuItem>
 
@@ -229,7 +232,7 @@ function AdminCoursesContent({}: Props) {
                   <div
                     className={cn(
                       "absolute transform rotate-45 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]",
-                      course.IsActive ? "bg-green-600" : "bg-red-600"
+                      course.IsActive ? "bg-green-600" : "bg-red-600",
                     )}
                   >
                     {course.IsActive ? "مفعل" : "غير مفعل"}
@@ -245,7 +248,7 @@ function AdminCoursesContent({}: Props) {
         </div>
       )}
       <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#121212]">اجمالي العدد</div>
+        <div className="text-[#d4d4d4]">اجمالي العدد</div>
         <div className="flex items-center gap-[10px]">
           <span className="text-primary">{courses.count} دورات</span>
           <svg

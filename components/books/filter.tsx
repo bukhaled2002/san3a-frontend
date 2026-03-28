@@ -58,7 +58,7 @@ function BooksFilter() {
         collapsible
       >
         <AccordionItem value="classes" className="border-0">
-          <AccordionTrigger className="sm:text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
+          <AccordionTrigger className="sm:text-lg font-bold text-[#d4d4d4] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
             بحث
             <ChevronLeft className="w-6 h-6 shrink-0 transition-transform duration-200 text-[#12121299]" />
           </AccordionTrigger>
@@ -79,12 +79,12 @@ function BooksFilter() {
         collapsible
       >
         <AccordionItem value="teachers" className="border-0">
-          <AccordionTrigger className="sm:text-lg font-bold text-[#121212] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
+          <AccordionTrigger className="sm:text-lg font-bold text-[#d4d4d4] border-b border-[#0000001F] py-[15px] sm:px-6 px-3 [&[data-state=open]>svg]:-rotate-90 [&[data-state=closed]]:border-b-0">
             المؤلفين
             <ChevronLeft className="w-6 h-6 shrink-0 transition-transform duration-200 text-[#12121299]" />
           </AccordionTrigger>
           <AccordionContent className="px-[22px] py-5 space-y-[14px] font-semibold">
-          <Input
+            <Input
               type="text"
               value={author ?? ""}
               onChange={(e) => setAuthor(e.target.value)}

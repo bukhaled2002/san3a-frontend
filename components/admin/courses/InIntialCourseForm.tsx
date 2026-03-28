@@ -156,7 +156,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
     );
 
   return (
-    <div className="bg-white p-5 rounded-[12px]">
+    <div className="bg-card p-5 rounded-[12px] border border-border/20">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
@@ -166,7 +166,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               CreateCourse(data);
             }
           })}
-          className="mb-0 space-y-[24px] w-full bg-white px-16 pt-14 pb-5"
+          className="mb-0 space-y-[24px] w-full bg-card px-16 pt-14 pb-5"
         >
           <div className="grid grid-cols-4 gap-x-[57px]">
             <FormField
@@ -174,12 +174,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 ">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-foreground text-lg font-semibold">
                     اسم الدورة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
                       type="text"
                       {...field}
                     />
@@ -193,7 +193,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 focus-visible:ring-secondary">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-foreground text-lg font-semibold">
                     المادة
                   </FormLabel>
                   <Select
@@ -201,7 +201,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]">
+                      <SelectTrigger className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
@@ -230,7 +230,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-[190px] resize-none border border-[#00000026]/15 rounded-[4px]"
+                    className="focus-visible:ring-secondary bg-background h-[190px] resize-none border border-border/20 rounded-[4px]"
                     {...field}
                   />
                 </FormControl>
@@ -244,12 +244,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-foreground text-lg font-semibold">
                     سعر الدورة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
                       type="text"
                       {...field}
                     />
@@ -263,12 +263,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-foreground text-lg font-semibold">
                     نسبة الخصم
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
                       min={0}
                       max={100}
                       type="text"
@@ -293,7 +293,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]">
+                    <SelectTrigger className="text-foreground focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
                       <SelectValue />
                     </SelectTrigger>
                   </FormControl>
@@ -324,7 +324,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="text-black focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]">
+                    <SelectTrigger className="text-foreground focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
                       <SelectValue />
                     </SelectTrigger>
                   </FormControl>

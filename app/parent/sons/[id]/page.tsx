@@ -26,14 +26,17 @@ async function ParentSon({ params }: Props) {
         <section className="flex items-center justify-between">
           <div className="flex items-center gap-x-5">
             <Image
-              src={transformGoogleDriveUrl(son.img_url) || "/images/defaultAvatar.webp"}
+              src={
+                transformGoogleDriveUrl(son.img_url) ||
+                "/images/defaultAvatar.webp"
+              }
               alt={son.firstName}
               width={100}
               height={100}
               className="rounded-full w-[100px] h-[100px] size-full object-cover"
             />
             <div>
-              <h1 className="text-2xl font-bold text-[#121212] mb-2 capitalize">
+              <h1 className="text-2xl font-bold text-[#d4d4d4] mb-2 capitalize">
                 {son.firstName + " " + son.lastName}
               </h1>
               <p className="text-lg text-[#121212B2]/70">
@@ -58,7 +61,7 @@ async function ParentSon({ params }: Props) {
           </div>
         </section>
         <section className="mb-12">
-          <div className="text-[22px] font-bold text-[#121212] mb-[14px]">
+          <div className="text-[22px] font-bold text-[#d4d4d4] mb-[14px]">
             الدورات الملتحق بها
           </div>
           {son.courses && son.courses.length > 0 ? (
@@ -117,7 +120,7 @@ async function ParentSon({ params }: Props) {
           )}
         </section>
         <section className="mb-12">
-          <div className="text-[22px] font-bold text-[#121212] mb-[14px]">
+          <div className="text-[22px] font-bold text-[#d4d4d4] mb-[14px]">
             العمليات الاخيرة
           </div>
           {son.transactions && son.transactions?.length > 0 ? (
@@ -133,7 +136,7 @@ async function ParentSon({ params }: Props) {
           )}
         </section>
         <section className="mb-12">
-          <div className="text-[22px] font-bold text-[#121212] mb-[14px]">
+          <div className="text-[22px] font-bold text-[#d4d4d4] mb-[14px]">
             الأختبارات
           </div>
           {son.quizez && son.quizez?.length > 0 ? (

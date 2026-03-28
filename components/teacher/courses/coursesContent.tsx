@@ -84,7 +84,7 @@ function TeacherCoursesContent({}: Props) {
               <div
                 key={course.id}
                 className={cn(
-                  "block rounded-lg border border-[#00000026] relative overflow-hidden"
+                  "block rounded-lg border border-[#00000026] relative overflow-hidden",
                 )}
               >
                 <Link href={`/courses/${course.id}`}>
@@ -98,7 +98,7 @@ function TeacherCoursesContent({}: Props) {
                     />
                     <div className="absolute bottom-0 flex border-b-[6px] border-primary items-center justify-between text-white bg-black bg-opacity-30 w-full px-4 py-2 text-sm">
                       <div>
-                      {course.students_count} طالب
+                        {course.students_count} طالب
                         <Users size={16} className="inline ms-1" />
                       </div>
                     </div>
@@ -217,7 +217,7 @@ function TeacherCoursesContent({}: Props) {
                   <div
                     className={cn(
                       "absolute transform rotate-45 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]",
-                      course.IsActive ? "bg-green-600" : "bg-red-600"
+                      course.IsActive ? "bg-green-600" : "bg-red-600",
                     )}
                   >
                     {course.IsActive ? "مفعل" : "غير مفعل"}
@@ -233,7 +233,7 @@ function TeacherCoursesContent({}: Props) {
         </div>
       )}
       <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#121212]">اجمالي العدد</div>
+        <div className="text-[#d4d4d4]">اجمالي العدد</div>
         <div className="flex items-center gap-[10px]">
           <span className="text-primary">{courses.count} دورات</span>
           <svg

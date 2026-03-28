@@ -26,14 +26,17 @@ async function AdminSingleStudent({ params }: Props) {
         <section className="flex items-center justify-between">
           <div className="flex items-center gap-x-5">
             <Image
-              src={transformGoogleDriveUrl(student.img_url?.trim()) || "/images/defaultAvatar.webp"}
+              src={
+                transformGoogleDriveUrl(student.img_url?.trim()) ||
+                "/images/defaultAvatar.webp"
+              }
               alt={student.firstName}
               width={100}
               height={100}
               className="rounded-full w-[100px] h-[100px] size-full object-cover"
             />
             <div>
-              <h1 className="text-2xl font-bold text-[#121212] mb-2 capitalize">
+              <h1 className="text-2xl font-bold text-[#d4d4d4] mb-2 capitalize">
                 {student.firstName + " " + student.lastName}
               </h1>
               <p className="text-lg text-[#121212B2]/70">
@@ -58,7 +61,7 @@ async function AdminSingleStudent({ params }: Props) {
           </div>
         </section>
         <section className="mb-12">
-          <div className="text-[22px] font-bold text-[#121212] mb-[14px]">
+          <div className="text-[22px] font-bold text-[#d4d4d4] mb-[14px]">
             الدورات الملتحق بها
           </div>
           {student.courses.data && student.courses.data.length > 0 ? (
@@ -72,7 +75,10 @@ async function AdminSingleStudent({ params }: Props) {
                     <div className="h-60 relative">
                       <Image
                         alt=""
-                        src={transformGoogleDriveUrl(course.img_url) ?? "/images/card-bg-2.webp"}
+                        src={
+                          transformGoogleDriveUrl(course.img_url) ??
+                          "/images/card-bg-2.webp"
+                        }
                         width={500}
                         height={500}
                         className="h-full w-full rounded-md object-cover"
@@ -119,7 +125,7 @@ async function AdminSingleStudent({ params }: Props) {
           )}
         </section>
         <section className="mb-12">
-          <div className="text-[22px] font-bold text-[#121212] mb-[14px]">
+          <div className="text-[22px] font-bold text-[#d4d4d4] mb-[14px]">
             العمليات الاخيرة
           </div>
           {student.transactions && student.transactions?.length > 0 ? (

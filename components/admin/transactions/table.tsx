@@ -34,7 +34,7 @@ function AdminTransactionsTable({}: Props) {
     <div>
       <DataTable columns={columns} data={transactions.data} />
       <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#121212]">اجمالي العدد</div>
+        <div className="text-[#d4d4d4]">اجمالي العدد</div>
         <div className="flex items-center gap-[10px]">
           <span className="text-primary">{transactions.count} عملية تحويل</span>
           <svg

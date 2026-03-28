@@ -28,7 +28,7 @@ export default async function MCQ() {
         {allEssay?.questions?.map((item: SingleEssayQuestion) => (
           <div key={item?.id} className="border rounded-[8px] p-[12px]">
             <div className="flex items-center justify-between gap-[8px]">
-              <h2 className="text-black font-[600] text-[18px]">
+              <h2 className="text-foreground font-[600] text-[18px]">
                 {item?.question}
               </h2>
               {item?.attachment && (

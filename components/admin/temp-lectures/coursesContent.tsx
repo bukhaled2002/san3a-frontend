@@ -87,23 +87,25 @@ function AdminLecturesContent({}: Props) {
                 className="block rounded-lg border border-[#00000026] relative overflow-hidden"
               >
                 <div className="h-60 relative">
-                <QRCode
-                id={`qr-code-${lecture.code}`}
-                className="h-full w-full"
-                value={`https://www.7sty.com/?search-lecture=true`}
-                level="H"
-              />
+                  <QRCode
+                    id={`qr-code-${lecture.code}`}
+                    className="h-full w-full"
+                    value={`https://www.7sty.com/?search-lecture=true`}
+                    level="H"
+                  />
                   <div className="absolute bottom-0 flex border-b-[6px] border-primary items-center justify-between text-white bg-black bg-opacity-80 w-full px-4 py-2 text-sm">
                     <div>
                       <QrCode size={16} className="inline ml-2" />
-                    {lecture.code}
+                      {lecture.code}
                     </div>
                   </div>
                 </div>
                 <div className="p-4">
                   <div className="flex items-start justify-between">
                     <div>
-                      <h1 className="font-bold text-lg mb-1">{lecture.title}</h1>
+                      <h1 className="font-bold text-lg mb-1">
+                        {lecture.title}
+                      </h1>
                       <h2 className="text-base font-semibold">
                         {lecture.code}
                       </h2>
@@ -124,8 +126,8 @@ function AdminLecturesContent({}: Props) {
                         <DropdownMenuLabel>العمليات</DropdownMenuLabel>
                         <DropdownMenuItem asChild>
                           <Link
-                      href={`/admin/temp-lectures/${lecture.id}/content/create`}
-                      className="cursor-pointer"
+                            href={`/admin/temp-lectures/${lecture.id}/content/create`}
+                            className="cursor-pointer"
                           >
                             تعديل الحصة
                           </Link>
@@ -179,7 +181,7 @@ function AdminLecturesContent({}: Props) {
                   </div>
                   <div className="mt-6 flex items-center justify-center">
                     <Link
-                                                href={`/admin/temp-lectures/${lecture.id}/qr-codes`}
+                      href={`/admin/temp-lectures/${lecture.id}/qr-codes`}
                       className="w-full"
                     >
                       <Button className="text-base font-semibold rounded-[10px] w-full">
@@ -199,7 +201,7 @@ function AdminLecturesContent({}: Props) {
         </div>
       )}
       <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#121212]">اجمالي العدد</div>
+        <div className="text-[#d4d4d4]">اجمالي العدد</div>
         <div className="flex items-center gap-[10px]">
           <span className="text-primary">{lectures.count} حصص</span>
           <svg

@@ -41,7 +41,7 @@ function CoursesContent({ courses }: Props) {
           )}
         </>
       ) : (
-        <div className="flex items-center justify-center text-secondary font-bold text-lg">
+        <div className="flex items-center justify-center text-foreground/80 font-bold text-lg">
           لا يوجد دورات
         </div>
       )}
