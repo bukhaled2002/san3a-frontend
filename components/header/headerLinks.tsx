@@ -23,19 +23,22 @@ const links = [
   },
 ];
 
-type Props = {};
+type Props = {
+  onClick?: () => void;
+};
 
-function HeaderLinks({}: Props) {
+function HeaderLinks({ onClick }: Props) {
   const pathname = usePathname();
 
   return (
-    <div className="lg:flex-1 flex items-center justify-center lg:flex-row flex-col text-sm xl:text-base font-bold gap-8 lg:mt-0 mt-8">
+    <div className="lg:flex-1 flex lg:items-center items-start lg:justify-center justify-start lg:flex-row flex-col text-base font-bold gap-6 lg:gap-8 lg:mt-0 mt-4">
       {links.map((link) => {
         const isActive = pathname === link.href;
         return (
           <Link
             key={link.title}
             href={link.href}
+            onClick={onClick}
             className={cn(
               "text-tech-grey hover:text-primary transition-colors duration-300 relative lg:w-auto w-full group tracking-wide",
               isActive && "text-primary neon-glow"

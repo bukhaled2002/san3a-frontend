@@ -145,6 +145,10 @@
   .tech-border {
     border: 1px solid rgba(204, 255, 0, 0.3);
   }
+  .container {
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
 }
 
 

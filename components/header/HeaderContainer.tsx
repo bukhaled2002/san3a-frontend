@@ -8,13 +8,15 @@ import HeaderLinks from "./headerLinks";
 import User from "./user";
 import HamburgerMenu from "@/public/icons/HamburgerIcon";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import CloseIcon from "@/public/icons/CloseIcon";
 import LogoutIcon from "@/public/icons/LogoutIcon";
 import SearchLecture from "./SearchLecture";
-
-const MotionDiv = motion("div");
-
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 type Props = {
   data: any; // Adjust the type based on what `auth()` returns
@@ -23,14 +25,6 @@ type Props = {
 function HeaderContainer({ data }: Props) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const sidebarVariants = {
-    open: { x: 0 },
-    closed: { x: "-100%" },
-  };
   const handleLogout = async () => {
     try {
       await logoutAction();
@@ -41,8 +35,10 @@ function HeaderContainer({ data }: Props) {
     }
   };
 
+  const closeSidebar = () => setIsSidebarOpen(false);
+
   return (
-    <header className="bg-background/80 backdrop-blur-md py-4 fixed top-0 z-50 w-full border-b border-primary/20 shadow-neon-glow">
+    <header className="bg-background/80 backdrop-blur-md py-2 md:py-3 fixed top-0 z-50 w-full border-b border-primary/20 shadow-neon-glow">
       <nav className="container flex items-center justify-between gap-x-5">
         <div className="flex items-center gap-x-6">
           <Link href="/">
@@ -89,99 +85,74 @@ function HeaderContainer({ data }: Props) {
             <User />
           </div>
         )}
-        <button
-          onClick={toggleSidebar}
-          className="lg:hidden block text-primary"
-        >
-          <HamburgerMenu />
-        </button>
-        <AnimatePresence>
-          {isSidebarOpen && (
-            <MotionDiv
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40 lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={toggleSidebar}
-            />
-          )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {isSidebarOpen && (
-            <MotionDiv
-              className="flex flex-col bg-background border-r border-primary/20 fixed top-0 left-0 h-full shadow-2xl z-50 p-6 lg:hidden md:w-[50%] w-[80%]"
-              variants={sidebarVariants}
-              initial="closed"
-              animate="open"
-              exit="closed"
-              transition={{
-                ease: "easeInOut",
-                duration: 0.4,
-              }}
-            >
 
-
-          <div className="flex justify-between items-center mb-10">
-            <Image
-              className="h-[40px] w-auto"
-              alt="Logo"
-              height={40}
-              src="/new_images/AR LOGO WHITE Official.png.png"
-              width={120}
-            />
-            <button
-              onClick={toggleSidebar}
-              className="text-primary hover:neon-glow"
-            >
-              <CloseIcon />
+        <Sheet open={isSidebarOpen} onOpenChange={setIsSidebarOpen}>
+          <SheetTrigger asChild>
+            <button className="lg:hidden block text-primary hover:text-primary/80 transition-colors p-2 -mr-2">
+              <HamburgerMenu />
             </button>
-          </div>
+          </SheetTrigger>
+          <SheetContent 
+            side="right" 
+            className="w-[85%] sm:max-w-md bg-background border-l border-primary/30 p-6 flex flex-col h-full text-white shadow-neon-glow"
+          >
+            <SheetHeader className="text-right mb-8">
+              <SheetTitle>
+                <Image
+                  className="h-[45px] w-auto"
+                  alt="Logo"
+                  height={45}
+                  src="/new_images/AR LOGO WHITE Official.png.png"
+                  width={130}
+                />
+              </SheetTitle>
+            </SheetHeader>
 
-          <div className="mb-8">
-            <SearchLecture />
-          </div>
+            <div className="space-y-8 flex flex-col h-full">
+              <div className="space-y-6">
+                <SearchLecture />
+                <div className="laser-separator" />
+              </div>
 
-          {!data || !data.user ? null : (
-            <div className="border-b border-primary/10 pb-6 mb-6">
-              <User />
-              <button
-                className="text-red-500 hover:text-red-400 flex items-center justify-end gap-2 flex-row-reverse mt-4 font-bold"
-                onClick={handleLogout}
-              >
-                <span>تسجيل الخروج</span>
-                <div className="rotate-180">
-                  <LogoutIcon />
+              {!data || !data.user ? null : (
+                <div className="border-b border-primary/10 pb-6">
+                  <User />
+                  <button
+                    className="text-red-500 hover:text-red-400 flex items-center gap-2 mt-4 font-bold transition-colors"
+                    onClick={handleLogout}
+                  >
+                    <div className="rotate-180">
+                      <LogoutIcon />
+                    </div>
+                    <span>تسجيل الخروج</span>
+                  </button>
                 </div>
-              </button>
+              )}
+
+              <div className="flex-1 overflow-y-auto custom-scrollbar pr-2">
+                <HeaderLinks onClick={closeSidebar} />
+              </div>
+
+              {!data || !data.user ? (
+                <div className="pt-6 flex flex-col gap-4 border-t border-primary/20 mt-auto">
+                  <Link className="w-full" href={`/auth/student/login`} onClick={closeSidebar}>
+                    <Button className="text-base w-full bg-primary text-background font-bold shadow-neon-glow hover:bg-primary/90 transition-all">
+                      تسجيل الدخول
+                    </Button>
+                  </Link>
+                  <Link className="w-full" href={`/auth/student/register`} onClick={closeSidebar}>
+                    <Button
+                      className="text-base w-full font-bold border-primary/30 hover:bg-primary/10 transition-all"
+                      variant="outline"
+                    >
+                      انشاء حساب
+                    </Button>
+                  </Link>
+                </div>
+              ) : null}
             </div>
-          )}
-
-          <div className="flex-1 overflow-y-auto">
-            <HeaderLinks />
-          </div>
-
-          {!data || !data.user ? (
-            <div className="pt-6 flex flex-col gap-4 border-t border-primary/10">
-              <Link className="w-full" href={`/auth/student/login`}>
-                <Button className="text-base w-full bg-primary text-background font-bold">
-                  تسجيل الدخول
-                </Button>
-              </Link>
-              <Link className="w-full" href={`/auth/student/register`}>
-                <Button
-                  className="text-base w-full font-bold"
-                  variant="outline"
-                >
-                  انشاء حساب
-                </Button>
-              </Link>
-            </div>
-          ) : null}
-            </MotionDiv>
-          )}
-        </AnimatePresence>
-
+          </SheetContent>
+        </Sheet>
       </nav>
     </header>
   );
