@@ -3,8 +3,7 @@ import Pagination from "@/components/pagination";
 import { DataTable } from "@/components/ui/data-table";
 import { getStudents } from "@/services/teacher/students";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2 } from "lucide-react";
-import Image from "next/image";
+import { Loader2, GraduationCap } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { columns } from "./columns";
 
@@ -32,28 +31,26 @@ function StudentsTable({}: Props) {
   return (
     <div>
       <DataTable columns={columns} data={students.data} />
-      <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#d4d4d4]">اجمالي العدد</div>
-        <div className="flex items-center gap-[10px]">
-          <span className="text-primary">{students.count} طالب</span>
-          <Image
-            src="/icons/ph_student.svg"
-            width={32}
-            height={32}
-            alt="طالب"
-          />
-        </div>
-      </div>
-      {totalPages !== 0 && (
-        <div className="flex items-center justify-center">
+      <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-6 bg-card/30 backdrop-blur-sm border border-primary/10 p-6 rounded-2xl">
+         <div className="flex items-center gap-4 text-xl font-bold">
+            <div className="p-3 bg-primary/10 rounded-xl text-primary">
+              <GraduationCap size={24} />
+            </div>
+            <div>
+              <div className="text-tech-grey text-sm uppercase tracking-widest font-bold">اجمالي العدد</div>
+              <div className="text-white neon-glow">{students.count} <span className="text-sm font-normal text-tech-grey">طالب</span></div>
+            </div>
+         </div>
+
+         {totalPages !== 0 && (
           <Pagination
             currentPage={currentPage}
             last_page={totalPages}
             nextPage={nextPage}
             previousPage={previousPage}
           />
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

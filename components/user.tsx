@@ -28,8 +28,8 @@ function User() {
         }
       />
       <div>
-        <h1 className="text-sm font-bold text-[#282828]">{data.name}</h1>
-        <div className="text-sm font-medium text-[#6F6F6F]">{data.email}</div>
+        <h1 className="text-sm font-bold text-tech-grey">{data.name}</h1>
+        <div className="text-sm font-medium text-tech-grey">{data.email}</div>
       </div>
     </div>
   );

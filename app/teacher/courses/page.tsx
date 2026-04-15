@@ -13,13 +13,16 @@ type Props = {};
 
 async function TeacherCourses({}: Props) {
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">الدورات التعليمية</h1>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-white neon-glow">الدورات التعليمية</h1>
+          <p className="text-tech-grey text-sm mt-1">إدارة الدورات التعليمية الخاصة بك</p>
+        </div>
         <Link href="/teacher/courses/create">
-          <Button variant="secondary" size="sm" className="text-white">
+          <Button className="font-bold shadow-neon-glow">
             اضافة دورة جديدة
-            <Plus className="ms-2 h-4 w-4" />
+            <Plus className="ms-2 h-5 w-5" />
           </Button>
         </Link>
       </div>

@@ -50,7 +50,8 @@ const studentsAdminSchemaCreate = z
     img_url: z
       .string()
       .url({ message: "يجب ادخال رابط صورة الدورة" })
-      .optional(),
+      .optional()
+      .or(z.literal("")),
 
     phone: z.string().min(1, { message: "يجب ادخال رقم الهاتف" }),
     classId: z.string().min(1, { message: "يجب اختيار المادة" }),
@@ -65,7 +66,7 @@ const studentsAdminSchemaEdit = z.object({
   lastName: z.string().min(1, { message: "يجب ادخال الاسم الأخير" }),
   email: z.string().email({ message: "يجب ادخال بريد الكتروني صحيح" }),
   gender: z.string().min(1, { message: "الرجاء اختيار الجنس" }),
-  img_url: z.string().url({ message: "يجب ادخال رابط صورة الدورة" }).optional(),
+  img_url: z.string().url({ message: "يجب ادخال رابط صورة الدورة" }).optional().or(z.literal("")),
 
   phone: z.string().min(1, { message: "يجب ادخال رقم الهاتف" }),
   classId: z.string().min(1, { message: "يجب اختيار المادة" }),
@@ -98,7 +99,7 @@ function AdminStudentsForm({ intialValues }: Props) {
       password: "",
       password_confirmation: "",
       phone: intialValues?.phone || "",
-      classId: intialValues?.class.id || "",
+      classId: intialValues?.class?.id || "",
       img_url: intialValues?.img_url?.trim() || "",
       gender: intialValues?.gender || "",
     },
@@ -155,12 +156,14 @@ function AdminStudentsForm({ intialValues }: Props) {
 
   if (!classes)
     return (
-      <div className="flex items-center justify-center">
-        <Loader2 className="animate-spin h-12 w-12 text-secondary" />
+      <div className="flex items-center justify-center p-20">
+        <Loader2 className="animate-spin h-12 w-12 text-primary" />
       </div>
     );
+
   return (
-    <div className=" bg-white py-12 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 py-12 px-6 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
@@ -168,22 +171,23 @@ function AdminStudentsForm({ intialValues }: Props) {
             if (studentId) {
               UpdateStudent(rest);
             } else {
-              CreateStudent(rest);
+              CreateStudent(rest as any);
             }
           })}
-          className="mx-auto mb-0 mt-8 max-w-lg space-y-[18px] w-full bg-white"
+          className="mx-auto mb-0 mt-8 max-w-lg space-y-6 w-full relative z-10"
         >
-          <div className="image w-fit m-auto mb-5 md:mb-10">
+          <div className="image w-fit m-auto mb-8 relative group">
+            <div className="absolute inset-0 bg-primary/20 blur-[20px] rounded-full group-hover:bg-primary/40 transition-all duration-500" />
             <Image
               src={intialValues?.img_url?.trim() || "/images/camera.svg"}
               alt="Profile Picture"
               width={150}
               height={150}
-              className="rounded-full object-cover w-36 h-36"
+              className="rounded-full object-cover w-36 h-36 border-4 border-card relative z-10 transition-transform duration-500 group-hover:scale-105 shadow-xl shadow-black/50"
               loading="eager"
             />
           </div>
-          <div className="grid grid-cols-4 gap-x-[18px]">
+          <div className="grid grid-cols-4 gap-4">
             <FormField
               name="firstName"
               control={form.control}
@@ -191,13 +195,13 @@ function AdminStudentsForm({ intialValues }: Props) {
                 <FormItem className="col-span-2">
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
                       placeholder="الاسم الأول"
                       type="text"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="text-red-500" />
+                  <FormMessage className="text-red-400 text-xs" />
                 </FormItem>
               )}
             />
@@ -208,13 +212,13 @@ function AdminStudentsForm({ intialValues }: Props) {
                 <FormItem className="col-span-2">
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
                       placeholder="الاسم الأخير"
                       type="text"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage className="text-red-500" />
+                  <FormMessage className="text-red-400 text-xs" />
                 </FormItem>
               )}
             />
@@ -226,13 +230,13 @@ function AdminStudentsForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
                     placeholder="البريد الالكتروني"
                     type="email"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className="text-red-500" />
+                <FormMessage className="text-red-400 text-xs" />
               </FormItem>
             )}
           />
@@ -246,16 +250,16 @@ function AdminStudentsForm({ intialValues }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="border-primary/10 focus:ring-primary h-12 rounded-xl bg-card/50 text-white">
                       <SelectValue placeholder="الجنس" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-card border-primary/20 text-white">
                     <SelectItem value="Male">ذكر</SelectItem>
                     <SelectItem value="Female">أنثي</SelectItem>
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage className="text-red-400 text-xs" />
               </FormItem>
             )}
           />
@@ -266,13 +270,13 @@ function AdminStudentsForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
                     placeholder="رقم الهاتف"
                     type="text"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className="text-red-500" />
+                <FormMessage className="text-red-400 text-xs" />
               </FormItem>
             )}
           />
@@ -286,21 +290,21 @@ function AdminStudentsForm({ intialValues }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="focus-visible:ring-secondary">
+                    <SelectTrigger className="border-primary/10 focus:ring-primary h-12 rounded-xl bg-card/50 text-white">
                       <SelectValue placeholder="الصف الدراسي" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
-                    {classes?.map((subject) => {
+                  <SelectContent className="bg-card border-primary/20 text-white">
+                    {classes?.map((cls) => {
                       return (
-                        <SelectItem key={subject.id} value={subject.id}>
-                          {subject.name}
+                        <SelectItem key={cls.id} value={cls.id}>
+                          {cls.name}
                         </SelectItem>
                       );
                     })}
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage className="text-red-400 text-xs" />
               </FormItem>
             )}
           />
@@ -311,18 +315,18 @@ function AdminStudentsForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
-                    placeholder="ادخل رابط الصورة"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                    placeholder="ادخل رابط الصورة (اختياري)"
                     type="text"
                     {...field}
                   />
                 </FormControl>
-                <FormMessage className="text-red-500" />
+                <FormMessage className="text-red-400 text-xs" />
               </FormItem>
             )}
           />
           {!intialValues?.id && (
-            <div className="grid grid-cols-4 gap-x-[18px]">
+            <div className="grid grid-cols-4 gap-4">
               <FormField
                 name="password"
                 control={form.control}
@@ -330,17 +334,13 @@ function AdminStudentsForm({ intialValues }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
                         placeholder="كلمة السر"
                         type="password"
                         {...field}
                       />
                     </FormControl>
-                    <div className="mt-3">
-                      {form?.formState?.errors?.password?.type && (
-                        <FormMessage className="text-red-500" />
-                      )}
-                    </div>
+                    <FormMessage className="text-red-400 text-xs mt-1" />
                   </FormItem>
                 )}
               />
@@ -351,18 +351,13 @@ function AdminStudentsForm({ intialValues }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
                         placeholder="تأكيد كلمة السر"
                         type="password"
                         {...field}
                       />
                     </FormControl>
-
-                    <div className="flex justify-between items-center mt-3">
-                      {form?.formState?.errors?.password_confirmation?.type && (
-                        <FormMessage className="text-red-500" />
-                      )}
-                    </div>
+                    <FormMessage className="text-red-400 text-xs mt-1" />
                   </FormItem>
                 )}
               />
@@ -370,13 +365,14 @@ function AdminStudentsForm({ intialValues }: Props) {
           )}
           <Button
             type="submit"
-            size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
-            disabled={isCreating}
+            className="w-full h-14 text-lg font-bold shadow-neon-glow mt-8 rounded-xl transition-all active:scale-[0.98]"
+            disabled={isCreating || isUpdating}
           >
-            {studentId ? "تعديل" : "انشاء"}
-            {isCreating && <Loader2 className="animate-spin ms-3" />}{" "}
+            {isCreating || isUpdating ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              studentId ? "حفظ التعديلات" : "انشاء حساب الطالب"
+            )}
           </Button>
         </form>
       </Form>

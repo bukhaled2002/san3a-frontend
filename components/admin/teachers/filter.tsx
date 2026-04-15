@@ -19,6 +19,7 @@ import { Button } from "../../ui/button";
 import { Checkbox } from "../../ui/checkbox";
 import { Dialog, DialogContent, DialogTrigger } from "../../ui/dialog";
 import { Separator } from "../../ui/separator";
+import { cn } from "@/lib/utils";
 
 type Props = {
   classes: GetClass[];
@@ -74,40 +75,57 @@ function AdminFilter({ classes, subjects }: Props) {
 
   return (
     <Dialog open={isOpened} onOpenChange={setIsOpened}>
-      <DialogTrigger>
-        <Filter className="text-secondary" size={30} fill="#4635b6" />
+      <DialogTrigger asChild>
+        <Button
+          variant="outline"
+          size="icon"
+          className="group border-primary/20 hover:border-primary/50 bg-card/40 transition-all"
+        >
+          <Filter
+            className="text-primary group-hover:scale-110 transition-transform"
+            size={24}
+          />
+        </Button>
       </DialogTrigger>
-      <DialogContent className="w-[500px] max-w-[90%]">
+      <DialogContent className="w-[500px] max-w-[90%] bg-card/90 backdrop-blur-2xl border-primary/20 text-white shadow-2xl">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit((data) =>
               updateURL(data.classes, data.subjects),
             )}
-            className="space-y-8 w-full"
+            className="space-y-8 w-full p-2"
           >
             <div>
-              <h1 className="text-2xl font-bold text-[#d4d4d4] mb-4">
+              <h1 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
+                <div className="w-1 h-6 bg-primary rounded-full shadow-neon-glow" />
                 الصفوف الدراسية
               </h1>
               <FormField
                 control={form.control}
                 name="classes"
                 render={() => (
-                  <FormItem className="grid grid-cols-2 gap-4 space-y-0">
+                  <FormItem className="grid grid-cols-2 gap-y-4 gap-x-6 space-y-0">
                     {classes.map((c) => (
                       <FormField
                         key={c.id}
                         control={form.control}
                         name="classes"
                         render={({ field }) => {
+                          const isChecked = field.value?.includes(c.name);
                           return (
                             <FormItem
                               key={c.id}
-                              className="flex flex-row items-center space-y-0 gap-[14px] cursor-pointer w-fit"
+                              className={cn(
+                                "flex flex-row items-center space-y-0 gap-3 cursor-pointer p-3 rounded-xl border transition-all truncate",
+                                isChecked
+                                  ? "bg-primary/10 border-primary shadow-sm"
+                                  : "bg-white/5 border-white/5 hover:border-primary/30",
+                              )}
                             >
                               <FormControl>
                                 <Checkbox
-                                  checked={field.value?.includes(c.name)}
+                                  className="border-primary/30 data-[state=checked]:bg-primary data-[state=checked]:text-black"
+                                  checked={isChecked}
                                   onCheckedChange={(checked) => {
                                     return checked
                                       ? field.onChange([...field.value, c.name])
@@ -119,7 +137,7 @@ function AdminFilter({ classes, subjects }: Props) {
                                   }}
                                 />
                               </FormControl>
-                              <FormLabel className="text-lg font-semibold text-[#d4d4d4] cursor-pointer">
+                              <FormLabel className="text-sm font-bold cursor-pointer transition-colors">
                                 {c.name}
                               </FormLabel>
                             </FormItem>
@@ -132,30 +150,38 @@ function AdminFilter({ classes, subjects }: Props) {
                 )}
               />
             </div>
-            <Separator className="w-[300px] m-auto" />
+            <Separator className="bg-primary/10" />
             <div>
-              <h1 className="text-2xl font-bold text-[#d4d4d4] mb-4">
+              <h1 className="text-xl font-bold text-primary mb-6 flex items-center gap-2">
+                <div className="w-1 h-6 bg-primary rounded-full shadow-neon-glow" />
                 المواد الدراسية
               </h1>
               <FormField
                 control={form.control}
                 name="subjects"
                 render={() => (
-                  <FormItem className="grid grid-cols-3 gap-4 space-y-0">
+                  <FormItem className="grid grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-4 space-y-0">
                     {subjects.map((subject) => (
                       <FormField
                         key={subject.id}
                         control={form.control}
                         name="subjects"
                         render={({ field }) => {
+                          const isChecked = field.value?.includes(subject.name);
                           return (
                             <FormItem
                               key={subject.id}
-                              className="flex flex-row items-center space-y-0 gap-[14px] cursor-pointer w-fit"
+                              className={cn(
+                                "flex flex-row items-center space-y-0 gap-3 cursor-pointer p-3 rounded-xl border transition-all truncate",
+                                isChecked
+                                  ? "bg-primary/10 border-primary shadow-sm"
+                                  : "bg-white/5 border-white/5 hover:border-primary/30",
+                              )}
                             >
                               <FormControl>
                                 <Checkbox
-                                  checked={field.value?.includes(subject.name)}
+                                  className="border-primary/30 data-[state=checked]:bg-primary data-[state=checked]:text-black"
+                                  checked={isChecked}
                                   onCheckedChange={(checked) => {
                                     return checked
                                       ? field.onChange([
@@ -170,7 +196,7 @@ function AdminFilter({ classes, subjects }: Props) {
                                   }}
                                 />
                               </FormControl>
-                              <FormLabel className="text-lg font-semibold text-[#d4d4d4] cursor-pointer">
+                              <FormLabel className="text-sm font-bold cursor-pointer transition-colors">
                                 {subject.name}
                               </FormLabel>
                             </FormItem>
@@ -185,11 +211,9 @@ function AdminFilter({ classes, subjects }: Props) {
             </div>
             <Button
               type="submit"
-              size="lg"
-              variant="secondary"
-              className="w-full text-white h-12 text-lg"
+              className="w-full h-14 text-lg font-bold shadow-neon-glow rounded-xl active:scale-[0.98] transition-all"
             >
-              تأكيد
+              تطبيق الفلتر
             </Button>
           </form>
         </Form>

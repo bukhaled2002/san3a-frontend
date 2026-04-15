@@ -10,9 +10,12 @@ type Props = {};
 
 async function TeacherStudents({}: Props) {
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">الطلاب</h1>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-white neon-glow">الطلاب</h1>
+          <p className="text-tech-grey text-sm mt-1">عرض ومتابعة سجلات الطلاب المشتركين في دوراتك</p>
+        </div>
       </div>
       <StudentsTable />
     </div>

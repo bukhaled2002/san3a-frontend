@@ -14,13 +14,16 @@ type Props = {};
 
 async function AdminCourses({}: Props) {
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold">الكتب الدراسية</h1>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-white neon-glow">الكتب الدراسية</h1>
+          <p className="text-tech-grey text-sm mt-1">إدارة الكتب والملخصات الدراسية المتاحة</p>
+        </div>
         <Link href="/admin/books/create">
-          <Button variant="secondary" size="sm" className="text-white">
+          <Button className="font-bold shadow-neon-glow">
             اضافة كتاب جديد
-            <Plus className="ms-2 h-4 w-4" />
+            <Plus className="ms-2 h-5 w-5" />
           </Button>
         </Link>
       </div>

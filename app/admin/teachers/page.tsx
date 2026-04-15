@@ -26,16 +26,16 @@ async function AdminTeachers({ searchParams }: Props) {
   const selectedSubject = subject as string | undefined;
 
   return (
-    <div>
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-x-5">
-          <h1 className="text-3xl font-bold">المعلمين</h1>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex items-center gap-x-6">
+          <h1 className="text-3xl font-bold text-white neon-glow">المعلمين</h1>
           <AdminFilter classes={classes} subjects={subjects.data} />
         </div>
         <Link href="/admin/teachers/create">
-          <Button variant="secondary" size="sm" className="text-white">
+          <Button className="font-bold shadow-neon-glow">
             اضافة معلم جديد
-            <Plus className="ms-2 h-4 w-4" />
+            <Plus className="ms-2 h-5 w-5" />
           </Button>
         </Link>
       </div>

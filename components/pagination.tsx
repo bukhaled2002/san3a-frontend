@@ -82,29 +82,31 @@ function Pagination({ currentPage, last_page, nextPage, previousPage }: Props) {
   };
 
   return (
-    <ul className="flex items-center justify-center gap-x-[20px] pagination mt-10 select-none">
+    <ul className="flex items-center justify-center gap-x-4 mt-8 select-none">
       <li
         className={cn(
-          "border-2 border-[#00000026] rounded-[6px] bg-white cursor-pointer p-0.5 max-w-[50px] max-h-[50px] size-full",
-          previousPage === null && "opacity-50 cursor-not-allowed bg-[#EBEBEB]"
+          "border border-primary/20 rounded-lg bg-card/40 cursor-pointer p-2 flex items-center justify-center transition-all duration-300 hover:border-primary/50 group",
+          previousPage === null && "opacity-30 cursor-not-allowed grayscale"
         )}
         onClick={() => {
           if (currentPage !== undefined && previousPage !== null)
             updateURL(Number(currentPage) - 1);
         }}
       >
-        <ChevronRight size={24} className="rounded-[4px] text-[#cdcdcd]" />
+        <ChevronRight size={20} className="text-tech-grey group-hover:text-primary transition-colors" />
       </li>
-      <div className="flex items-center gap-x-[10px]">
+      <div className="flex items-center gap-x-2">
         {pageRange.map((page, index) => (
-          <li key={index} className="max-w-[50px] max-h-[50px] size-full">
+          <li key={index}>
             {page === "..." ? (
-              <span className="ellipsis">...</span>
+              <span className="text-tech-grey px-2 font-bold select-none">...</span>
             ) : (
-              <span
+              <button
                 className={cn(
-                  "border-2 border-[#00000026] px-2.5 rounded-[6px] text-base cursor-pointer",
-                  page === Number(currentPage) && "border-primary font-bold"
+                  "border border-primary/20 bg-card/40 px-4 py-2 rounded-lg text-sm font-bold transition-all duration-300",
+                  page === Number(currentPage) 
+                    ? "border-primary text-primary bg-primary/10 shadow-neon-glow" 
+                    : "text-tech-grey hover:border-primary/40 hover:text-white"
                 )}
                 onClick={() => {
                   if (typeof page === "number" && currentPage !== undefined)
@@ -112,22 +114,22 @@ function Pagination({ currentPage, last_page, nextPage, previousPage }: Props) {
                 }}
               >
                 {page}
-              </span>
+              </button>
             )}
           </li>
         ))}
       </div>
       <li
         className={cn(
-          "border-2 border-[#00000026] rounded-[6px] bg-white cursor-pointer p-0.5 max-w-[50px] max-h-[50px] size-full",
-          nextPage === null && "opacity-50 cursor-not-allowed bg-[#EBEBEB]"
+          "border border-primary/20 rounded-lg bg-card/40 cursor-pointer p-2 flex items-center justify-center transition-all duration-300 hover:border-primary/50 group",
+          nextPage === null && "opacity-30 cursor-not-allowed grayscale"
         )}
         onClick={() => {
           if (currentPage !== undefined && nextPage !== null)
             updateURL(Number(currentPage) + 1);
         }}
       >
-        <ChevronLeft size={24} className="rounded-[4px] text-[#cdcdcd]" />
+        <ChevronLeft size={20} className="text-tech-grey group-hover:text-primary transition-colors" />
       </li>
     </ul>
   );

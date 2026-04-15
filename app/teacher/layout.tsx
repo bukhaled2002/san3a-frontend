@@ -6,12 +6,13 @@ type Props = {
 
 function Layout({ children }: Props) {
   return (
-    <div className="flex overflow-hidden h-screen bg-[#F5F6FA]">
+    <div className="flex overflow-hidden h-screen bg-background font-sans">
       {/* side bar */}
-      <div className="hidden lg:block basis-[312px] px-9 bg-[#FFF] border-e border-black/20 overflow-auto">
+      <div className="hidden lg:block basis-[280px] min-w-[280px] bg-card/20 border-e border-primary/20 backdrop-blur-xl transition-all duration-300 relative">
+        <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-transparent via-primary/40 to-transparent" />
         <NavigationMenu />
       </div>
-      <main className="basis-full w-full py-4 lg:py-5 px-[24px] overflow-auto h-full">
+      <main className="flex-1 py-8 lg:py-10 px-6 lg:px-12 overflow-auto h-full scrollbar-hide">
         {children}
       </main>
     </div>
