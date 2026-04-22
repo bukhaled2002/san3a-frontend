@@ -97,13 +97,14 @@ function AdminIntialLectureForm({ intialValues }: Props) {
   });
   
   return (
-    <div className="bg-white p-5 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 py-12 px-6 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
-              CreateLecture(data);
+            CreateLecture(data);
           })}
-          className="mb-0 space-y-[24px] w-full bg-white px-16 pt-14 pb-5"
+          className="mb-0 space-y-8 w-full relative z-10 px-6 pt-6"
         >
           <div className="grid grid-cols-4 gap-x-[57px]">
             <FormField
@@ -111,12 +112,12 @@ function AdminIntialLectureForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 ">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     اسم الحصة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -130,12 +131,12 @@ function AdminIntialLectureForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 ">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     رابط الحصة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -151,12 +152,12 @@ function AdminIntialLectureForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     مدة الحصة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -170,12 +171,12 @@ function AdminIntialLectureForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     عدد مرات المشاهدة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       min={0}
                       max={100}
                       type="text"
@@ -190,8 +191,7 @@ function AdminIntialLectureForm({ intialValues }: Props) {
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow mt-4 rounded-xl transition-all active:scale-[0.98]"
             disabled={isCreating}
           >
             انشاء الحصة{" "}

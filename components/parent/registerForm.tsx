@@ -73,7 +73,7 @@ function ParentRegisterForm({}: Props) {
       toast({
         title: "تم تسجيل الحساب بنجاح",
       });
-      router.push("/auth/teacher/login");
+      router.push("/auth/parent/login");
     } catch (error) {
       if (isAxiosError(error)) {
         toast({
@@ -92,9 +92,11 @@ function ParentRegisterForm({}: Props) {
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full">
-        <h1 className="text-xl text-[#7 B758C] font-bold sm:text-2xl text-center mb-6">
+    <div className="w-full bg-card/40 backdrop-blur-md border border-primary/10 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
+      <div className="w-full relative z-10">
+        <h1 className="text-xl text-white font-bold sm:text-2xl text-center mb-8 flex flex-col gap-2">
+          <span className="text-primary text-sm uppercase tracking-widest">انشاء حساب ولي أمر</span>
           مرحبا بكم في منصة صنعة التعليمية
         </h1>
         <Form {...form}>
@@ -104,16 +106,16 @@ function ParentRegisterForm({}: Props) {
                 control={form.control}
                 name="firstName"
                 render={({ field }) => (
-                  <FormItem className="row-span-2">
+                  <FormItem>
                     <FormControl>
                       <Input
-                        className="py-4"
+                        className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                         type="text"
                         placeholder="الاسم الاول"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
@@ -121,15 +123,16 @@ function ParentRegisterForm({}: Props) {
                 control={form.control}
                 name="lastName"
                 render={({ field }) => (
-                  <FormItem className="row-span-2">
+                  <FormItem>
                     <FormControl>
                       <Input
+                        className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                         type="text"
                         placeholder="الاسم الاخير"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
@@ -138,11 +141,16 @@ function ParentRegisterForm({}: Props) {
               control={form.control}
               name="phone"
               render={({ field }) => (
-                <FormItem className="row-span-2">
+                <FormItem>
                   <FormControl>
-                    <Input type="text" placeholder="رقم الهاتف" {...field} />
+                    <Input
+                      className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      type="text"
+                      placeholder="رقم الهاتف"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -150,11 +158,16 @@ function ParentRegisterForm({}: Props) {
               control={form.control}
               name="password"
               render={({ field }) => (
-                <FormItem className="row-span-2">
+                <FormItem>
                   <FormControl>
-                    <Input type="password" placeholder="كلمة السر" {...field} />
+                    <Input
+                      className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      type="password"
+                      placeholder="كلمة السر"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -162,49 +175,50 @@ function ParentRegisterForm({}: Props) {
               control={form.control}
               name="password_confirmation"
               render={({ field }) => (
-                <FormItem className="row-span-2">
+                <FormItem>
                   <FormControl>
                     <Input
+                      className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       type="password"
                       placeholder="تأكيد كلمة السر"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
-            <div className="flex items-center justify-between">
+            <div className="pt-2">
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
+                className="w-full h-12 rounded-xl bg-primary text-background font-bold text-lg shadow-neon-glow hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                انشاء حساب
+                {isSubmitting ? "جاري الانشاء..." : "انشاء حساب جديد"}
               </Button>
             </div>
-            <div className="flex items-center justify-between sm:flex-row flex-col gap-3">
-              <div className="sm:text-sm text-xs sm:text-start text-center text-[#7B758C]">
-                تسجيل الدخول{" "}
-                <Link
-                  href="/auth/parent/register"
-                  className="text-secondary font-bold"
-                >
-                  كولي امر
-                </Link>{" "}
-                او{" "}
+            <div className="space-y-4 pt-4 border-t border-primary/10">
+              <div className="text-sm text-tech-grey flex items-center justify-center gap-2">
+                <span>تسجيل كـ:</span>
                 <Link
                   href="/auth/student/register"
-                  className="text-secondary font-bold"
+                  className="text-primary font-bold hover:underline"
                 >
-                  كطالب
+                  طالب
+                </Link>
+                <span className="text-primary/20">|</span>
+                <Link
+                  href="/auth/teacher/register"
+                  className="text-primary font-bold hover:underline"
+                >
+                  معلم
                 </Link>
               </div>
-              <div className="sm:text-sm text-xs sm:text-start text-center text-[#7B758C]">
+              <div className="text-sm text-tech-grey text-center">
                 لديك حساب بالفعل؟{" "}
                 <Link
-                  href="/auth/teacher/login"
-                  className="text-secondary font-bold"
+                  href="/auth/parent/login"
+                  className="text-primary font-bold hover:underline"
                 >
                   تسجيل الدخول
                 </Link>

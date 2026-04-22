@@ -10,7 +10,6 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   const isLoginRoute = pathname.includes("/register");
-  console.log("isLoginRoute", isLoginRoute, pathname);
 
   return (
     <section
@@ -23,20 +22,20 @@ export default function RootLayout({
       </main>
       <FollowerPointerCard
         className={`hidden lg:block relative w-full lg:w-1/2 bg-secondary p-10 rounded-[37px] text-white z-20 flex-1 ${
-        isLoginRoute ? "h-[calc(100vh-40px)]" : "h-full"
-      }`}
+          isLoginRoute ? "h-[calc(100vh-40px)]" : "h-full"
+        }`}
         title={<TitleComponent />}
       >
         <div className="flex flex-col justify-between h-full">
           <div>
             <h1 className="font-extrabold xl:text-[38px] text-3xl mb-5">
-              عن منصة كود لين
+              عن منصة صنعة
             </h1>
             <p className="xl:text-[22px] text-lg font-medium leading-normal w-[90%]">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-              النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد
-              من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.
-              هذا النص ه
+              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد
+              هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو
+              العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها
+              التطبيق. هذا النص ه
             </p>
           </div>
           <Image

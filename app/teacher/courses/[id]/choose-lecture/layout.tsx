@@ -4,14 +4,17 @@ type Props = {
 
 function Layout({ children }: Props) {
   return (
-    <div>
-      <div className="mb-4">
-        <h1 className="text-2xl font-bold text-[#d4d4d4]">اضافة امتحان جديد</h1>
-        <p className="text-lg font-semibold text-[#d4d4d4]/70">
-          من فضلك قم بمليء جميع تفاصيل الامتحان
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          إضافة امتحان جديد
+        </h1>
+        <p className="text-tech-grey text-lg font-medium">
+          من فضلك قم بمليء جميع تفاصيل الامتحان لضمان دقة المحتوى التعليمي
         </p>
       </div>
-      <main>{children}</main>
+      <main className="mt-8">{children}</main>
     </div>
   );
 }

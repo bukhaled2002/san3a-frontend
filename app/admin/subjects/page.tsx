@@ -10,7 +10,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "المادة - Admin",
-  description: "المادة - Admin في موقع حصتي",
+  description: "المادة - Admin في موقع صنعة",
 };
 
 async function Subjects({ searchParams }: Props) {

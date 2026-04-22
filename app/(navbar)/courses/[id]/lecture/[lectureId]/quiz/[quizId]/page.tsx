@@ -13,7 +13,7 @@ export async function generateMetadata({
 
   return {
     title: `${quiz.title}`,
-    description: `صفحة الاختبار ${quiz.title} في موقع حصتي`,
+    description: `صفحة الاختبار ${quiz.title} في موقع صنعة`,
   };
 }
 

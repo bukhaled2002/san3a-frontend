@@ -36,6 +36,7 @@ function AdminCoursesContent({}: Props) {
   const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
   const page = searchParams.get("page");
   const { data: courses } = useQuery({
     queryKey: ["courses-admin", page],
@@ -152,7 +153,10 @@ function AdminCoursesContent({}: Props) {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         className="text-red-500 focus:bg-red-500/10 focus:text-red-500 cursor-pointer"
-                        onClick={() => setDeleteOpen(true)}
+                        onClick={() => {
+                          setSelectedCourseId(course.id);
+                          setDeleteOpen(true);
+                        }}
                       >
                         حذف الدورة
                       </DropdownMenuItem>
@@ -226,7 +230,7 @@ function AdminCoursesContent({}: Props) {
             </AlertDialogCancel>
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-700 text-white border-none"
-              onClick={() => DeleteCourse("temp-id")} // Note: In real use, pass the actual ID via state
+              onClick={() => selectedCourseId && DeleteCourse(selectedCourseId)}
             >
               {isDeleting ? "جاري الحذف..." : "حذف نهائي"}
             </AlertDialogAction>

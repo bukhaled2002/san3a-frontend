@@ -22,19 +22,22 @@ function NavigationMenu({}: Props) {
   return (
     <nav className="flex flex-col justify-between h-full py-7">
       <div>
-        <Link href={`/parent/dashboard`}>
-          <Image
-            src="/logo.svg"
-            width={143}
-            height={64}
-            className="m-auto"
-            alt="logo"
-          />
+        <Link href={`/parent/dashboard`} className="block group px-4">
+          <div className="relative">
+            <Image
+              src="/new_images/AR LOGO WHITE-2 Official.png"
+              width={160}
+              height={70}
+              className="m-auto invert brightness-150 transition-all duration-300 group-hover:scale-105"
+              alt="logo"
+            />
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+          </div>
         </Link>
-        <ul className="text-base space-y-[24px] font-medium mt-12">
+        <ul className="text-sm space-y-2 font-bold mt-16 px-4">
           <NavLink
             href={`/parent/sons`}
-            className="flex items-center gap-x-[12px] py-2.5 px-6 whitespace-nowrap"
+            className="whitespace-nowrap"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,23 +58,25 @@ function NavigationMenu({}: Props) {
           </NavLink>
         </ul>
       </div>
-      <div>
-        <div className="border-y py-[10px] my-6">
+      <div className="px-4">
+        <div className="border-t border-white/5 pt-6 mt-6">
           <form action={handlelogout}>
             <Button
               variant="ghost"
-              className="text-[#E24444] hover:text-[#E24444] justify-start px-6 py-2.5 gap-x-3 cursor-pointer w-full hover:bg-transparent"
+              className="text-red-500 hover:text-red-400 hover:bg-red-500/10 justify-start px-4 py-3 gap-x-3 cursor-pointer w-full transition-all group rounded-xl"
               disabled={isPending}
             >
-              <Power size={20} />
-              <span>تسجيل الخروج</span>
+              <Power size={20} className="group-hover:rotate-12 transition-transform" />
+              <span className="font-bold">تسجيل الخروج</span>
               {isPending && (
-                <Loader2 size={20} className="animate-spin text-destructive" />
+                <Loader2 size={18} className="animate-spin ms-auto" />
               )}
             </Button>
           </form>
         </div>
-        <User />
+        <div className="mt-6 pt-6 border-t border-white/5">
+          <User />
+        </div>
       </div>
     </nav>
   );

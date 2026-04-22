@@ -30,10 +30,10 @@ function ManageAdminsTable({}: Props) {
   return (
     <div>
       <DataTable columns={columns} data={admins} />
-      <div className="flex items-center justify-center gap-2 text-xl font-bold mt-6">
-        <div className="text-[#d4d4d4]">اجمالي العدد</div>
+      <div className="flex items-center justify-center gap-2 text-xl font-bold mt-10 bg-card/20 backdrop-blur-sm border border-primary/10 w-fit mx-auto px-8 py-3 rounded-2xl">
+        <div className="text-tech-grey">اجمالي العدد:</div>
         <div className="flex items-center gap-[10px]">
-          <span className="text-primary">{admins.length} مشرف</span>
+          <span className="text-primary neon-glow">{admins.length} مشرف</span>
           <UserCog className="text-primary h-6 w-6" />
         </div>
       </div>

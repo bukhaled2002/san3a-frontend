@@ -4,7 +4,7 @@ import React from "react";
 
 export const metadata: Metadata = {
   title: "اضافة ابن جديد - ولي امر",
-  description: "اضافة ابن جديد - ولي امر في موقع حصتي",
+  description: "اضافة ابن جديد - ولي امر في موقع صنعة",
 };
 
 type Props = {};

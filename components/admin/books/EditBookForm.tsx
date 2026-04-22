@@ -178,23 +178,24 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
     );
 
   return (
-    <div className="bg-white p-5 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="mb-0 space-y-6 w-full bg-white px-16 pt-14 pb-5"
+          className="mb-0 space-y-6 w-full px-16 pt-14 pb-10 relative z-10"
         >
           <FormField
             name="name"
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   اسم الكتاب
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     type="text"
                     {...field}
                   />
@@ -208,12 +209,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   وصف الكتاب
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-[190px] resize-none border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[190px] resize-none transition-all"
                     {...field}
                   />
                 </FormControl>
@@ -227,12 +228,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     سعر الكتاب
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -246,12 +247,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     المؤلف
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       min={0}
                       max={100}
                       type="text"
@@ -268,12 +269,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   صورة الكتاب التعليمي
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     type="text"
                     {...field}
                   />
@@ -287,12 +288,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   رابط التسجيل في الكتاب
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     type="text"
                     {...field}
                   />
@@ -309,12 +310,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#202224] text-lg font-semibold">
+                    <FormLabel className="text-white text-lg font-bold mb-3 block">
                       اسم الفصل
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         type="text"
                         {...field}
                       />
@@ -329,12 +330,12 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#202224] text-lg font-semibold">
+                    <FormLabel className="text-white text-lg font-bold mb-3 block">
                       محتوى الفصل
                     </FormLabel>
                     <FormControl>
                       <Textarea
-                        className="focus-visible:ring-secondary bg-[#F5F6F8] h-[190px] resize-none border border-[#00000026]/15 rounded-[4px]"
+                        className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[190px] resize-none transition-all"
                         {...field}
                       />
                     </FormControl>
@@ -342,34 +343,33 @@ function AdminInitialEditBookForm({ intialValues }: Props) {
                   </FormItem>
                 )}
               />
-              <Button
-                type="button"
-                onClick={() => handleDeleteChapter(index, chapter.id)}
-                className="group bg-red-500 hover:bg-red-700 text-white border border-red-600 font-bold"
-              >
-                <Trash2 className="w-5 h-5 me-[6px] rounded-full text-white" />
-                حذف الفصل
-              </Button>
+                <Button
+                  type="button"
+                  onClick={() => handleDeleteChapter(index, chapter.id)}
+                  className="group bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 font-bold transition-all"
+                >
+                  <Trash2 className="w-5 h-5 me-[6px] transition-transform group-hover:scale-110" />
+                  حذف الفصل
+                </Button>
             </div>
           ))}
 
           <Button
             type="button"
-            className="me-5 group bg-[#E4E0FF] hover:bg-[#4635B7] text-[#4635B7] hover:text-[#E4E0FF] border border-[#7864FF] font-bold"
+            className="me-5 group bg-primary/10 hover:bg-primary text-primary hover:text-background border border-primary/20 font-bold transition-all"
             onClick={handleAddChapter}
           >
-            <PlusIcon className="w-5 h-5 me-[6px] bg-[#4635B7] group-hover:bg-[#E4E0FF] rounded-full text-[#E4E0FF] group-hover:text-[#4635B7]" />
+            <PlusIcon className="w-5 h-5 me-[6px] transition-transform group-hover:rotate-90" />
             اضافة فصل جديد
           </Button>
 
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow rounded-xl transition-all active:scale-[0.98] mt-4"
             disabled={isCreating || isUpdating}
           >
-            {bookId ? "تعديل" : "انشاء"}
+            {bookId ? "حفظ التعديلات" : "انشاء الكتاب"}
             {(isCreating || isUpdating) && (
               <Loader2 className="animate-spin ms-3" />
             )}{" "}

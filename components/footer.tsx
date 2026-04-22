@@ -93,7 +93,7 @@ function Footer({}: Props) {
         <div className="pt-10 border-t border-primary/10 text-tech-grey flex flex-col md:flex-row items-center justify-between gap-6 text-sm font-bold">
           <div className="flex items-center gap-3">
              <span>جميع الحقوق محفوظة لدي منصة صنعة</span>
-             <span className="font-rajdhani text-primary">© 2024</span>
+             <span className="font-rajdhani text-primary">© {new Date().getFullYear()}</span>
           </div>
           <div className="flex items-center gap-8">
             <Link href="#" className="hover:text-primary transition">سياسة الخصوصية</Link>

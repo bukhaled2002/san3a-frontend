@@ -148,7 +148,10 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
     );
 
   return (
-    <div className="bg-card p-5 rounded-[12px] border border-border/20">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
@@ -158,21 +161,22 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
               CreateCourse(data);
             }
           })}
-          className="mb-0 space-y-[24px] w-full bg-card px-16 pt-14 pb-5"
+          className="mb-0 space-y-8 w-full px-12 py-12 relative z-10"
         >
-          <div className="grid grid-cols-4 gap-x-[57px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FormField
               name="name"
               control={form.control}
               render={({ field }) => (
-                <FormItem className="col-span-2 ">
-                  <FormLabel className="text-foreground text-lg font-semibold">
+                <FormItem>
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     اسم الدورة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       type="text"
+                      placeholder="أدخل اسم الدورة التعليمية"
                       {...field}
                     />
                   </FormControl>
@@ -184,8 +188,8 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
               name="subjectId"
               control={form.control}
               render={({ field }) => (
-                <FormItem className="col-span-2 focus-visible:ring-secondary">
-                  <FormLabel className="text-foreground text-lg font-semibold">
+                <FormItem>
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     المادة
                   </FormLabel>
                   <Select
@@ -193,36 +197,38 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
-                        <SelectValue />
+                      <SelectTrigger className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
+                        <SelectValue placeholder="اختر المادة" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
+                    <SelectContent className="bg-card border-primary/10 text-white">
                       {subjects?.map((subject) => {
                         return (
-                          <SelectItem key={subject.id} value={subject.id}>
+                          <SelectItem key={subject.id} value={subject.id} className="focus:bg-primary/20 focus:text-white cursor-pointer">
                             {subject.name}
                           </SelectItem>
                         );
                       })}
                     </SelectContent>
                   </Select>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
           </div>
+
           <FormField
             name="description"
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   وصف الدورة
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    className="focus-visible:ring-secondary bg-background h-[190px] resize-none border border-border/20 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[160px] resize-none transition-all"
+                    placeholder="اكتب وصفاً تفصيلياً للدورة..."
                     {...field}
                   />
                 </FormControl>
@@ -230,19 +236,21 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
               </FormItem>
             )}
           />
-          <div className="grid grid-cols-4 gap-x-[57px]">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FormField
               name="price"
               control={form.control}
               render={({ field }) => (
-                <FormItem className="col-span-2">
-                  <FormLabel className="text-foreground text-lg font-semibold">
-                    سعر الدورة
+                <FormItem>
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
+                    سعر الدورة (جنيه)
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
+                      placeholder="0"
                       {...field}
                     />
                   </FormControl>
@@ -254,16 +262,17 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
               name="discountPercentage"
               control={form.control}
               render={({ field }) => (
-                <FormItem className="col-span-2">
-                  <FormLabel className="text-foreground text-lg font-semibold">
-                    نسبة الخصم
+                <FormItem>
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
+                    نسبة الخصم (%)
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       min={0}
                       max={100}
                       type="text"
+                      placeholder="0"
                       {...field}
                     />
                   </FormControl>
@@ -272,85 +281,96 @@ function TeacherIntialCourseForm({ intialValues }: Props) {
               )}
             />
           </div>
-          <FormField
-            name="classId"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
-                  اختار الصف
-                </FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <FormField
+              name="classId"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
+                    الصف الدراسي
+                  </FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
+                        <SelectValue placeholder="اختر الصف" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent className="bg-card border-primary/10 text-white">
+                      {classes?.map((cls) => {
+                        return (
+                          <SelectItem key={cls.id} value={cls.id} className="focus:bg-primary/20 focus:text-white cursor-pointer">
+                            {cls.name}
+                          </SelectItem>
+                        );
+                      })}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="img_url"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
+                    رابط صورة الدورة
+                  </FormLabel>
                   <FormControl>
-                    <SelectTrigger className="text-foreground focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
-                      <SelectValue />
-                    </SelectTrigger>
+                    <Input
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      type="text"
+                      placeholder="https://..."
+                      {...field}
+                    />
                   </FormControl>
-                  <SelectContent>
-                    {classes?.map((subject) => {
-                      return (
-                        <SelectItem key={subject.id} value={subject.id}>
-                          {subject.name}
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="img_url"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="col-span-2">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
-                  صور الدورة التعليمة
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="IsActive"
-            render={({ field }) => (
-              <FormItem className="">
-                <div className="space-y-0.5">
-                  <FormLabel className="text-base">الدورة مفعلة؟</FormLabel>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="flex items-center justify-between p-4 rounded-2xl bg-primary/5 border border-primary/10">
+            <FormField
+              control={form.control}
+              name="IsActive"
+              render={({ field }) => (
+                <FormItem className="flex items-center gap-4 space-y-0">
+                  <FormLabel className="text-white font-bold text-lg cursor-pointer">هل الدورة مفعلة؟</FormLabel>
+                  <FormControl>
+                    <Switch
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="pt-4">
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full text-background h-14 text-xl font-bold shadow-neon-glow rounded-xl hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-50"
+              disabled={isCreating || isUpdating}
+            >
+              {isCreating || isUpdating ? (
+                <div className="flex items-center gap-2">
+                  <Loader2 className="animate-spin" />
+                  <span>جاري الحفظ...</span>
                 </div>
-                <FormControl>
-                  <Switch
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <Button
-            type="submit"
-            size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
-            disabled={isCreating || isUpdating}
-          >
-            {courseId ? "تعديل" : "انشاء"}
-            {(isCreating || isUpdating) && (
-              <Loader2 className="animate-spin ms-3" />
-            )}{" "}
-          </Button>
+              ) : (
+                courseId ? "حفظ التعديلات" : "انشاء الدورة التعليمية"
+              )}
+            </Button>
+          </div>
         </form>
       </Form>
     </div>

@@ -8,20 +8,25 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "تعديل الدورة - Admin",
-  description: "تعديل الدورة - Admin في موقع حصتي",
+  title: "تعديل الكتاب - Admin",
+  description: "تعديل الكتاب - Admin في موقع صنعة",
 };
 
 async function AdminBookEdit({ params }: Props) {
   const { id } = await params;
   const book = await getbook(id);
-  console.log('book',book)
+
   return (
-    <div>
-      <h1 className="text-2xl font-bold">تعديل الكتاب</h1>
-      <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-4">
-        من فضلك قم بمليء جميع تفاصيل الكتاب
-      </h2>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          تعديل بيانات الكتاب
+        </h1>
+        <p className="text-tech-grey text-lg font-medium">
+          تعديل المعلومات الأساسية وفصول الكتاب التعليمي
+        </p>
+      </div>
       <AdminInitialEditBookForm intialValues={book} />
     </div>
   );

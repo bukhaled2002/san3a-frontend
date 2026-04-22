@@ -156,7 +156,8 @@ function AdminIntialCourseForm({ intialValues }: Props) {
     );
 
   return (
-    <div className="bg-card p-5 rounded-[12px] border border-border/20">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
@@ -166,7 +167,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               CreateCourse(data);
             }
           })}
-          className="mb-0 space-y-[24px] w-full bg-card px-16 pt-14 pb-5"
+          className="mb-0 space-y-[32px] w-full px-16 pt-14 pb-10 relative z-10"
         >
           <div className="grid grid-cols-4 gap-x-[57px]">
             <FormField
@@ -174,12 +175,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 ">
-                  <FormLabel className="text-foreground text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     اسم الدورة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -193,7 +194,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2 focus-visible:ring-secondary">
-                  <FormLabel className="text-foreground text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     المادة
                   </FormLabel>
                   <Select
@@ -201,7 +202,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                     defaultValue={field.value}
                   >
                     <FormControl>
-                      <SelectTrigger className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
+                      <SelectTrigger className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
                         <SelectValue />
                       </SelectTrigger>
                     </FormControl>
@@ -225,12 +226,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   وصف الدورة
                 </FormLabel>
                 <FormControl>
                   <Textarea
-                    className="focus-visible:ring-secondary bg-background h-[190px] resize-none border border-border/20 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[190px] resize-none transition-all"
                     {...field}
                   />
                 </FormControl>
@@ -244,12 +245,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-foreground text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     سعر الدورة
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -263,12 +264,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
               control={form.control}
               render={({ field }) => (
                 <FormItem className="col-span-2">
-                  <FormLabel className="text-foreground text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     نسبة الخصم
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       min={0}
                       max={100}
                       type="text"
@@ -285,7 +286,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   اختار المعلم
                 </FormLabel>
                 <Select
@@ -293,7 +294,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="text-foreground focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
+                    <SelectTrigger className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
                       <SelectValue />
                     </SelectTrigger>
                   </FormControl>
@@ -316,7 +317,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   اختار الصف
                 </FormLabel>
                 <Select
@@ -324,7 +325,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="text-foreground focus-visible:ring-secondary bg-background h-12 border border-border/20 rounded-[4px]">
+                    <SelectTrigger className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
                       <SelectValue />
                     </SelectTrigger>
                   </FormControl>
@@ -347,12 +348,12 @@ function AdminIntialCourseForm({ intialValues }: Props) {
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   صور الدورة التعليمة
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     type="text"
                     {...field}
                   />
@@ -367,7 +368,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
             render={({ field }) => (
               <FormItem className="">
                 <div className="space-y-0.5">
-                  <FormLabel className="text-base">الدورة مفعلة؟</FormLabel>
+                  <FormLabel className="text-white font-bold">الدورة مفعلة؟</FormLabel>
                 </div>
                 <FormControl>
                   <Switch
@@ -381,8 +382,7 @@ function AdminIntialCourseForm({ intialValues }: Props) {
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow rounded-xl transition-all active:scale-[0.98] mt-4"
             disabled={isCreating || isUpdating}
           >
             {courseId ? "تعديل" : "انشاء"}

@@ -127,14 +127,15 @@ function AdminForm({ intialValues }: Props) {
       </div>
     );
   return (
-    <div className=" bg-white py-12 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 py-12 px-6 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
             const { password_confirmation, ...rest } = data;
             return teacherId ? UpdateAdmin(rest) : CreateAdmin(rest);
           })}
-          className="mx-auto mb-0 mt-8 max-w-lg space-y-[18px] w-full bg-white"
+          className="mx-auto mb-0 mt-8 max-w-lg space-y-6 w-full relative z-10"
         >
           <FormField
             name="name"
@@ -143,7 +144,7 @@ function AdminForm({ intialValues }: Props) {
               <FormItem className="flex-1">
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="الأسم"
                     type="text"
                     {...field}
@@ -160,7 +161,7 @@ function AdminForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="البريد الالكتروني"
                     type="email"
                     {...field}
@@ -179,7 +180,7 @@ function AdminForm({ intialValues }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         placeholder="كلمة السر"
                         type="password"
                         {...field}
@@ -200,7 +201,7 @@ function AdminForm({ intialValues }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         placeholder="تأكيد كلمة السر"
                         type="password"
                         {...field}
@@ -220,11 +221,10 @@ function AdminForm({ intialValues }: Props) {
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow mt-4 rounded-xl transition-all active:scale-[0.98]"
             disabled={isCreating || isUpdating}
           >
-            {teacherId ? "تعديل" : "انشاء"}
+            {teacherId ? "حفظ التعديلات" : "انشاء الحساب"}
             {(isCreating || isUpdating) && (
               <Loader2 className="animate-spin ms-3" />
             )}{" "}

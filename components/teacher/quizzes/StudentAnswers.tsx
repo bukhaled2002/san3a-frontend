@@ -141,11 +141,15 @@ const StudentAnswers = ({ examId }: { examId: string }) => {
 
   return (
     <div className="space-y-6" dir="rtl">
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">إجابات الطلاب</h2>
+      <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+        <div className="px-10 py-6 border-b border-primary/10 relative z-10">
+          <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+            <div className="w-1.5 h-6 bg-primary rounded-full shadow-neon-glow" />
+            إجابات الطلاب
+          </h2>
         </div>
-        <div className="p-6">
+        <div className="p-10 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {quizData?.data.map((student: Student) => (
               <button
@@ -153,16 +157,18 @@ const StudentAnswers = ({ examId }: { examId: string }) => {
                 onClick={() =>
                   setSelectedStudentId(student.id || student.studentId!!)
                 }
-                className={`p-4 rounded-lg text-right transition-colors ${
+                className={`p-6 rounded-2xl text-right transition-all border ${
                   selectedStudentId === (student.id || student.studentId)
-                    ? "bg-primary text-white"
-                    : "bg-gray-100 hover:bg-gray-200 text-gray-900"
+                    ? "bg-primary text-background border-primary shadow-neon-glow scale-[1.02]"
+                    : "bg-card/30 border-primary/5 hover:border-primary/20 text-white"
                 }`}
               >
-                <h3 className="font-medium">
+                <h3 className="font-bold text-lg mb-1">
                   {student.firstName} {student.lastName}
                 </h3>
-                <p className="text-sm mt-1">{student.grade}</p>
+                <p className={`text-sm ${selectedStudentId === (student.id || student.studentId) ? "text-background/80" : "text-tech-grey"}`}>
+                  الدرجة: {student.grade}
+                </p>
               </button>
             ))}
           </div>
@@ -170,9 +176,11 @@ const StudentAnswers = ({ examId }: { examId: string }) => {
       </div>
 
       {selectedStudentId && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900">
+        <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl overflow-hidden relative">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+          <div className="px-10 py-6 border-b border-primary/10 relative z-10">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+              <div className="w-1.5 h-6 bg-primary rounded-full shadow-neon-glow" />
               إجابات{" "}
               {
                 quizData?.data.find(
@@ -196,15 +204,18 @@ const StudentAnswers = ({ examId }: { examId: string }) => {
                 {studentAnswers?.map((answer) => {
                   console.log("answer", answer);
                   return (
-                    <div key={answer.id} className="space-y-2">
-                      <div className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-medium text-gray-900 mb-2">
-                          السؤال : {answer.questionEssay.question}
+                    <div key={answer.id} className="space-y-4">
+                      <div className="bg-card/30 border border-primary/5 rounded-2xl p-8 hover:border-primary/20 transition-all group">
+                        <h4 className="font-bold text-primary mb-4 flex items-center gap-2 text-lg">
+                          <span className="text-sm bg-primary/10 px-3 py-1 rounded-md">السؤال</span>
+                          {answer.questionEssay.question}
                         </h4>
-                        <p className="text-gray-700 mb-2">{answer.answer}</p>
-                        <div className="flex justify-between items-center">
-                          <p className="text-sm text-gray-500">
-                            الدرجة: {answer.grade || "لم يتم التقييم"}
+                        <div className="bg-card/20 p-6 rounded-xl text-white text-lg font-medium leading-relaxed mb-6">
+                          {answer.answer}
+                        </div>
+                        <div className="flex justify-between items-center pt-6 border-t border-primary/10">
+                          <p className="text-lg font-bold text-tech-grey">
+                            الدرجة: <span className="text-white">{answer.grade || "لم يتم التقييم"}</span>
                           </p>
                           <button
                             onClick={() =>
@@ -214,7 +225,7 @@ const StudentAnswers = ({ examId }: { examId: string }) => {
                                   : answer.id
                               )
                             }
-                            className="px-4 py-2 bg-primary text-white rounded hover:bg-primary/90 transition-colors"
+                            className="px-8 py-3 bg-primary text-background font-bold rounded-xl shadow-neon-glow hover:opacity-90 transition-all active:scale-[0.98]"
                           >
                             {answer.grade ? "تعديل التقييم" : "تقييم"}
                           </button>

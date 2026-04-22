@@ -16,7 +16,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "تعديل المادة - Admin",
-  description: "تعديل المادة - Admin في موقع حصتي",
+  description: "تعديل المادة - Admin في موقع صنعة",
 };
 
 async function AdminSubjectsEdit({ params }: Props) {
@@ -29,8 +29,18 @@ async function AdminSubjectsEdit({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <h1 className="text-3xl font-bold mb-7">تعديل المادة</h1>
-      <AdminSubjectForm id={id} />
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+            <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+            تعديل المادة
+          </h1>
+          <p className="text-tech-grey text-lg font-medium">
+            قم بتحديث بيانات المادة الدراسية وتعديل المحتوى الخاص بها
+          </p>
+        </div>
+        <AdminSubjectForm id={id} />
+      </div>
     </HydrationBoundary>
   );
 }

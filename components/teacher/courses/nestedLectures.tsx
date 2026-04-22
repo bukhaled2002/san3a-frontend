@@ -40,12 +40,12 @@ function TeacherNestedLectures({
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2 ">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   اسم الحصة
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     type="text"
                     {...field}
                   />
@@ -59,12 +59,12 @@ function TeacherNestedLectures({
             control={form.control}
             render={({ field }) => (
               <FormItem className="col-span-2 ">
-                <FormLabel className="text-[#202224] text-lg font-semibold">
+                <FormLabel className="text-white text-lg font-bold mb-3 block">
                   رابط الفيديو الخاص بالحصة
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     type="text"
                     {...field}
                   />
@@ -79,12 +79,12 @@ function TeacherNestedLectures({
             render={({ field }) => {
               return (
                 <FormItem className="col-span-2 ">
-                  <FormLabel className="text-[#202224] text-lg font-semibold">
+                  <FormLabel className="text-white text-lg font-bold mb-3 block">
                     عدد المشاهدات
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="number"
                       min={0}
                       {...field}
@@ -99,7 +99,7 @@ function TeacherNestedLectures({
           />
           {lectureFields.length > 1 && (
             <XIcon
-              className="w-5 h-5 cursor-pointer absolute top-0 end-0 text-[#202224] hover:text-red-500"
+              className="w-5 h-5 cursor-pointer absolute top-0 end-0 text-tech-grey hover:text-red-500 transition-colors"
               onClick={() => {
                 remove(lessonIndex);
                 // @ts-ignore
@@ -117,9 +117,9 @@ function TeacherNestedLectures({
           <Button
             type="button"
             onClick={() => append({ title: "", video: { url: "" } })}
-            className="group bg-transparent hover:bg-[#6F6F6F] text-[#202224] hover:text-white border border-[#202224] font-bold"
+            className="w-fit group bg-primary/10 hover:bg-primary text-primary hover:text-background border border-primary/20 font-bold transition-all"
           >
-            <PlusIcon className="w-5 h-5 me-[6px] bg-[#6F6F6F] group-hover:bg-white rounded-full text-white group-hover:text-[#202224]" />
+            <PlusIcon className="w-5 h-5 me-[6px] transition-transform group-hover:rotate-90" />
             اضافة حصة جديدة
           </Button>
         )}

@@ -174,18 +174,21 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
   }
 
   return (
-    <div className="bg-white p-10 rounded-[12px]">
-      <div className="mb-7">
-        <h1 className="text-2xl font-bold">برجاء اضافة الاسئلة</h1>
-        <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-[28.5px]">
-          برجاء تحديد الدورة التعليمية والفصل والدرس الذي سيتم اجراء امتحان خاص
-          بهم
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      <div className="mb-7 relative z-10 px-10 pt-10">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          برجاء اضافة الاسئلة
+        </h1>
+        <h2 className="text-tech-grey text-lg font-medium">
+          قم بتحديد تفاصيل الامتحان والأسئلة الخاصة بالدرس
         </h2>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="w-[665px] m-auto">
-            <Separator className="my-6 h-1 w-[600px] m-auto rounded-lg mb-[41.5px]" />
+            <Separator className="my-6 h-[1px] bg-primary/10 w-[600px] m-auto mb-[41.5px]" />
             <FormField
               name="title"
               control={form.control}
@@ -193,7 +196,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                 <FormItem className="mb-4">
                   <FormLabel
                     className={cn(
-                      "text-[#202224] text-lg font-semibold",
+                      "text-white text-lg font-bold mb-3 block",
                       form.formState.errors?.title && "text-red-500"
                     )}
                   >
@@ -201,7 +204,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -216,7 +219,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                 <FormItem>
                   <FormLabel
                     className={cn(
-                      "text-[#202224] text-lg font-semibold",
+                      "text-white text-lg font-bold mb-3 block",
                       form.formState.errors?.duration && "text-red-500"
                     )}
                   >
@@ -224,7 +227,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                   </FormLabel>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       type="text"
                       {...field}
                     />
@@ -236,9 +239,9 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
           {questionFields.map((question, index) => {
             return (
               <div key={question.id}>
-                <Separator className="h-1 w-[600px] m-auto rounded-lg my-[74px]" />
+                <Separator className="h-[1px] bg-primary/10 w-[600px] m-auto my-[74px]" />
                 <div className="flex items-center gap-[24px] mb-[24px]">
-                  <Label htmlFor="question-bank" className="text-[16px]">
+                  <Label htmlFor="question-bank" className="text-white font-bold">
                     اختر من بنك الاسئلة
                   </Label>
                   <Switch
@@ -257,7 +260,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                           <FormItem className="flex-1">
                             <FormLabel
                               className={cn(
-                                "text-[#202224] text-lg font-semibold mb-5",
+                                "text-white text-lg font-bold mb-3 block",
                                 form.formState.errors?.questions?.[index]
                                   ?.question && "text-red-500"
                               )}
@@ -269,15 +272,16 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                                 onValueChange={field.onChange}
                                 value={field.value}
                               >
-                                <SelectTrigger className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]">
+                                <SelectTrigger className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
                                   <SelectValue placeholder="اختر السؤال" />
                                 </SelectTrigger>
-                                <SelectContent>
+                                <SelectContent className="bg-card border-primary/10 text-white">
                                   {allmcq?.questions?.map(
                                     (item: SingleMCQQuestion) => (
                                       <SelectItem
                                         value={item?.id}
                                         key={item?.id}
+                                        className="focus:bg-primary/20 focus:text-white"
                                       >
                                         {item?.question}
                                       </SelectItem>
@@ -302,7 +306,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                           <FormItem className="flex-1">
                             <FormLabel
                               className={cn(
-                                "text-[#202224] text-lg font-semibold mb-5",
+                                "text-white text-lg font-bold mb-3 block",
                                 form.formState.errors?.questions?.[index]
                                   ?.question && "text-red-500"
                               )}
@@ -311,7 +315,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                             </FormLabel>
                             <FormControl>
                               <Input
-                                className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                                className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                                 type="text"
                                 {...field}
                               />
@@ -321,14 +325,14 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                       />
 
                       {questionFields.length > 1 && (
-                        <Button
-                          onClick={() => removeQuestion(index)}
-                          type="button"
-                          className="group bg-red-500 hover:bg-red-700 text-white border border-red-600 font-bold"
-                        >
-                          <Trash2 className="w-5 h-5 me-[6px] rounded-full text-white" />
-                          حذف السؤال
-                        </Button>
+                          <Button
+                            onClick={() => removeQuestion(index)}
+                            type="button"
+                            className="group bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 font-bold transition-all"
+                          >
+                            <Trash2 className="w-5 h-5 me-[6px] transition-transform group-hover:scale-110" />
+                            حذف السؤال
+                          </Button>
                       )}
                     </div>
                     <FormField
@@ -338,7 +342,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                         <FormItem className="flex-1">
                           <FormLabel
                             className={cn(
-                              "text-[#202224] text-lg font-semibold mb-5",
+                              "text-white text-lg font-bold mb-3 block",
                               form.formState.errors?.questions?.[index]
                                 ?.figure && "text-red-500"
                             )}
@@ -354,7 +358,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                                   className="flex items-center gap-4"
                                 >
                                   <Input
-                                    className="flex-1 focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                                    className="flex-1 border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                                     {...form.register(
                                       `questions.${index}.figure.${figIndex}`
                                     )}
@@ -374,7 +378,7 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                                         )
                                       );
                                     }}
-                                    className="bg-red-500 hover:bg-red-700 text-white"
+                                    className="bg-red-500/10 hover:bg-red-500 text-red-500 border border-red-500/20"
                                   >
                                     <Trash2 className="w-5 h-5" />
                                   </Button>
@@ -391,9 +395,9 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                                   "",
                                 ]);
                               }}
-                              className="bg-[#E4E0FF] hover:bg-[#4635B7] text-[#4635B7] hover:text-[#E4E0FF]"
+                              className="group bg-primary/10 hover:bg-primary text-primary hover:text-background border border-primary/20 font-bold transition-all"
                             >
-                              <PlusIcon className="w-5 h-5" />
+                              <PlusIcon className="w-5 h-5 me-[6px] transition-transform group-hover:rotate-90" />
                               اضافة Figuare
                             </Button>
                           </div>
@@ -413,15 +417,14 @@ function AdminCreateQuizeForm({ courseId, lectureId }: Props) {
                     <Button
                       onClick={addQuestion}
                       type="button"
-                      className="group bg-[#E4E0FF] hover:bg-[#4635B7] text-[#4635B7] hover:text-[#E4E0FF] border border-[#7864FF] font-bold"
+                      className="group bg-primary/10 hover:bg-primary text-primary hover:text-background border border-primary/20 font-bold transition-all"
                     >
-                      <PlusIcon className="w-5 h-5 me-[6px] bg-[#4635B7] group-hover:bg-[#E4E0FF] rounded-full text-[#E4E0FF] group-hover:text-[#4635B7]" />
+                      <PlusIcon className="w-5 h-5 me-[6px] transition-transform group-hover:rotate-90" />
                       اضافة سؤال
                     </Button>
                     <Button
-                      variant="secondary"
-                      className="text-white"
                       type="submit"
+                      className="text-background h-12 text-lg font-bold shadow-neon-glow rounded-xl transition-all active:scale-[0.98]"
                     >
                       انشاء الامتحان
                     </Button>

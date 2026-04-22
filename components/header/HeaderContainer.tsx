@@ -102,7 +102,7 @@ function HeaderContainer({ data }: Props) {
                   className="h-[45px] w-auto"
                   alt="Logo"
                   height={45}
-                  src="/new_images/AR LOGO WHITE Official.png.png"
+                  src="/new_images/AR LOGO WHITE Official.png"
                   width={130}
                 />
               </SheetTitle>

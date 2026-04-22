@@ -15,7 +15,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "تعديل حساب المعلم - Admin",
-  description: "تعديل حساب المعلم - Admin في موقع حصتي",
+  description: "تعديل حساب المعلم - Admin في موقع صنعة",
 };
 
 async function AdminTeacherEdit({ params }: Props) {
@@ -28,8 +28,18 @@ async function AdminTeacherEdit({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <h1 className="text-3xl font-bold mb-7">تعديل حساب المعلم</h1>
-      <AdminTeachersForm id={id} />
+      <div className="space-y-6">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+            <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+            تعديل حساب المعلم
+          </h1>
+          <p className="text-tech-grey text-lg font-medium">
+            قم بتحديث بيانات المعلم وتفاصيل المادة الدراسية
+          </p>
+        </div>
+        <AdminTeachersForm id={id} />
+      </div>
     </HydrationBoundary>
   );
 }

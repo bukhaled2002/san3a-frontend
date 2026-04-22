@@ -8,7 +8,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "تغيير كلمة السر",
-  description: "تغيير كلمة السر في موقع حصتي",
+  description: "تغيير كلمة السر في موقع صنعة",
 };
 
 function ResetPassword({ searchParams }: Props) {

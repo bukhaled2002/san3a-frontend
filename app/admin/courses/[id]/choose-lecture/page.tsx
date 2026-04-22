@@ -9,7 +9,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "اختيار الدرس - Admin",
-  description: "اختيار الدرس - Admin في موقع حصتي",
+  description: "اختيار الدرس - Admin في موقع صنعة",
 };
 
 type Props = {

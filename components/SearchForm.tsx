@@ -25,7 +25,7 @@ const SearchForm = ({}: Props) => {
       </label>
       <div className={"relative w-1/2 mx-auto"}>
         <Input
-          className="border border-[#e3e1e1] bg-[#efeded] h-10 pe-10 ps-4 rounded-[6px] font-medium text-sm focus:outline-none w-full"
+          className="border-primary/10 bg-card/50 h-12 pe-10 ps-4 rounded-xl font-medium text-sm focus:border-primary transition-all w-full text-white placeholder:text-tech-grey/50"
           type="search"
           id="formSearch"
           name="search"
@@ -44,9 +44,9 @@ const SearchForm = ({}: Props) => {
         </button>
         {searchedWord && (
           <div className="absolute z-40 w-full top-16 bg-white rounded-lg px-5 py-2 max-h-72 overflow-auto">
-            {true ? (
+            {false ? (
               <Loader2 className="w-10 h-10 p-2 rounded-full animate-spin mx-auto text-primary" />
-            ) : true ? (
+            ) : false ? (
               [
                 {
                   id: 1,
@@ -131,7 +131,9 @@ const SearchForm = ({}: Props) => {
                 );
               })
             ) : (
-              <div>No events found</div>
+              <div className="text-center py-10">
+                 <p className="text-tech-grey font-bold">لا توجد نتائج بحث حالياً</p>
+              </div>
             )}
           </div>
         )}

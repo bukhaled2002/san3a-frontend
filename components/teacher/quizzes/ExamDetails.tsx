@@ -94,30 +94,39 @@ export function ExamDetails({ examId }: { examId: string }) {
 
   return (
     <div
-      className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+      className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl overflow-hidden relative"
       dir="rtl"
     >
-      <div className="px-6 py-4 border-b border-gray-200">
-        <h2 className="text-2xl font-bold text-gray-900">{quizData.title}</h2>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      <div className="px-10 py-8 border-b border-primary/10 relative z-10">
+        <h2 className="text-3xl font-bold text-white flex items-center gap-3">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          {quizData.title}
+        </h2>
       </div>
-      <div className="p-6 space-y-6">
+      <div className="p-10 space-y-8 relative z-10">
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="text-xl font-bold text-white mb-4">
             تفاصيل الاختبار
           </h3>
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            <li>عدد الأسئلة: {questions?.length}</li>
+          <ul className="list-disc list-inside space-y-2 text-tech-grey">
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+              عدد الأسئلة: {questions?.length}
+            </li>
           </ul>
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">الأسئلة</h3>
-          <div className="space-y-4">
+          <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            الأسئلة
+          </h3>
+          <div className="space-y-6">
             {questions?.map((question, index) => (
-              <div key={question.id} className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">
-                  السؤال {index + 1}
+              <div key={question.id} className="bg-card/30 border border-primary/5 rounded-2xl p-6 hover:border-primary/20 transition-all group">
+                <h4 className="font-bold text-primary mb-3 flex items-center gap-2">
+                  <span className="text-xs bg-primary/10 px-2 py-1 rounded-md">السؤال {index + 1}</span>
                 </h4>
-                <p className="text-gray-700 mb-2">{question.question}</p>
+                <p className="text-white text-lg font-medium leading-relaxed">{question.question}</p>
               </div>
             ))}
           </div>

@@ -6,7 +6,6 @@ type Props = {};
 
 async function Courses({}: Props) {
   const courses = await getCourses();
-  console.log('courses',courses)
   return (
     <div className="container py-20 space-y-16">
       <div className="header flex items-center justify-between">

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const metadata: Metadata = {
   title: "المعلم - Admin",
-  description: "المعلم - Admin في موقع حصتي",
+  description: "المعلم - Admin في موقع صنعة",
 };
 
 type Props = {

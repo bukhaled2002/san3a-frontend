@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "ابناءي - ولي امر",
-  description: "ابناءي - ولي امر في موقع حصتي",
+  description: "ابناءي - ولي امر في موقع صنعة",
 };
 
 type Props = {

@@ -195,7 +195,7 @@ function AdminStudentsForm({ intialValues }: Props) {
                 <FormItem className="col-span-2">
                   <FormControl>
                     <Input
-                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       placeholder="الاسم الأول"
                       type="text"
                       {...field}
@@ -212,7 +212,7 @@ function AdminStudentsForm({ intialValues }: Props) {
                 <FormItem className="col-span-2">
                   <FormControl>
                     <Input
-                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                       placeholder="الاسم الأخير"
                       type="text"
                       {...field}
@@ -230,7 +230,7 @@ function AdminStudentsForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="البريد الالكتروني"
                     type="email"
                     {...field}
@@ -270,7 +270,7 @@ function AdminStudentsForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="رقم الهاتف"
                     type="text"
                     {...field}
@@ -315,7 +315,7 @@ function AdminStudentsForm({ intialValues }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="ادخل رابط الصورة (اختياري)"
                     type="text"
                     {...field}
@@ -334,7 +334,7 @@ function AdminStudentsForm({ intialValues }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         placeholder="كلمة السر"
                         type="password"
                         {...field}
@@ -351,7 +351,7 @@ function AdminStudentsForm({ intialValues }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         placeholder="تأكيد كلمة السر"
                         type="password"
                         {...field}

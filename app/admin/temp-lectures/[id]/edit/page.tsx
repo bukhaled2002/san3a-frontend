@@ -10,7 +10,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "تعديل الدورة - Admin",
-  description: "تعديل الدورة - Admin في موقع حصتي",
+  description: "تعديل الدورة - Admin في موقع صنعة",
 };
 
 async function AdminCourseEdit({ params }: Props) {

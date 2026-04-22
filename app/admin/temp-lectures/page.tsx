@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "الدورات التعليمية - Admin",
-  description: "الدورات التعليمية - Admin في موقع حصتي",
+  description: "الدورات التعليمية - Admin في موقع صنعة",
 };
 
 type Props = {};

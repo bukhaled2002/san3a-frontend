@@ -5,15 +5,23 @@ type Props = {};
 
 export const metadata: Metadata = {
   title: "انشاء حساب للطالب - Admin",
-  description: "انشاء حساب للطالب - Admin في موقع حصتي",
+  description: "انشاء حساب للطالب - Admin في موقع صنعة",
 };
 
 function AdminStudentCreate({}: Props) {
   return (
-    <>
-      <h1 className="text-3xl font-bold mb-7">انشاء حساب للطالب</h1>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          انشاء حساب للطالب
+        </h1>
+        <p className="text-tech-grey text-lg font-medium">
+          قم بإضافة بيانات الطالب الجديد وتخصيص الصف الدراسي
+        </p>
+      </div>
       <AdminStudentsForm />
-    </>
+    </div>
   );
 }
 

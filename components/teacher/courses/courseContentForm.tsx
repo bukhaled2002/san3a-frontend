@@ -312,7 +312,8 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
       </div>
     );
   return (
-    <div className=" bg-white p-5 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
@@ -357,21 +358,21 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
               });
             }
           })}
-          className="mb-0 w-full bg-white sm:px-5 md:px-16 pt-14 pb-5"
+          className="mb-0 w-full px-16 pt-14 pb-10 relative z-10"
         >
           <div>
-            <h1 className="text-2xl text-[#d4d4d4] font-bold mb-1">
-              محتوي الدورة التعليمية
+            <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
+              <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+              محتوى الدورة التعليمية
             </h1>
-            <p className="text-[#121212B2]/70 text-lg">
-              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، <br />
-              لقد تم توليد هذا النص من مو
+            <p className="text-tech-grey text-lg font-medium">
+              قم بإدارة الفصول والحصص الخاصة بالدورة بدقة عالية
             </p>
           </div>
           {chapterFields.map((chapter, index) => {
             return (
               <div key={chapter.key}>
-                <Separator className="md:w-[600px] mx-auto h-1 rounded-full my-16" />
+                <Separator className="md:w-[600px] mx-auto h-[1px] bg-primary/10 my-16" />
                 <div key={index} className="grid xl:grid-cols-4 gap-10 mb-10">
                   <div className="col-span-2 space-y-3">
                     <FormField
@@ -379,12 +380,12 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem className="col-span-2 ">
-                          <FormLabel className="text-[#202224] text-lg font-semibold">
+                          <FormLabel className="text-white text-lg font-bold mb-3 block">
                             اسم الفصل الجديد
                           </FormLabel>
                           <FormControl>
                             <Input
-                              className="focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]"
+                              className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                               type="text"
                               {...field}
                             />
@@ -398,12 +399,12 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
                       control={form.control}
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-[#202224] text-lg font-semibold">
-                            وصف الدورة
+                          <FormLabel className="text-white text-lg font-bold mb-3 block">
+                            وصف الفصل
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              className="focus-visible:ring-secondary bg-[#F5F6F8] h-[190px] resize-none border border-[#00000026]/15 rounded-[4px]"
+                              className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[190px] resize-none transition-all"
                               {...field}
                             />
                           </FormControl>
@@ -415,9 +416,9 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
                       <Button
                         onClick={addChapter}
                         type="button"
-                        className="me-5 group bg-[#E4E0FF] hover:bg-[#4635B7] text-[#4635B7] hover:text-[#E4E0FF] border border-[#7864FF] font-bold"
+                        className="me-5 group bg-primary/10 hover:bg-primary text-primary hover:text-background border border-primary/20 font-bold transition-all"
                       >
-                        <PlusIcon className="w-5 h-5 me-[6px] bg-[#4635B7] group-hover:bg-[#E4E0FF] rounded-full text-[#E4E0FF] group-hover:text-[#4635B7]" />
+                        <PlusIcon className="w-5 h-5 me-[6px] transition-transform group-hover:rotate-90" />
                         اضافة فصل جديد
                       </Button>
                     )}
@@ -432,9 +433,9 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
                             ]);
                         }}
                         type="button"
-                        className="group bg-red-500 hover:bg-red-700 text-white border border-red-600 font-bold"
+                        className="group bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white border border-red-500/20 font-bold transition-all"
                       >
-                        <Trash2 className="w-5 h-5 me-[6px] rounded-full text-white" />
+                        <Trash2 className="w-5 h-5 me-[6px] transition-transform group-hover:scale-110" />
                         حذف الفصل
                       </Button>
                     )}
@@ -454,11 +455,10 @@ function TeacherCourseContentForm({ courseIdSlug }: Props) {
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
             disabled={
               isAdding || isUpdating || isDeletingLecture || isDeletingChapter
             }
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow rounded-xl transition-all active:scale-[0.98] mt-4"
           >
             {chapters ? "تعديل" : "انشاء"}
             {(isAdding ||

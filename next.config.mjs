@@ -40,6 +40,7 @@ const nextConfig = {
         hostname: "www.example.com",
       },
       { protocol: "https", hostname: "example.com" },
+      { protocol: "https", hostname: "thumbs.dreamstime.com" },
     ],
   },
 };

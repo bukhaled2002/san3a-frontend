@@ -10,7 +10,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "تعديل الدورة - Teacher",
-  description: "تعديل الدورة - Teacher في موقع حصتي",
+  description: "تعديل الدورة - Teacher في موقع صنعة",
 };
 
 async function TeacherCourseEdit({ params }: Props) {
@@ -18,9 +18,12 @@ async function TeacherCourseEdit({ params }: Props) {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold">تعديل الدورة</h1>
-      <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-4">
-        من فضلك قم بمليء جميع تفاصيل المادة
+      <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
+        <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+        تعديل الدورة
+      </h1>
+      <h2 className="text-tech-grey text-lg font-medium mb-8">
+        قم بتعديل بيانات الدورة التعليمية الخاصة بك
       </h2>
       <TeacherIntialCourseForm intialValues={course} />
     </div>

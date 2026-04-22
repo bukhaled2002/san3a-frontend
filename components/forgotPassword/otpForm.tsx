@@ -103,40 +103,34 @@ function OtpForm({ email }: Props) {
   }
 
   return (
-    <div className="w-full">
-      <Image
-        src="/logo.svg"
-        alt="logo"
-        width={150}
-        height={150}
-        className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
-      />
-      <div className="w-full">
-        <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
+    <div className="w-full bg-card/40 backdrop-blur-md border border-primary/10 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
+      <div className="w-full relative z-10">
+        <h1 className="text-xl text-white font-bold sm:text-2xl text-center mb-8">
           ادخال رمز التأكيد
         </h1>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
               name="otp"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="flex justify-center">
                   <FormControl>
                     <InputOTP
-                      maxLength={6}
+                      maxLength={5}
                       render={({ slots }) => (
-                        <InputOTPGroup dir="ltr" className="gap-2">
+                        <InputOTPGroup dir="ltr" className="gap-3">
                           {slots.map((slot, index) => (
                             <InputOTPSlot
                               key={index}
                               className={cn(
-                                "rounded-md border text-2xl",
-                                form.formState.errors.otp && "border-red-500"
+                                "w-12 h-14 rounded-xl border-primary/10 bg-card/50 text-white text-2xl font-bold transition-all focus:border-primary focus:ring-1 focus:ring-primary",
+                                form.formState.errors.otp && "border-red-500/50 text-red-500"
                               )}
                               {...slot}
                             />
-                          ))}{" "}
+                          ))}
                         </InputOTPGroup>
                       )}
                       {...field}
@@ -145,27 +139,27 @@ function OtpForm({ email }: Props) {
                 </FormItem>
               )}
             />
-            <div className="flex items-center justify-between">
+            <div className="pt-2">
               <Button
                 type="submit"
-                className=" inline-block rounded-lg bg-primary px-5 py-3 text-base font-medium text-white w-full sm:h-14 h-10"
                 disabled={isSubmitting}
+                className="w-full h-14 rounded-xl bg-primary text-background font-bold text-lg shadow-neon-glow hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                تاكيد
+                {isSubmitting ? "جاري التأكيد..." : "تأكيد الرمز"}
               </Button>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between px-2 pt-4 border-t border-primary/10">
               <button
                 type="button"
-                className="text-sm text-secondary font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                className="text-sm text-primary font-bold hover:underline disabled:opacity-30 disabled:no-underline transition-all"
                 onClick={resendOTP}
                 disabled={timer > 0}
               >
                 اعادة ارسال الرمز
               </button>
               {timer > 0 && (
-                <div className="text-sm text-secondary font-bold">
-                  {Math.floor(timer / 60)}:{timer % 60}
+                <div className="text-sm text-tech-grey font-mono bg-primary/5 px-3 py-1 rounded-full border border-primary/10">
+                  {Math.floor(timer / 60)}:{String(timer % 60).padStart(2, '0')}
                 </div>
               )}
             </div>

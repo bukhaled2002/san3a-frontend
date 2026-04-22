@@ -10,7 +10,6 @@ type Props = {
   teachers: GetTeacher[];
 };
 function TeachersSlider({ teachers }: Props) {
-  console.log('teachers',teachers)
   return (
     <div id="teachersSlider" className="container py-10 space-y-14">
       <div className="title relative w-fit mb-12">

@@ -1,9 +1,18 @@
 import AdminCreateQuizeFormEssay from "@/components/admin/question-bank/AdminCreateQuizeFormEssay";
 
-export default function AddMCQ() {
+export default function AddEssay() {
   return (
-    <>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          إضافة أسئلة Essay جديدة
+        </h1>
+        <p className="text-tech-grey text-lg font-medium">
+          قم بإضافة أسئلة مقالية إلى بنك الأسئلة
+        </p>
+      </div>
       <AdminCreateQuizeFormEssay />
-    </>
+    </div>
   );
 }

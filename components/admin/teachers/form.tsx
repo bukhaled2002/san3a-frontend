@@ -177,22 +177,24 @@ function AdminTeachersForm({ id }: Props) {
       </div>
     );
   return (
-    <div className=" bg-white py-12 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 py-12 px-6 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
             const { password_confirmation, ...rest } = data;
             teacherId ? UpdateTeacher(rest) : CreateTeacher(rest);
           })}
-          className="mx-auto mb-0 mt-8 max-w-lg space-y-[18px] w-full bg-white"
+          className="mx-auto mb-0 mt-8 max-w-lg space-y-6 w-full relative z-10"
         >
-          <div className="image w-fit m-auto mb-5 md:mb-10">
+          <div className="image w-fit m-auto mb-8 relative group">
+            <div className="absolute inset-0 bg-primary/20 blur-[20px] rounded-full group-hover:bg-primary/40 transition-all duration-500" />
             <Image
               src={transformGoogleDriveUrl(teacher?.img_url) || "/images/camera.svg"}
               alt="Profile Picture"
               width={150}
               height={150}
-              className="rounded-full object-cover w-36 h-36"
+              className="rounded-full object-cover w-36 h-36 border-4 border-card relative z-10 transition-transform duration-500 group-hover:scale-105 shadow-xl shadow-black/50"
               loading="eager"
             />
           </div>
@@ -203,7 +205,7 @@ function AdminTeachersForm({ id }: Props) {
               <FormItem className="flex-1">
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="الأسم كامل"
                     type="text"
                     {...field}
@@ -220,7 +222,7 @@ function AdminTeachersForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="البريد الالكتروني"
                     type="email"
                     {...field}
@@ -237,7 +239,7 @@ function AdminTeachersForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="رقم الهاتف"
                     type="text"
                     {...field}
@@ -254,7 +256,7 @@ function AdminTeachersForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Textarea
-                    className="focus-visible:ring-secondary border-[1.5px] border-black border-opacity-40 placeholder:text-[#808080B2] resize-none"
+                    className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[120px] resize-none transition-all"
                     placeholder="المعلومات"
                     {...field}
                   />
@@ -273,14 +275,14 @@ function AdminTeachersForm({ id }: Props) {
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="focus-visible:ring-secondary">
+                    <SelectTrigger className="border-primary/10 focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all">
                       <SelectValue placeholder="المادة" />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  <SelectContent className="bg-card border-primary/20 text-white">
                     {subjects?.data.map((subject) => {
                       return (
-                        <SelectItem key={subject.id} value={subject.id}>
+                        <SelectItem key={subject.id} value={subject.id} className="focus:bg-primary/20 focus:text-white">
                           {subject.name}
                         </SelectItem>
                       );
@@ -298,7 +300,7 @@ function AdminTeachersForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="المدينة"
                     type="text"
                     {...field}
@@ -315,7 +317,7 @@ function AdminTeachersForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="ادخل رابط الصورة"
                     type="text"
                     {...field}
@@ -334,7 +336,7 @@ function AdminTeachersForm({ id }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         placeholder="كلمة السر"
                         type="password"
                         {...field}
@@ -355,7 +357,7 @@ function AdminTeachersForm({ id }: Props) {
                   <FormItem className="col-span-2">
                     <FormControl>
                       <Input
-                        className="focus-visible:ring-secondary"
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                         placeholder="تأكيد كلمة السر"
                         type="password"
                         {...field}
@@ -375,11 +377,10 @@ function AdminTeachersForm({ id }: Props) {
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow mt-8 rounded-xl transition-all active:scale-[0.98]"
             disabled={isCreating || isUpdating}
           >
-            {teacherId ? "تعديل" : "انشاء"}
+            {teacherId ? "حفظ التعديلات" : "انشاء حساب المعلم"}
             {(isCreating || isUpdating) && (
               <Loader2 className="animate-spin ms-3" />
             )}{" "}

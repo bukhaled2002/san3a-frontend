@@ -49,7 +49,6 @@ function ParentLoginForm({}: Props) {
   });
 
   async function onSubmit(data: FormValues) {
-    console.log(data);
     setIsLoading(true);
     try {
       const res = await authenticate({
@@ -57,7 +56,6 @@ function ParentLoginForm({}: Props) {
         password: data.password,
         role: "parent",
       });
-      console.log(res);
       if (res === true) {
         localStorage.setItem("isLoggedIn", "true");
         toast({
@@ -87,23 +85,20 @@ function ParentLoginForm({}: Props) {
   }
 
   return (
-    <div className="w-full">
-      <div className="w-full">
-        {/* <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
-          مرحبا بكم في منصة حصتي التعليمية
-        </h1> */}
-        <div className="my-4">
-          <h2 className="text-2xl font-bold text-secondary dark:text-white md:text-[42px] leading-[54.6px]">
-            بيتك و مكانك{" "}
-            <span className="sm:ms-5 ms-1 text-primary">صنعة</span>
+    <div className="w-full bg-card/40 backdrop-blur-md border border-primary/10 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
+      <div className="w-full relative z-10">
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-white md:text-[38px] leading-tight flex items-center gap-3">
+            بيتك و مكانك
+            <span className="text-primary shadow-neon-glow-text px-2">صنعة</span>
           </h2>
-
-          <p className="text-secondary dark:text-white/85 md:mt-4 lg:w-4/5 font-medium sm:leading-[30px] ">
+          <p className="text-tech-grey md:mt-4 font-medium sm:leading-[30px] ">
             جاهز تكمل تفوقك و نجاحك مع أقوى هيئة تدريس في مصر
           </p>
         </div>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="username"
@@ -111,13 +106,13 @@ function ParentLoginForm({}: Props) {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="py-4"
+                      className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       type="text"
-                      placeholder="ادحل البريد الالكتروني او رقم الهاتف"
+                      placeholder="البريد الالكتروني او رقم الهاتف"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -129,20 +124,21 @@ function ParentLoginForm({}: Props) {
                   <FormItem>
                     <FormControl>
                       <Input
+                        className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                         type="password"
                         placeholder="كلمة السر"
                         {...field}
                       />
                     </FormControl>
-                    <div className="flex justify-between mt-2">
+                    <div className="flex justify-between mt-2 px-1">
                       {form.formState.errors.password ? (
-                        <FormMessage />
+                        <FormMessage className="text-red-500" />
                       ) : (
                         <div></div>
                       )}
                       <Link
                         href="/auth/forgot-password"
-                        className="text-secondary font-medium text-sm"
+                        className="text-primary hover:text-primary/80 font-medium text-sm transition-colors"
                       >
                         نسيت كلمة السر؟
                       </Link>
@@ -151,39 +147,39 @@ function ParentLoginForm({}: Props) {
                 )}
               />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="pt-2">
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
+                className="w-full h-12 rounded-xl bg-primary text-background font-bold text-lg shadow-neon-glow hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                تسجيل الدخول
+                {isLoading ? <Image src="/images/loading.svg" alt="loading" width={24} height={24} className="animate-spin" /> : "تسجيل الدخول"}
               </Button>
             </div>
-            <div className="flex items-center justify-between sm:flex-row flex-col gap-3">
-              <div className="text-sm text-[#7B758C]">
-                تسجيل الدخول{" "}
+            <div className="space-y-4 pt-4 border-t border-primary/10">
+              <div className="text-sm text-tech-grey flex items-center justify-center gap-2">
+                <span>تسجيل الدخول كـ:</span>
                 <Link
                   href="/auth/student/login"
-                  className="text-secondary font-bold"
+                  className="text-primary font-bold hover:underline"
                 >
-                  كطالب
-                </Link>{" "}
-                او{" "}
+                  طالب
+                </Link>
+                <span className="text-primary/20">|</span>
                 <Link
                   href="/auth/teacher/login"
-                  className="text-secondary font-bold"
+                  className="text-primary font-bold hover:underline"
                 >
-                  كمعلم
+                  معلم
                 </Link>
               </div>
-              <div className="text-sm text-[#7B758C]">
+              <div className="text-sm text-tech-grey text-center">
                 ليس لديك حساب؟{" "}
                 <Link
                   href="/auth/parent/register"
-                  className="text-secondary font-bold"
+                  className="text-primary font-bold hover:underline"
                 >
-                  انشاء حساب
+                  انشاء حساب جديد
                 </Link>
               </div>
             </div>

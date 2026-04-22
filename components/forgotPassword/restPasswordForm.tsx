@@ -82,20 +82,14 @@ function ResetPasswordForm({ email, otp }: Props) {
   }, [email, otp]);
 
   return (
-    <div className="w-full">
-      <Image
-        src="/logo.svg"
-        alt="logo"
-        width={150}
-        height={150}
-        className="absolute top-0 start-0 sm:size-[150px] size-[100px]"
-      />
-      <div className="w-full">
-        <h1 className="text-xl text-[#7B758C] font-bold sm:text-2xl text-center mb-6">
+    <div className="w-full bg-card/40 backdrop-blur-md border border-primary/10 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
+      <div className="w-full relative z-10">
+        <h1 className="text-xl text-white font-bold sm:text-2xl text-center mb-8">
           انشاء كلمة سر جديدة
         </h1>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
               name="newPassword"
@@ -103,47 +97,47 @@ function ResetPasswordForm({ email, otp }: Props) {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="py-4"
+                      className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       type="password"
-                      placeholder="كلمه السر"
+                      placeholder="كلمة السر الجديدة"
                       {...field}
                     />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
-            <div className="flex flex-col">
-              <FormField
-                control={form.control}
-                name="confirmPassword"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="اعادة ادخال كلمة السر"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            </div>
-            <div className="flex items-center justify-between">
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className="h-12 border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      type="password"
+                      placeholder="تأكيد كلمة السر"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <div className="pt-2">
               <Button
                 type="submit"
-                className="inline-block rounded-lg bg-primary px-5 py-3 text-sm font-medium text-white w-full sm:h-12 h-10"
                 disabled={isSubmitting}
+                className="w-full h-12 rounded-xl bg-primary text-background font-bold text-lg shadow-neon-glow hover:scale-[1.02] active:scale-[0.98] transition-all"
               >
-                تأكيد
+                {isSubmitting ? "جاري الحفظ..." : "حفظ كلمة السر"}
               </Button>
             </div>
-            <div className="text-sm text-[#7B758C]">
-              هل هناك مشكله؟ {""}
-              <Link href="/contact" className="text-secondary font-bold">
+            <div className="text-sm text-tech-grey text-center pt-4 border-t border-primary/10">
+              هل هناك مشكلة؟{" "}
+              <Link href="/contact" className="text-primary font-bold hover:underline">
                 اتصل بنا
-              </Link>{" "}
+              </Link>
             </div>
           </form>
         </Form>

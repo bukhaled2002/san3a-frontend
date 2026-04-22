@@ -10,7 +10,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: "تعديل الدورة - Admin",
-  description: "تعديل الدورة - Admin في موقع حصتي",
+  description: "تعديل الدورة - Admin في موقع صنعة",
 };
 
 async function AdminCourseEdit({ params }: Props) {
@@ -18,11 +18,16 @@ async function AdminCourseEdit({ params }: Props) {
   const course = await getCourse(id);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">تعديل الدورة</h1>
-      <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-4">
-        من فضلك قم بمليء جميع تفاصيل المادة
-      </h2>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          تعديل بيانات الدورة
+        </h1>
+        <p className="text-tech-grey text-lg font-medium">
+          تعديل المعلومات الأساسية والمادة الدراسية للدورة
+        </p>
+      </div>
       <AdminIntialCourseForm intialValues={course} />
     </div>
   );

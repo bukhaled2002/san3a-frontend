@@ -43,7 +43,7 @@ function BooksContent({ books }: Props) {
         </>
       ) : (
         <div className="flex items-center justify-center text-secondary font-bold text-lg">
-          لا يوجد دورات
+          لا يوجد كتب
         </div>
       )}
     </div>

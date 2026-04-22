@@ -126,7 +126,7 @@ function TeacherSettingsForm({}: Props) {
       changePassword(data),
     onSuccess: () => {
       toast({
-        title: "تم تعديلل كلمة السر بنجاح",
+        title: "تم تعديل كلمة السر بنجاح",
       });
       router.push("/teacher/dashboard");
     },
@@ -165,149 +165,178 @@ function TeacherSettingsForm({}: Props) {
       </div>
     );
   return (
-    <div className="bg-white py-12 rounded-[12px] space-y-20">
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit((data) => {
-            UpdateTeacher(data);
-          })}
-          className="mx-auto mb-0 mt-8 max-w-lg space-y-[18px] w-full bg-white"
-        >
-          <div className="image w-fit m-auto mb-5 md:mb-10">
-            <Image
-              src={
-                transformGoogleDriveUrl(myData?.img_url) || "/images/camera.svg"
-              }
-              alt="Profile Picture"
-              width={150}
-              height={150}
-              className="rounded-full object-cover w-36 h-36"
-              loading="eager"
-            />
-          </div>
-          <FormField
-            name="fullName"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem className="flex-1">
-                <FormControl>
-                  <Input
-                    className="focus-visible:ring-secondary"
-                    placeholder="الأسم كامل"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="email"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    className="focus-visible:ring-secondary"
-                    placeholder="البريد الالكتروني"
-                    type="email"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="phone"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    className="focus-visible:ring-secondary"
-                    placeholder="رقم الهاتف"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="info"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea
-                    className="focus-visible:ring-secondary border-[1.5px] border-black border-opacity-40 placeholder:text-[#808080B2] resize-none"
-                    placeholder="المعلومات"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="city"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    className="focus-visible:ring-secondary"
-                    placeholder="المدينة"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="img_url"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    className="focus-visible:ring-secondary"
-                    placeholder="ادخل رابط الصورة"
-                    type="text"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <Button
-            type="submit"
-            size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
-            disabled={isUpdating}
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 py-12 px-8 rounded-3xl shadow-2xl relative overflow-hidden space-y-16">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      
+      <div className="relative z-10">
+        <div className="space-y-2 mb-10 text-center">
+          <h1 className="text-3xl font-bold text-white flex items-center justify-center gap-2">
+            <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+            إعدادات الحساب
+          </h1>
+          <p className="text-tech-grey text-lg font-medium">تعديل البيانات الشخصية ومعلومات المعلم</p>
+        </div>
+
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit((data) => {
+              UpdateTeacher(data);
+            })}
+            className="mx-auto max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6"
           >
-            {isUpdating ? "جاري التحديث..." : "تحديث الحساب"}
-          </Button>
-        </form>
-      </Form>
-      <Separator className="h-1 w-[600px] rounded-lg mx-auto" />
-      <Form {...passwordForm}>
-        <form
-          onSubmit={passwordForm.handleSubmit((data) => {
-            const { newPassword_confirmation, ...rest } = data;
-            ChangePassword(rest);
-          })}
-          className="mx-auto mb-0 mt-8 max-w-lg space-y-[18px] w-full bg-white"
-        >
-          <h1 className="text-2xl font-bold text-[#d4d4d4]">تحديث كلمة السر</h1>
-          <div className="space-y-6">
+            <div className="md:col-span-2 flex flex-col items-center mb-8">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-primary/20 blur-[20px] rounded-full group-hover:bg-primary/40 transition-all duration-500" />
+                <Image
+                  src={transformGoogleDriveUrl(myData?.img_url) || "/images/camera.svg"}
+                  alt="Profile Picture"
+                  width={150}
+                  height={150}
+                  className="rounded-full object-cover w-40 h-40 border-4 border-card relative z-10 transition-transform duration-500 group-hover:scale-105 shadow-xl"
+                  loading="eager"
+                />
+              </div>
+            </div>
+
+            <FormField
+              name="fullName"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      placeholder="الأسم كامل"
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="email"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      placeholder="البريد الالكتروني"
+                      type="email"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="phone"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      placeholder="رقم الهاتف"
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              name="city"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                      placeholder="المدينة"
+                      type="text"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <div className="md:col-span-2">
+              <FormField
+                control={form.control}
+                name="info"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Textarea
+                        className="border-primary/10 focus:border-primary focus:ring-primary rounded-xl bg-card/50 text-white placeholder:text-tech-grey/50 min-h-[120px] resize-none transition-all"
+                        placeholder="المعلومات"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <FormField
+                name="img_url"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input
+                        className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
+                        placeholder="رابط الصورة الشخصية"
+                        type="text"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage className="text-red-500" />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="md:col-span-2 pt-4">
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full text-background h-14 text-lg font-bold shadow-neon-glow rounded-xl hover:scale-[1.01] active:scale-[0.99] transition-all"
+                disabled={isUpdating}
+              >
+                {isUpdating ? "جاري التحديث..." : "حفظ التعديلات"}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
+
+      <Separator className="bg-primary/10 h-[1px] w-full max-w-2xl mx-auto" />
+
+      <div className="relative z-10">
+        <div className="space-y-2 mb-10 text-center">
+          <h1 className="text-2xl font-bold text-white flex items-center justify-center gap-2">
+            <div className="w-1 h-6 bg-primary rounded-full shadow-neon-glow opacity-70" />
+            تغيير كلمة السر
+          </h1>
+          <p className="text-tech-grey text-base font-medium">قم بتأمين حسابك بكلمة سر قوية</p>
+        </div>
+
+        <Form {...passwordForm}>
+          <form
+            onSubmit={passwordForm.handleSubmit((data) => {
+              const { newPassword_confirmation, ...rest } = data;
+              ChangePassword(rest);
+            })}
+            className="mx-auto max-w-lg space-y-6"
+          >
             <FormField
               name="currentPassword"
               control={passwordForm.control}
@@ -315,17 +344,13 @@ function TeacherSettingsForm({}: Props) {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       placeholder="كلمة السر الحالية"
                       type="password"
                       {...field}
                     />
                   </FormControl>
-                  <div className="mt-3">
-                    {passwordForm?.formState?.errors?.currentPassword?.type && (
-                      <FormMessage className="text-red-500" />
-                    )}
-                  </div>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -336,17 +361,13 @@ function TeacherSettingsForm({}: Props) {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       placeholder="كلمة السر الجديدة"
                       type="password"
                       {...field}
                     />
                   </FormControl>
-                  <div className="flex justify-between items-center mt-3">
-                    {passwordForm?.formState?.errors?.newPassword?.type && (
-                      <FormMessage className="text-red-500" />
-                    )}
-                  </div>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
@@ -357,31 +378,29 @@ function TeacherSettingsForm({}: Props) {
                 <FormItem>
                   <FormControl>
                     <Input
-                      className="focus-visible:ring-secondary"
+                      className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all placeholder:text-tech-grey/50"
                       placeholder="تأكيد كلمة السر الجديدة"
                       type="password"
                       {...field}
                     />
                   </FormControl>
-                  <div className="flex justify-between items-center mt-3">
-                    {passwordForm?.formState?.errors?.newPassword_confirmation
-                      ?.type && <FormMessage className="text-red-500" />}
-                  </div>
+                  <FormMessage className="text-red-500" />
                 </FormItem>
               )}
             />
-          </div>
-          <Button
-            type="submit"
-            size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
-            disabled={isChanging}
-          >
-            {isChanging ? "جاري التحديث..." : "تحديث كلمة السر"}
-          </Button>
-        </form>
-      </Form>
+            <div className="pt-4">
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full text-background h-14 text-lg font-bold shadow-neon-glow rounded-xl hover:scale-[1.01] active:scale-[0.99] transition-all"
+                disabled={isChanging}
+              >
+                {isChanging ? "جاري التحديث..." : "تحديث كلمة السر"}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 }

@@ -59,11 +59,17 @@ function ChooseLecture({ courseId }: Props) {
       </div>
     );
   return (
-    <div className="bg-white p-10 rounded-[12px]">
-      <h1 className="text-2xl font-bold">برجاء تحديد الدرس</h1>
-      <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-4">
-        اختر الدرس الذي ترغب في اضافة الاختبار اليه
-      </h2>
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
+      <div className="relative z-10 px-10 pt-10">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          برجاء تحديد الدرس
+        </h1>
+        <h2 className="text-tech-grey text-lg font-medium mb-8">
+          اختر الدرس الذي ترغب في اضافة الاختبار اليه
+        </h2>
+      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) =>
@@ -71,6 +77,7 @@ function ChooseLecture({ courseId }: Props) {
               `/admin/courses/${courseId}/choose-lecture/${data.selectedLecture}/create-quiz`
             )
           )}
+          className="relative z-10 px-10 pb-10"
         >
           <FormField
             control={form.control}
@@ -87,9 +94,10 @@ function ChooseLecture({ courseId }: Props) {
                       return (
                         <div
                           key={chapter.id}
-                          className="border border-[#1212121A] rounded p-4 mb-4"
+                          className="bg-card/30 border border-primary/10 rounded-2xl p-6 mb-6"
                         >
-                          <h1 className="text-xl font-bold mb-5">
+                          <h1 className="text-xl font-bold text-white mb-5 flex items-center gap-3">
+                            <div className="w-2 h-2 bg-primary rounded-full" />
                             {chapter.name}
                           </h1>
                           <div className="flex flex-col space-y-4">
@@ -97,14 +105,14 @@ function ChooseLecture({ courseId }: Props) {
                               return (
                                 <FormItem
                                   key={lecture.id}
-                                  className="flex items-center justify-between border border-[#1212121A] rounded space-y-0 "
+                                  className="flex items-center justify-between bg-card/20 border border-primary/5 hover:border-primary/20 rounded-xl space-y-0 transition-all group"
                                 >
-                                  <FormLabel className="text-lg font-semibold flex-1 p-4 cursor-pointer">
+                                  <FormLabel className="text-lg font-medium text-tech-grey group-hover:text-white flex-1 p-4 cursor-pointer">
                                     {lecture.title}
                                   </FormLabel>
                                   <FormControl>
                                     <RadioGroupItem
-                                      className="me-4"
+                                      className="me-4 border-primary/50 text-primary"
                                       value={lecture.id}
                                     />
                                   </FormControl>
@@ -126,6 +134,7 @@ function ChooseLecture({ courseId }: Props) {
               size="lg"
               type="submit"
               disabled={isLoading || !form.formState.isDirty}
+              className="text-background h-12 px-10 text-lg font-bold shadow-neon-glow rounded-xl transition-all active:scale-[0.98]"
             >
               {isLoading ? "جاري التحميل..." : "التالي"}
             </Button>

@@ -52,21 +52,22 @@ const GradeAnswer = ({ answer, onGradeSuccess }: GradeAnswerProps) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 space-y-4"
+      className="bg-card/40 backdrop-blur-md border border-primary/10 rounded-2xl p-8 space-y-6 relative overflow-hidden"
     >
-      <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 blur-[50px] pointer-events-none" />
+      <div className="space-y-3 relative z-10">
+        <label className="block text-lg font-bold text-white">
           إجابة الطالب
         </label>
-        <div className="p-4 bg-gray-50 rounded-lg text-gray-700 text-sm">
+        <div className="p-5 bg-card/30 border border-primary/5 rounded-xl text-white text-base leading-relaxed">
           {answer.answer}
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-3 relative z-10">
         <label
           htmlFor="score"
-          className="block text-sm font-medium text-gray-700"
+          className="block text-lg font-bold text-white"
         >
           الدرجة
         </label>
@@ -76,21 +77,21 @@ const GradeAnswer = ({ answer, onGradeSuccess }: GradeAnswerProps) => {
           min={0}
           defaultValue={answer.grade || 0}
           {...register("score", { required: true })}
-          className="block w-full px-4 py-2 text-gray-900 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+          className="block w-full px-4 py-3 bg-card/50 border border-primary/10 rounded-xl text-white focus:ring-2 focus:ring-primary focus:border-primary transition-all"
         />
       </div>
 
-      <div className="pt-4 border-t border-gray-200">
+      <div className="pt-6 border-t border-primary/10 relative z-10">
         <button
           type="submit"
           disabled={isSubmitting || mutation.isPending}
           className={`
-            w-full sm:w-auto px-6 py-2.5 rounded-md text-white text-sm font-medium
-            transition-colors
+            w-full sm:w-auto px-10 py-3.5 rounded-xl text-background text-lg font-bold
+            transition-all shadow-neon-glow active:scale-[0.98]
             ${
               isSubmitting || mutation.isPending
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-primary hover:bg-primary/90 active:bg-primary/95"
+                ? "bg-tech-grey cursor-not-allowed opacity-50"
+                : "bg-primary hover:opacity-90"
             }
           `}
         >

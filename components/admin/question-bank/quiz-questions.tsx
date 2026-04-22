@@ -47,7 +47,7 @@ function AdminNestedQuizQuestions({ choiceIndex: index, form }: Props) {
               <FormItem>
                 <FormLabel
                   className={cn(
-                    "text-[#202224] text-lg font-semibold",
+                    "text-white text-lg font-bold mb-3 block",
                     form.formState.errors?.questions?.[index]?.choices?.[
                       lessonIndex
                     ]?.answer && "text-red-500"
@@ -67,7 +67,7 @@ function AdminNestedQuizQuestions({ choiceIndex: index, form }: Props) {
                 <FormControl>
                   <Input
                     className={cn(
-                      "focus-visible:ring-secondary bg-[#F5F6F8] h-12 border border-[#00000026]/15 rounded-[4px]",
+                      "border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all",
                       form.formState.errors?.questions?.[index]?.choices?.[
                         lessonIndex
                       ]?.answer && "border-red-500"
@@ -94,9 +94,9 @@ function AdminNestedQuizQuestions({ choiceIndex: index, form }: Props) {
                         <FormControl>
                           <RadioGroupItem
                             className={cn(
-                              "border-green-500 font-semibold",
+                              "border-primary text-primary focus-visible:ring-primary h-5 w-5 bg-card/50",
                               form.formState.errors?.questions?.[index]?.choices
-                                ?.root && "border-red-500 border-2"
+                                ?.root && "border-red-500"
                             )}
                             value={String(lessonIndex)}
                             checked={field.value}
@@ -110,7 +110,7 @@ function AdminNestedQuizQuestions({ choiceIndex: index, form }: Props) {
             />
             {choicesFields.length > 2 && (
               <XIcon
-                className="w-5 h-5 cursor-pointer text-[#202224] hover:text-red-500"
+                className="w-5 h-5 cursor-pointer text-tech-grey hover:text-red-500 transition-colors"
                 onClick={() => remove(lessonIndex)}
               />
             )}
@@ -121,9 +121,9 @@ function AdminNestedQuizQuestions({ choiceIndex: index, form }: Props) {
         <Button
           type="button"
           onClick={() => append({ answer: "", isCorrect: false })}
-          className="w-fit group bg-transparent hover:bg-[#6F6F6F] text-[#202224] hover:text-white border border-[#202224] font-bold"
+          className="w-fit group bg-primary/10 hover:bg-primary text-primary hover:text-background border border-primary/20 font-bold transition-all"
         >
-          <PlusIcon className="w-5 h-5 me-[6px] bg-[#6F6F6F] group-hover:bg-white rounded-full text-white group-hover:text-[#202224]" />
+          <PlusIcon className="w-5 h-5 me-[6px] transition-transform group-hover:rotate-90" />
           اضافة اختيار
         </Button>
       )}

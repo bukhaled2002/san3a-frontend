@@ -112,7 +112,8 @@ function AdminSubjectForm({ id }: Props) {
     }
   }, [subject]);
   return (
-    <div className=" bg-white py-12 rounded-[12px]">
+    <div className="bg-card/40 backdrop-blur-md border border-primary/10 py-12 px-6 rounded-3xl shadow-2xl relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[100px] pointer-events-none" />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((data) => {
@@ -122,7 +123,7 @@ function AdminSubjectForm({ id }: Props) {
               CreateSubject(data);
             }
           })}
-          className="mx-auto my-0 max-w-lg space-y-[18px] w-full bg-white"
+          className="mx-auto my-0 max-w-lg space-y-6 w-full relative z-10"
         >
           <FormField
             name="name"
@@ -131,7 +132,7 @@ function AdminSubjectForm({ id }: Props) {
               <FormItem className="flex-1">
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="اسم المادة"
                     type="text"
                     {...field}
@@ -148,7 +149,7 @@ function AdminSubjectForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="المحتوى"
                     type="text"
                     {...field}
@@ -165,7 +166,7 @@ function AdminSubjectForm({ id }: Props) {
               <FormItem>
                 <FormControl>
                   <Input
-                    className="focus-visible:ring-secondary"
+                    className="border-primary/10 focus:border-primary focus:ring-primary h-12 rounded-xl bg-card/50 text-white transition-all"
                     placeholder="ادخل رابط الصورة"
                     type="text"
                     {...field}
@@ -178,11 +179,10 @@ function AdminSubjectForm({ id }: Props) {
           <Button
             type="submit"
             size="lg"
-            variant="secondary"
-            className="w-full text-white h-12 text-lg"
+            className="w-full text-background h-14 text-lg font-bold shadow-neon-glow mt-8 rounded-xl transition-all active:scale-[0.98]"
             disabled={isCreating || isUpdating}
           >
-            {subject ? "تعديل" : "انشاء"}
+            {subject ? "حفظ التعديلات" : "انشاء مادة جديدة"}
           </Button>
         </form>
       </Form>

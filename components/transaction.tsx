@@ -10,7 +10,7 @@ function Transaction({ transaction }: Props) {
   return (
     <div key={transaction.id} className="pt-[25px]">
       <div className="flex items-center justify-between mb-[14px]">
-        <div className="text-[#121212B2] font-medium text-base">
+        <div className="text-tech-grey font-medium text-base">
           {new Date(transaction.createdAt).toLocaleDateString("en-us", {
             day: "2-digit",
             month: "2-digit",
@@ -19,10 +19,10 @@ function Transaction({ transaction }: Props) {
         </div>
         <div
           className={cn(
-            " text-xs py-0.5 ps-[8px] pe-[4px] rounded-[16px] flex items-center gap-x-1.5",
-            transaction.status === "paid" && "text-[#027A48] bg-[#ECFDF3]",
-            transaction.status === "pending" && "text-[#B54708] bg-[#FFFAEB]",
-            transaction.status === "rejected" && "text-[#B42318] bg-[#FEF3F2]"
+            " text-xs py-1 px-3 rounded-full flex items-center gap-x-1.5 font-bold",
+            transaction.status === "paid" && "text-green-400 bg-green-500/10 border border-green-500/20",
+            transaction.status === "pending" && "text-orange-400 bg-orange-500/10 border border-orange-500/20",
+            transaction.status === "rejected" && "text-red-400 bg-red-500/10 border border-red-500/20"
           )}
         >
           <span>
@@ -42,12 +42,12 @@ function Transaction({ transaction }: Props) {
           />
         </div>
       </div>
-      <div className="font-semibold">
+      <div className="font-bold text-white leading-relaxed">
         {transaction.type === "wallet" ? (
           transaction.status === "paid" ? (
             <>
               تم شحن{" "}
-              <span className="text-secondary font-bold text-lg">
+              <span className="text-primary font-black text-xl mx-1">
                 {transaction.amount}
               </span>{" "}
               جنيه{" "}
@@ -55,7 +55,7 @@ function Transaction({ transaction }: Props) {
           ) : transaction.status === "pending" ? (
             <>
               طلبك بشحن{" "}
-              <span className="text-secondary font-bold text-lg">
+              <span className="text-primary font-black text-xl mx-1">
                 {transaction.amount}
               </span>{" "}
               جنيه قيد المراجعة
@@ -63,7 +63,7 @@ function Transaction({ transaction }: Props) {
           ) : (
             <>
               تم رفض طلب شحن{" "}
-              <span className="text-secondary font-bold text-lg">
+              <span className="text-primary font-black text-xl mx-1">
                 {transaction.amount}
               </span>{" "}
               جنيه{" "}
@@ -72,11 +72,11 @@ function Transaction({ transaction }: Props) {
         ) : (
           <>
             تم خصم{" "}
-            <span className="text-secondary font-bold text-lg">
+            <span className="text-primary font-black text-xl mx-1">
               {transaction.amount}
             </span>{" "}
             جنيه من المحفظة لشراء{" "}
-            <span className="text-secondary font-bold text-lg">
+            <span className="text-primary font-black text-xl mx-1">
               {transaction.course?.name}
             </span>{" "}
           </>

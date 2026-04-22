@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "تأكيد رمز التحقق",
-  description: "تأكيد رمز التحقق لإعادة تعيين كلمة المرور في موقع حصتي",
+  description: "تأكيد رمز التحقق لإعادة تعيين كلمة المرور في موقع صنعة",
 };
 
 type Props = {

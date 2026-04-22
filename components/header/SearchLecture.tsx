@@ -191,7 +191,7 @@ const SearchLecture = () => {
               )}
               className="space-y-4"
             >
-              <h1 className="text-[#000] font-bold text-lg sm:text-[22px]">
+              <h1 className="text-white font-bold text-lg sm:text-[22px]">
                 ضع الرمز الخاص بك
               </h1>
               <FormField

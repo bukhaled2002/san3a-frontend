@@ -10,7 +10,7 @@ import BooksFilter from "@/components/books/filter";
 import BookFiltersSidebar from "@/components/books/filtersSidebar";
 export const metadata: Metadata = {
   title: "الدورات",
-  description: "الدورات في موقع حصتي",
+  description: "الدورات في موقع صنعة",
 };
 
 type Props = {

@@ -8,7 +8,7 @@ import { getTeachers } from "@/services/teacher";
 import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "الدورات",
-  description: "الدورات في موقع حصتي",
+  description: "الدورات في موقع صنعة",
 };
 
 type Props = {

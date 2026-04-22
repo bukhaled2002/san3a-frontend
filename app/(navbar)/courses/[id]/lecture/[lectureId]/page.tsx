@@ -19,7 +19,7 @@ import { Metadata } from "next";
 import { transformGoogleDriveUrl } from "@/lib/helper/ExtractImg";
 export const metadata: Metadata = {
   title: "الدرس",
-  description: "صفحة الدرس في موقع حصتي",
+  description: "صفحة الدرس في موقع صنعة",
 };
 
 type Props = {

@@ -19,11 +19,16 @@ async function AdminCourseLectureEdit({ params }: Props) {
   });
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">اضافة دورة جديدة</h1>
-      <h2 className="text-[#121212B2]/70 text-lg font-semibold mb-4">
-        من فضلك قم بمليء جميع تفاصيل المادة
-      </h2>
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-2">
+          <div className="w-1.5 h-8 bg-primary rounded-full shadow-neon-glow" />
+          تعديل محتوى الدورة
+        </h1>
+        <p className="text-tech-grey text-lg font-medium">
+          قم بتحديث الفصول والحصص الخاصة بالدورة التعليمية
+        </p>
+      </div>
       <AdminCourseContentForm courseIdSlug={courseId} />
     </div>
   );
