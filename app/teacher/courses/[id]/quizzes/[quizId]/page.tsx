@@ -6,13 +6,14 @@ import { getEssayById } from "@/services/public/essays";
 import { getExamById } from "@/services/public/exam";
 import { getQuizById } from "@/services/public/quizes";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import React, { useState, use } from "react";
 
 export default function ExamDetailsPage({
   params,
 }: {
-  params: { quizId: string };
+  params: Promise<{ quizId: string }>;
 }) {
+  const { quizId } = use(params);
   const [activeTab, setActiveTab] = useState<"details" | "answers">("details");
 
 
@@ -50,8 +51,8 @@ export default function ExamDetailsPage({
       </div>
 
       <div className="mt-4">
-        {activeTab === "details" && <ExamDetails examId={params.quizId} />}
-        {activeTab === "answers" && <StudentAnswers examId={params.quizId} />}
+        {activeTab === "details" && <ExamDetails examId={quizId} />}
+        {activeTab === "answers" && <StudentAnswers examId={quizId} />}
       </div>
     </div>
   );

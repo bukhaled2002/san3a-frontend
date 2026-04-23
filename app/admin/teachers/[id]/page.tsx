@@ -9,13 +9,14 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function AdminSingleTeacher({ params }: Props) {
-  const teacher = await getTeacher(params.id);
+  const { id } = await params;
+  const teacher = await getTeacher(id);
   return (
     <>
       <h1 className="text-3xl font-bold mb-7">بيانات المعلم</h1>

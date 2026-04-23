@@ -4,13 +4,13 @@ import { QueryClient } from "@tanstack/react-query";
 import React from "react";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function AdminCourseLectureEdit({ params }: Props) {
-  const courseId = params.id;
+  const courseId = (await params).id;
   const chapters = await getAllChapters(courseId);
   const queryClient = new QueryClient();
   queryClient.prefetchQuery({

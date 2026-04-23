@@ -1,14 +1,11 @@
 import TeacherCourseContentForm from "@/components/teacher/courses/courseContentForm";
 
 type Props = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
 
 async function TeacherCourseLectureCreate({ params }: Props) {
-  const courseId = params.id;
-
+  const courseId = (await params).id;
   return (
     <div>
       <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">

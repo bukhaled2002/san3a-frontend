@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function SelectLecture({ params }: Props) {
   const queryClient = new QueryClient();
-  const courseId = params.id;
+  const courseId = (await params).id;
   await queryClient.prefetchQuery({
     queryKey: ["chapters", courseId],
     queryFn: () => getAllChapters(courseId as string),

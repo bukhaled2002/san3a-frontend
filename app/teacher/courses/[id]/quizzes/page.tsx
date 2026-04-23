@@ -7,7 +7,8 @@ export const metadata: Metadata = {
   description: "الامتحانات - Teacher في موقع صنعة",
 };
 
-const TeacherQuizzes = ({params}:{params:{id:string}}) => {
+const TeacherQuizzes = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   return (
     <div>
       <h1 className="text-3xl font-bold text-white flex items-center gap-2 mb-2">
@@ -18,7 +19,7 @@ const TeacherQuizzes = ({params}:{params:{id:string}}) => {
         عرض و تقييم جميع الامتحانات و الاختبارات
       </p>
 
-      <ExamsList courseId={params.id} />
+      <ExamsList courseId={id} />
     </div>
   );
 };

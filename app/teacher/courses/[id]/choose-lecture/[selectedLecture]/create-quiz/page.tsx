@@ -7,16 +7,15 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
     selectedLecture: string;
-  };
+  }>;
 };
 
-function TeacherCreateQuiz({ params }: Props) {
-  const courseId = params.id;
-  const lectureId = params.selectedLecture;
-  return <TeacherCreateQuizForm courseId={courseId} lectureId={lectureId} />;
+async function TeacherCreateQuiz({ params }: Props) {
+  const { id, selectedLecture } = await params;
+  return <TeacherCreateQuizForm courseId={id} lectureId={selectedLecture} />;
 }
 
 export default TeacherCreateQuiz;

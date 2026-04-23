@@ -5,10 +5,9 @@ import { QueryClient } from "@tanstack/react-query";
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string; quizId: string };
+  params: Promise<{ id: string; quizId: string }>;
 }) {
-  const studentId = params.id;
-  const quizId = params.quizId;
+  const { id: studentId, quizId } = await params;
   const quiz = await getQuizResults(quizId, studentId);
 
   return {
@@ -18,11 +17,11 @@ export async function generateMetadata({
 }
 
 type Props = {
-  params: { id: string; quizId: string };
+  params: Promise<{ id: string; quizId: string }>;
 };
 
 async function SonQuiz({ params }: Props) {
-  const { id: studentId, quizId } = params;
+  const { id: studentId, quizId } = await params;
   const queryclient = new QueryClient();
   queryclient.prefetchQuery({
     queryKey: ["quiz", quizId, studentId],

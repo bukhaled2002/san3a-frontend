@@ -4,20 +4,23 @@ import { GetQuizs } from "@/services/quiz";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
 
+import React, { use } from "react";
+
 type Props = {
-  params: {
+  params: Promise<{
     id: string; // Course ID for the quiz
-  };
+  }>;
 };
 
 function AdminExamDeletion({ params }: Props) {
+  const { id } = use(params);
   const {
     data: quizs,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["admin-quizs", params.id],
-    queryFn: () => GetQuizs(params.id),
+    queryKey: ["admin-quizs", id],
+    queryFn: () => GetQuizs(id),
   });
 console.log('quizs',quizs)
   if (isLoading)
@@ -41,7 +44,7 @@ console.log('quizs',quizs)
         من فضلك قم بمليء جميع تفاصيل المادة
       </h2>
       {/* @ts-ignore */}
-      <AllQuizs data={quizs} courseId={params.id} />
+      <AllQuizs data={quizs} courseId={id} />
     </div>
   );
 }

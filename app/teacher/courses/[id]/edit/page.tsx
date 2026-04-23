@@ -3,9 +3,9 @@ import { getCourse } from "@/services/teacher/courses";
 import { Metadata } from "next";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export const metadata: Metadata = {
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 };
 
 async function TeacherCourseEdit({ params }: Props) {
-  const course = await getCourse(params.id);
+  const { id } = await params;
+  const course = await getCourse(id);
 
   return (
     <div>

@@ -11,13 +11,14 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function ParentSon({ params }: Props) {
-  const son = await getSon(params.id);
+  const { id } = await params;
+  const son = await getSon(id);
 
   return (
     <>

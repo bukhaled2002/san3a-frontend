@@ -1,13 +1,13 @@
 import AdminCourseContentForm from "@/components/admin/courses/courseContentForm";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function AdminCourseLectureCreate({ params }: Props) {
-  const courseId = params.id;
+  const courseId = (await params).id;
 
   return (
     <div>

@@ -3,13 +3,13 @@ import { getAllChapters } from "@/services/teacher/courses";
 import React from "react";
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function TeacherCourseLectureEdit({ params }: Props) {
-  const courseId = params.id;
+  const courseId = (await params).id;
   const chapters = await getAllChapters(courseId);
 
   return (

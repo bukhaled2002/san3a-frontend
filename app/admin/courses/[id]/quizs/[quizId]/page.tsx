@@ -14,7 +14,7 @@ import { GetEssayStudents } from "@/services/quizEssay";
 import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 
 type QuizData = {
   firstName: string;
@@ -22,7 +22,8 @@ type QuizData = {
   score: number;
 };
 
-const QuizPage = ({ params }: { params: { quizId: string } }) => {
+const QuizPage = ({ params }: { params: Promise<{ quizId: string }> }) => {
+  const { quizId } = use(params);
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
 
@@ -31,8 +32,8 @@ const QuizPage = ({ params }: { params: { quizId: string } }) => {
     isLoading: isLoadingMcq,
     error: mcqError,
   } = useQuery({
-    queryKey: ["admin-quiz-students", params.quizId],
-    queryFn: () => GetQuizStudents(params.quizId),
+    queryKey: ["admin-quiz-students", quizId],
+    queryFn: () => GetQuizStudents(quizId),
     enabled: isClient,
     retry: 1,
   });
@@ -42,8 +43,8 @@ const QuizPage = ({ params }: { params: { quizId: string } }) => {
     isLoading: isLoadingEssay,
     error: essayError,
   } = useQuery({
-    queryKey: ["admin-essay-students", params.quizId],
-    queryFn: () => GetEssayStudents(params.quizId),
+    queryKey: ["admin-essay-students", quizId],
+    queryFn: () => GetEssayStudents(quizId),
     enabled: isClient && !!mcqError,
     retry: 1,
   });
@@ -53,8 +54,8 @@ const QuizPage = ({ params }: { params: { quizId: string } }) => {
     isLoading: isLoadingExam,
     error: examError,
   } = useQuery({
-    queryKey: ["admin-exam-students", params.quizId],
-    queryFn: () => GetExamStudents(params.quizId),
+    queryKey: ["admin-exam-students", quizId],
+    queryFn: () => GetExamStudents(quizId),
     enabled: isClient && !!mcqError && !!essayError,
   });
 

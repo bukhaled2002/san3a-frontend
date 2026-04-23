@@ -11,13 +11,14 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 async function AdminSingleStudent({ params }: Props) {
-  const student = await getStudent(params.id);
+  const { id } = await params;
+  const student = await getStudent(id);
 
   return (
     <>

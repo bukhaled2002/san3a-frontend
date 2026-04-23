@@ -6,9 +6,9 @@ import { QueryClient } from "@tanstack/react-query";
 export async function generateMetadata({
   params,
 }: {
-  params: { id: string; lectureId: string; quizId: string };
+  params: Promise<{ id: string; lectureId: string; quizId: string }>;
 }) {
-  const quizId = params.quizId;
+  const { quizId } = await params;
   const data = await getUserByToken();
   const studentId = data.id;
   const quiz = await getQuizResults(quizId, studentId);
@@ -20,11 +20,11 @@ export async function generateMetadata({
 }
 
 type Props = {
-  params: { id: string; lectureId: string; quizId: string };
+  params: Promise<{ id: string; lectureId: string; quizId: string }>;
 };
 
 async function QuizResults({ params }: Props) {
-  const { quizId } = params;
+  const { quizId } = await params;
   const data = await getUserByToken();
   const studentId = data.id;
   const queryclient = new QueryClient();
